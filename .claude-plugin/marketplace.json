@@ -22,7 +22,7 @@
         "testing",
         "widget_testing",
         "golden_testing",
-        "stage_management",
+        "state_management",
         "bloc",
         "bloc_test",
         "riverpod"
