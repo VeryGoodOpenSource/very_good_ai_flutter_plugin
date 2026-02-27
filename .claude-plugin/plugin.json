@@ -18,6 +18,11 @@
         "stage_management",
         "bloc",
         "bloc_test",
-        "riverpod"
+        "riverpod",
+        "navigation",
+        "go_router",
+        "internationalization",
+        "localization",
+        "theming"
       ]
     }
