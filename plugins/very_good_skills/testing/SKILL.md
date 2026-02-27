@@ -1,17 +1,15 @@
 ---
-name: unit_test
-description: Best practices for writing Dart unit tests using package:test, package:flutter_test, and package:mocktail. Covers test structure, naming, mocking, lifecycle, isolation, matchers, configuration, and coverage patterns.
+name: testing
+description: Best practices for writing Dart unit tests, Flutter widget tests, and golden file tests using package:test, package:flutter_test, package:mocktail, and package:bloc_test. Covers test structure, naming, mocking, lifecycle, isolation, matchers, widget interactions, golden file workflows, configuration, and coverage patterns.
 ---
 
-# Dart Unit Testing
+# Dart & Flutter Testing
 
-Unit testing fundamentals for Dart and Flutter projects using `package:test`, `package:flutter_test`, and `package:mocktail`.
-
----
+Testing fundamentals for Dart and Flutter projects — unit tests, widget tests, and golden file tests — using `package:test`, `package:flutter_test`, `package:mocktail`, and `package:bloc_test`.
 
 ## Standards (Non-Negotiable)
 
-These constraints apply to ALL unit test work — no exceptions:
+These constraints apply to ALL test work — no exceptions:
 
 - **Descriptive test names** — verbose, readable names that describe the behavior; never `'works'` or `'renders'`
 - **Hierarchical group/test structure that reads as natural sentences** — top-level `group` for the class, nested `group` for the method, `test` for the behavior (e.g., `UserRepository` → `getUser` → `returns User when API succeeds`)
@@ -22,8 +20,9 @@ These constraints apply to ALL unit test work — no exceptions:
 - **No shared mutable state between tests** — never use static members, global variables, or top-level final instances that persist across tests
 - **Use `package:mocktail`** — never `package:mockito`
 - **Constant test tags** — use an `abstract class TestTag` with `static const` fields; never pass raw string literals as tags
-
----
+- **Test behavior, not properties** — widget tests focus on functional outcomes; static visual properties validated via golden tests
+- **Use `pumpApp` test helper** — wrap widgets via shared helper in `test/helpers/pump_app.dart`; never inline `pumpWidget(MaterialApp(...))`
+- **Tag all golden tests** — annotate with `TestTag.golden` so goldens can run/update independently
 
 ## Test Structure
 
@@ -105,8 +104,6 @@ void main() {
 | **Conditional behavior** | `'returns cached value when cache is not expired'` |
 | **Edge case** | `'returns empty list when repository has no items'` |
 
----
-
 ## Lifecycle Methods
 
 | Method | Runs | Use for |
@@ -170,8 +167,6 @@ group(OrderRepository, () {
 ```
 
 `registerFallbackValue` only needs to run once because it registers a type globally for `any()` matchers.
-
----
 
 ## Mocking with Mocktail
 
@@ -246,8 +241,6 @@ setUpAll(() {
 
 The fallback value is only used when no stub matches — its specific field values do not matter.
 
----
-
 ## Test Isolation
 
 ### Principles
@@ -266,8 +259,6 @@ The fallback value is only used when no stub matches — its specific field valu
 | `class MockDep extends Mock` (public) | Other test files can import and depend on it | Use `class _MockDep extends Mock` (private) |
 | Static/global mutable variables | State persists across tests | Reset in `setUp` or avoid entirely |
 | Tests that must run in a specific order | Fragile, fails with random ordering | Make each test fully self-contained |
-
----
 
 ## Common Test Patterns
 
@@ -363,7 +354,312 @@ test('calls onSuccess callback when operation completes', () async {
 });
 ```
 
----
+## Widget Testing
+
+Widget tests verify that Flutter widgets behave correctly — rendering the right content, responding to user interactions, and navigating as expected. They run in a simulated environment without a real device.
+
+### Standards
+
+| Rule | Details |
+| --- | --- |
+| **Use `testWidgets`** | Every widget test uses `testWidgets` instead of `test` |
+| **Prefer `find.byType`** | Default finder; use `find.text` for user-visible content, `find.byKey` only when type/text is ambiguous |
+| **Group by behavior category** | Use `renders`, `navigates`, `calls [MethodName]`, `updates` as nested group names |
+| **Focus on behavior** | Assert what the widget *does* (shows text, calls callback, navigates); use golden tests for visual appearance |
+| **Mock Blocs and Cubits** | Use `MockBloc`/`MockCubit` from `package:bloc_test`; never provide real Blocs in widget tests |
+
+### pumpApp Helper
+
+Create a shared `pumpApp` helper so every widget test wraps the widget under test consistently:
+
+```dart
+// test/helpers/pump_app.dart
+import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
+
+extension PumpApp on WidgetTester {
+  Future<void> pumpApp(Widget widget) {
+    return pumpWidget(
+      MaterialApp(
+        home: widget,
+      ),
+    );
+  }
+}
+```
+
+Export it from a barrel file so every test can import it with one line:
+
+```dart
+// test/helpers/helpers.dart
+export 'pump_app.dart';
+```
+
+Usage in tests:
+
+```dart
+import '../helpers/helpers.dart';
+
+void main() {
+  group(MyWidget, () {
+    testWidgets('renders greeting text', (tester) async {
+      await tester.pumpApp(const MyWidget());
+
+      expect(find.text('Hello'), findsOneWidget);
+    });
+  });
+}
+```
+
+### Pumping Methods
+
+| Method | When to use |
+| --- | --- |
+| `pumpWidget(widget)` | Initial render — builds the widget tree for the first time |
+| `pump()` | Trigger a single frame rebuild (after `setState`, tap, etc.) |
+| `pump(Duration)` | Advance time by a specific duration (animations, debounce) |
+| `pumpAndSettle()` | Pump repeatedly until no pending frames — use for animations that must complete |
+
+**Prefer `pump()` over `pumpAndSettle()`** — `pumpAndSettle` can hang when infinite animations (e.g., `CircularProgressIndicator`) are present. Use `pump()` for discrete rebuilds.
+
+### Finders
+
+| Finder | Use case | Example |
+| --- | --- | --- |
+| `find.byType(T)` | Find widgets by type (default choice) | `find.byType(ElevatedButton)` |
+| `find.text('x')` | Find text content visible to users | `find.text('Submit')` |
+| `find.byKey(Key)` | Find by explicit key (last resort) | `find.byKey(Key('submit_button'))` |
+| `find.byWidget(w)` | Find an exact widget instance | `find.byWidget(myWidget)` |
+| `find.descendant(of, matching)` | Scoped search within a subtree | `find.descendant(of: find.byType(AppBar), matching: find.text('Title'))` |
+
+### Interactions
+
+```dart
+// Tap
+await tester.tap(find.byType(ElevatedButton));
+await tester.pump();
+
+// Enter text
+await tester.enterText(find.byType(TextField), 'hello@example.com');
+await tester.pump();
+
+// Drag / scroll
+await tester.drag(find.byType(ListView), const Offset(0, -300));
+await tester.pump();
+
+// Long press
+await tester.longPress(find.byType(ListTile));
+await tester.pump();
+```
+
+Always call `pump()` (or `pumpAndSettle()`) after every interaction — widgets do not rebuild until a frame is triggered.
+
+### Widget Test Structure
+
+Full example testing a page that uses a Bloc:
+
+```dart
+import 'package:bloc_test/bloc_test.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail/mocktail.dart';
+import 'package:my_app/home/home_page.dart';
+
+import '../helpers/helpers.dart';
+
+class _MockHomeCubit extends MockCubit<HomeState> implements HomeCubit {}
+
+void main() {
+  group(HomePage, () {
+    late HomeCubit homeCubit;
+
+    setUp(() {
+      homeCubit = _MockHomeCubit();
+      when(() => homeCubit.state).thenReturn(const HomeState());
+    });
+
+    Widget buildSubject() {
+      return BlocProvider<HomeCubit>.value(
+        value: homeCubit,
+        child: const HomePage(),
+      );
+    }
+
+    group('renders', () {
+      testWidgets('displays welcome text', (tester) async {
+        await tester.pumpApp(buildSubject());
+
+        expect(find.text('Welcome'), findsOneWidget);
+      });
+
+      testWidgets('displays loading indicator when status is loading',
+          (tester) async {
+        when(() => homeCubit.state).thenReturn(
+          const HomeState(status: HomeStatus.loading),
+        );
+
+        await tester.pumpApp(buildSubject());
+
+        expect(find.byType(CircularProgressIndicator), findsOneWidget);
+      });
+    });
+
+    group('navigates', () {
+      testWidgets('to SettingsPage when settings icon is tapped',
+          (tester) async {
+        await tester.pumpApp(buildSubject());
+
+        await tester.tap(find.byIcon(Icons.settings));
+        await tester.pumpAndSettle();
+
+        expect(find.byType(SettingsPage), findsOneWidget);
+      });
+    });
+
+    group('calls', () {
+      testWidgets('loadData when refresh button is tapped',
+          (tester) async {
+        when(() => homeCubit.loadData()).thenAnswer((_) async {});
+
+        await tester.pumpApp(buildSubject());
+
+        await tester.tap(find.byIcon(Icons.refresh));
+        await tester.pump();
+
+        verify(() => homeCubit.loadData()).called(1);
+      });
+    });
+  });
+}
+```
+
+### Testing Themes and Localization
+
+Extend `pumpApp` to inject theme and localizations when needed:
+
+```dart
+extension PumpApp on WidgetTester {
+  Future<void> pumpApp(
+    Widget widget, {
+    ThemeData? theme,
+  }) {
+    return pumpWidget(
+      MaterialApp(
+        theme: theme,
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        home: widget,
+      ),
+    );
+  }
+}
+```
+
+### Widget Testing Anti-Patterns
+
+| Anti-Pattern | Problem | Correct Approach |
+| --- | --- | --- |
+| Inline `MaterialApp` in each test | Duplicated boilerplate; inconsistent setup | Use `pumpApp` helper |
+| `find.byKey` as default finder | Couples tests to implementation keys | Prefer `find.byType` or `find.text` |
+| Testing padding, colors, or font sizes | Fragile; breaks on design tweaks; not behavioral | Use golden tests for visual validation |
+| Missing `pump()` after interaction | Widget tree does not rebuild; assertion sees stale state | Always `pump()` after `tap`, `enterText`, etc. |
+| Real Blocs in widget tests | Tests become integration tests; slow, brittle, hard to isolate | Use `MockBloc`/`MockCubit` from `bloc_test` |
+
+## Golden File Testing
+
+Golden tests capture a rendered widget as an image and compare it against a stored reference file (the "golden"). They validate visual appearance — layout, colors, typography, and spacing — without requiring behavioral assertions.
+
+### When to Use Goldens vs Behavioral Tests
+
+| Concern | Test type | Why |
+| --- | --- | --- |
+| Button triggers navigation | Widget test | Behavioral outcome |
+| Page shows correct text for state | Widget test | Content based on logic |
+| Widget matches design spec visually | Golden test | Pixel-level appearance |
+| Layout does not regress after refactor | Golden test | Visual regression detection |
+| Icon/color changes with theme | Golden test | Visual property |
+
+### Setup and Configuration
+
+1. Declare the `golden` tag in `dart_test.yaml`:
+
+```yaml
+tags:
+  golden:
+```
+
+2. Define a `TestTag` constant (if not already present):
+
+```dart
+// test/helpers/test_tags.dart
+abstract class TestTag {
+  static const golden = 'golden';
+}
+```
+
+### Writing a Golden Test
+
+```dart
+@Tags([TestTag.golden])
+library;
+
+import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
+
+import '../helpers/helpers.dart';
+
+void main() {
+  group(ProfileCard, () {
+    testWidgets('renders correctly', (tester) async {
+      await tester.pumpApp(
+        const ProfileCard(name: 'Dash', role: 'Mascot'),
+      );
+
+      await expectLater(
+        find.byType(ProfileCard),
+        matchesGoldenFile('goldens/profile_card.png'),
+      );
+    });
+  });
+}
+```
+
+### Tagging Golden Tests
+
+Use the library-level `@Tags` annotation so that every test in the file is tagged:
+
+```dart
+@Tags([TestTag.golden])
+library;
+```
+
+For files that mix golden and behavioral tests, tag individual tests:
+
+```dart
+testWidgets('matches golden', tags: TestTag.golden, (tester) async {
+  // ...
+});
+```
+
+### Running and Updating Goldens
+
+| Command | Purpose |
+| --- | --- |
+| `flutter test --tags golden` | Run only golden tests |
+| `flutter test --tags golden --update-goldens` | Regenerate golden reference files |
+| `flutter test --exclude-tags golden` | Run all tests except goldens |
+| `flutter test` | Run all tests including goldens |
+
+After updating goldens, review and commit the new `.png` files — they are the source of truth.
+
+### Golden Testing Anti-Patterns
+
+| Anti-Pattern | Problem | Correct Approach |
+| --- | --- | --- |
+| Untagged golden tests | Cannot run or update goldens independently | Always tag with `TestTag.golden` |
+| Testing behavior with goldens | Goldens verify appearance, not logic | Use widget tests for behavioral assertions |
+| Uncommitted golden files | CI fails because reference images are missing | Commit `.png` goldens alongside test code |
+| Raw string tags (`tags: 'golden'`) | Fragile; typos silently create new tags | Use `TestTag.golden` constant |
 
 ## Matchers Quick Reference
 
@@ -389,8 +685,6 @@ test('calls onSuccess callback when operation completes', () async {
 | `emitsDone` | Stream closes |
 | `emitsError(matcher)` | Stream emits an error |
 | `neverEmits(matcher)` | Stream never emits a matching value |
-
----
 
 ## Configuration (dart_test.yaml)
 
@@ -478,8 +772,6 @@ test('renders correctly', tags: TestTag.golden, () {
 | `dart test --test-randomize-ordering-seed random` | Randomize test execution order |
 | `dart test --reporter expanded` | Verbose test output |
 
----
-
 ## Coverage
 
 ### Achieving Full Coverage
@@ -527,8 +819,6 @@ group('copyWith', () {
 });
 ```
 
----
-
 ## Quick Reference
 
 ### Packages
@@ -540,6 +830,7 @@ group('copyWith', () {
 | `mocktail` | Mock creation and stubbing | Yes |
 | `fake_async` | Control async execution (timers, microtasks) | Yes |
 | `clock` | Injectable clock for time-dependent logic | No |
+| `bloc_test` | Mock Blocs/Cubits for widget tests | Yes |
 
 ### Imports
 
@@ -548,3 +839,4 @@ group('copyWith', () {
 | `import 'package:test/test.dart';` | Pure Dart packages (no Flutter dependency) |
 | `import 'package:flutter_test/flutter_test.dart';` | Flutter packages (re-exports `package:test`) |
 | `import 'package:mocktail/mocktail.dart';` | Any test file that uses `Mock`, `Fake`, `when`, `verify` |
+| `import '../helpers/helpers.dart';` | Every widget and golden test file — provides `pumpApp` and `TestTag` |
