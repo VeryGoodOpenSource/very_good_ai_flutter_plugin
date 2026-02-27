@@ -22,7 +22,9 @@
         "unit_testing",
         "widget_testing",
         "coverage",
-        "stage_management"
+        "stage_management",
+        "bloc",
+        "bloc_test"
       ]
     }
   ]
