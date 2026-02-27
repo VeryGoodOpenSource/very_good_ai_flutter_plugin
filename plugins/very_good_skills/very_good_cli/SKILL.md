@@ -1,3 +1,8 @@
+---
+name: very_good_cli
+description: Best practices for using the Very Good CLI. It covers app and package creation, templates, architecture, linting, testing, and other recommended practices.
+---
+
 # Very Good CLI
 
 Command-line tool for VGV-standard Flutter/Dart projects. Install: `dart pub global activate very_good_cli`

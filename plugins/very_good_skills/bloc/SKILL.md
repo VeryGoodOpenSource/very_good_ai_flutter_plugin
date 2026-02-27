@@ -1,4 +1,9 @@
-# Flutter Bloc
+---
+name: bloc
+description: Best practices when working the the Bloc state management solution, as well as testing.
+---
+
+# Bloc
 
 State management library for Dart and Flutter using the BLoC (Business Logic Component) pattern to separate business logic from the presentation layer.
 
