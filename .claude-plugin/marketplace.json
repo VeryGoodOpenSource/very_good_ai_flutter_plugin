@@ -24,7 +24,8 @@
         "coverage",
         "stage_management",
         "bloc",
-        "bloc_test"
+        "bloc_test",
+        "riverpod"
       ]
     }
   ]
