@@ -1,0 +1,29 @@
+{
+  "name": "very-good-skills-marketplace",
+  "owner": {
+    "name": "Very Good Ventures",
+    "url": "https://verygood.ventures"
+  },
+  "metadata": {
+    "description": "Very Good Skills - Flutter & Dart development enhancement",
+    "version": "0.0.1"
+  },
+  "plugins": [
+    {
+      "name": "very_good_skills",
+      "description": "Very Good Skills - Flutter & Dart development enhancement",
+      "version": "0.0.1",
+      "homepage": "https://github.com/VeryGoodOpenSource/very_good_skills",
+      "source": "./plugins/very_good_skills",
+      "tags": [
+        "flutter",
+        "dart",
+        "very_good_cli",
+        "unit_testing",
+        "widget_testing",
+        "coverage",
+        "stage_management"
+      ]
+    }
+  ]
+}
