@@ -14,7 +14,7 @@
       "description": "Very Good Skills - Flutter & Dart development enhancement",
       "version": "0.0.1",
       "homepage": "https://github.com/VeryGoodOpenSource/very_good_skills",
-      "source": "./plugins/very_good_skills",
+      "source": ".",
       "tags": [
         "flutter",
         "dart",

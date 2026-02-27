@@ -12,7 +12,7 @@ Very Good Skills is a Claude Code plugin that provides best-practices skills for
 .claude-plugin/
   plugin.json          # Plugin manifest (name, version, tags)
   marketplace.json     # Marketplace registry entry
-plugins/very_good_skills/
+skills/
   bloc/SKILL.md
   internationalization/SKILL.md
   material_theming/SKILL.md
@@ -41,7 +41,7 @@ Every `SKILL.md` follows this structure:
 
 ## Adding a New Skill
 
-1. Create `plugins/very_good_skills/<skill_name>/SKILL.md` following the format above
+1. Create `skills/<skill_name>/SKILL.md` following the format above
 2. Update tags in `.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json`
 3. Update the skills table in `README.md`
 
