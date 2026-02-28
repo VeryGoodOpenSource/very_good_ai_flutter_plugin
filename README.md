@@ -41,8 +41,8 @@ You can also invoke skills directly as slash commands:
 /testing
 /navigation
 /internationalization
-/material_theming
-/very_good_cli
+/material-theming
+/very-good-cli
 ```
 
 ## What Each Skill Provides

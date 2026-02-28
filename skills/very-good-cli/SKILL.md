@@ -1,6 +1,6 @@
 ---
-name: very_good_cli
-description: Best practices for using the Very Good CLI. It covers app and package creation, templates, architecture, linting, testing, and other recommended practices.
+name: very-good-cli
+description: Best practices for using the Very Good CLI. Use when scaffolding projects with very_good_cli, working with VGV templates, configuring very_good_analysis, or running very_good test commands.
 ---
 
 # Very Good CLI

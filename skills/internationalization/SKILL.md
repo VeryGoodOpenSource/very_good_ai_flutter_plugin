@@ -1,6 +1,6 @@
 ---
 name: internationalization
-description: Best practices for internationalization (i18n) and localization (l10n) in Flutter, including ARB-based translations, BuildContext extensions, text directionality, and RTL support.
+description: Best practices for internationalization (i18n) and localization (l10n) in Flutter. Use when adding, modifying, or reviewing ARB translations, locale setup, BuildContext l10n extensions, or RTL/directional layout support.
 ---
 
 # Internationalization

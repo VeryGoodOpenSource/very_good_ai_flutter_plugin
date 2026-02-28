@@ -18,14 +18,19 @@
       "tags": [
         "flutter",
         "dart",
-        "very_good_cli",
+        "very-good-cli",
         "testing",
-        "widget_testing",
-        "golden_testing",
-        "state_management",
+        "widget-testing",
+        "golden-testing",
+        "state-management",
         "bloc",
-        "bloc_test",
-        "riverpod"
+        "bloc-test",
+        "riverpod",
+        "navigation",
+        "go-router",
+        "internationalization",
+        "localization",
+        "theming"
       ]
     }
   ]

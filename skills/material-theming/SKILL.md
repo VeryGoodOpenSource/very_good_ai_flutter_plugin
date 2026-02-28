@@ -1,6 +1,6 @@
 ---
-name: material_theming
-description: Best practices for Flutter theming using Material 3, including ColorScheme, TextTheme, component themes, spacing systems, and light/dark theme support.
+name: material-theming
+description: Best practices for Flutter theming using Material 3. Use when creating, modifying, or reviewing ThemeData, ColorScheme, TextTheme, component themes, spacing systems, or light/dark mode support.
 ---
 
 # Theming

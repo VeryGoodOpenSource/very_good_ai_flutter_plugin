@@ -14,19 +14,22 @@ Very Good Skills is a Claude Code plugin that provides best-practices skills for
   marketplace.json     # Marketplace registry entry
 skills/
   bloc/SKILL.md
+  bloc/reference.md
   internationalization/SKILL.md
-  material_theming/SKILL.md
+  material-theming/SKILL.md
   navigation/SKILL.md
   riverpod/SKILL.md
+  riverpod/reference.md
   testing/SKILL.md
-  very_good_cli/SKILL.md
+  testing/reference.md
+  very-good-cli/SKILL.md
 ```
 
 ## Skill File Format
 
 Every `SKILL.md` follows this structure:
 
-1. **YAML frontmatter** — `name` (lowercase_snake) and `description` fields
+1. **YAML frontmatter** — `name` (lowercase letters, numbers, and hyphens only) and `description` fields
 2. **H1 title** — human-readable skill name
 3. **Standards (Non-Negotiable)** — enforced constraints, always first
 4. **Content sections** — architecture, code examples, workflows, anti-patterns
