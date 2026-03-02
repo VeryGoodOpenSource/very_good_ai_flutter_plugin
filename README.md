@@ -15,6 +15,7 @@ Very Good AI Flutter Plugin is a collection of contextual best-practices skills 
 
 | Skill | Description |
 | ----- | ----------- |
+| **Accessibility** | WCAG 2.1 AA compliance — semantics, screen reader support, touch targets, focus management, color contrast, text scaling, and motion sensitivity |
 | **Very Good CLI** | Project scaffolding with `very_good_cli` — templates, flavors, architecture patterns, 100% coverage targets, and `very_good_analysis` linting |
 | **Testing** | Unit, widget, and golden testing — `mocktail` mocking, `pumpApp` helpers, test structure & naming, coverage patterns, and `dart_test.yaml` configuration |
 | **Navigation** | GoRouter routing — `@TypedGoRoute` type-safe routes, deep linking, redirects, shell routes, and widget testing with `MockGoRouter` |
@@ -36,6 +37,7 @@ For example:
 You can also invoke skills directly as slash commands:
 
 ```bash
+/accessibility
 /bloc
 /riverpod
 /testing
