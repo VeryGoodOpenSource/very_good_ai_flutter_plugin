@@ -1,0 +1,25 @@
+name: ci
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  spelling:
+      name: ✍️ Spelling Check
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v4
+        - name: Spell Check
+          uses: streetsidesoftware/cspell-action@v6
+          with:
+            files: '**/*.md'
+            config: 'config/cspell.json'
+  structure:
+    name: 🏗️ Structure Validation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check For Large Files (under 50KB)
+        run: bash ./scripts/check_large_files.sh
