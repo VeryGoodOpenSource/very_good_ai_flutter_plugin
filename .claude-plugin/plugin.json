@@ -22,6 +22,11 @@
         "go-router",
         "internationalization",
         "localization",
-        "theming"
+        "theming",
+        "hooks",
+        "analyze",
+        "format",
+        "lint",
+        "code-quality"
       ]
     }
