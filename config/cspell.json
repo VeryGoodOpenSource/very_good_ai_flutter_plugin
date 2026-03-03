@@ -1,5 +1,11 @@
 {
   "language": "en",
-  "words": [],
+  "words": [
+    "frontmatter",
+    "mocktail",
+    "pasteable",
+    "pubspec",
+    "riverpod"
+  ],
   "flagWords": []
 }
