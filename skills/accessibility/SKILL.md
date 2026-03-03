@@ -80,16 +80,21 @@ After completing all six categories, produce the Audit Report using the level-sp
 
 ### Phase 4 — Remediation Scope Selection
 
-After delivering the report, ask:
+After delivering the report, use the `AskUserQuestion` tool with a single question:
 
-> "The audit is complete. How would you like to proceed with fixes?
->
-> - **All issues** — fix every CRITICAL, MAJOR, and MINOR finding
-> - **Critical + Major only** — fix blockers and significant barriers; skip MINOR polish items
-> - **Critical only** — fix only what blocks assistive technology users entirely
-> - **Specific findings** — list the finding numbers you want fixed
->
-> Reply with your choice."
+```
+question: "The audit is complete. How would you like to proceed with fixes?"
+header: "Fix scope"
+options:
+  - label: "All issues"
+    description: "Fix every CRITICAL, MAJOR, and MINOR finding"
+  - label: "Critical + Major only"
+    description: "Fix blockers and significant barriers; skip MINOR polish items"
+  - label: "Critical only"
+    description: "Fix only what blocks assistive technology users entirely"
+  - label: "Specific findings"
+    description: "List the finding numbers you want fixed"
+```
 
 Apply exactly the fixes the user selects. After applying fixes, confirm: "Fixed [N] findings ([severities]). [N remaining] remain open."
 
