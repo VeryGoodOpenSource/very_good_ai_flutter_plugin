@@ -1,6 +1,6 @@
 # Accessibility — Reference
 
-Extended reference material for the Accessibility skill: detailed code examples for each category, WCAG 2.1 AA checklist, audit template, test suite, and widget-to-accessibility mapping.
+Extended reference material for the Accessibility skill: detailed code examples for each category, WCAG 2.1 checklists by level (A, AA, AAA), audit report templates per level, full accessibility test suite, and widget-to-accessibility requirements mapping.
 
 ---
 
@@ -95,52 +95,6 @@ class UploadStatusIndicator extends StatelessWidget {
 enum UploadStatus { idle, uploading, success, error }
 ```
 
-### MergeSemantics for Card-Based Layouts
-
-```dart
-import 'package:flutter/material.dart';
-
-class ContactCard extends StatelessWidget {
-  const ContactCard({
-    required this.name,
-    required this.email,
-    required this.onTap,
-    super.key,
-  });
-
-  final String name;
-  final String email;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    // MergeSemantics combines all children into a single
-    // announcement: "John Doe, john@example.com, double tap to activate"
-    return MergeSemantics(
-      child: InkWell(
-        onTap: onTap,
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Row(
-            children: [
-              const Icon(Icons.person),
-              const SizedBox(width: 12),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(name, style: Theme.of(context).textTheme.titleMedium),
-                  Text(email, style: Theme.of(context).textTheme.bodySmall),
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-```
-
 ---
 
 ## Touch Target Sizes — Extended Examples
@@ -190,37 +144,6 @@ AccessibleTapTarget(
 )
 ```
 
-### Chip and Tag Minimum Sizing
-
-```dart
-import 'package:flutter/material.dart';
-
-class AccessibleFilterChip extends StatelessWidget {
-  const AccessibleFilterChip({
-    required this.label,
-    required this.isSelected,
-    required this.onSelected,
-    super.key,
-  });
-
-  final String label;
-  final bool isSelected;
-  final ValueChanged<bool> onSelected;
-
-  @override
-  Widget build(BuildContext context) {
-    return ConstrainedBox(
-      constraints: const BoxConstraints(minHeight: 48),
-      child: FilterChip(
-        label: Text(label),
-        selected: isSelected,
-        onSelected: onSelected,
-      ),
-    );
-  }
-}
-```
-
 ---
 
 ## Focus & Keyboard — Extended Examples
@@ -268,39 +191,6 @@ class AccessibleForm extends StatelessWidget {
       ),
     );
   }
-}
-```
-
-### Focus Restoration After Bottom Sheet
-
-```dart
-import 'package:flutter/material.dart';
-
-void showAccessibleBottomSheet(BuildContext context) {
-  // showModalBottomSheet handles focus trapping and restoration
-  showModalBottomSheet<void>(
-    context: context,
-    builder: (context) {
-      return Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Text('Select an option'),
-            const SizedBox(height: 16),
-            ListTile(
-              title: const Text('Option A'),
-              onTap: () => Navigator.of(context).pop(),
-            ),
-            ListTile(
-              title: const Text('Option B'),
-              onTap: () => Navigator.of(context).pop(),
-            ),
-          ],
-        ),
-      );
-    },
-  );
 }
 ```
 
@@ -420,35 +310,6 @@ class AdaptiveInfoCard extends StatelessWidget {
 }
 ```
 
-### Button That Scales with Text
-
-```dart
-import 'package:flutter/material.dart';
-
-class AdaptiveActionButton extends StatelessWidget {
-  const AdaptiveActionButton({
-    required this.label,
-    required this.onPressed,
-    super.key,
-  });
-
-  final String label;
-  final VoidCallback onPressed;
-
-  @override
-  Widget build(BuildContext context) {
-    // ConstrainedBox guarantees 48dp minimum while allowing growth
-    return ConstrainedBox(
-      constraints: const BoxConstraints(minHeight: 48),
-      child: ElevatedButton(
-        onPressed: onPressed,
-        child: Text(label),
-      ),
-    );
-  }
-}
-```
-
 ---
 
 ## Animation & Motion — Extended Examples
@@ -525,41 +386,34 @@ class AccessibleHero extends StatelessWidget {
 
 ---
 
-## WCAG 2.1 AA Checklist — Flutter Solutions
+## Audit Report Templates by Level
 
-| WCAG Criterion | Requirement | Flutter Solution |
-| --- | --- | --- |
-| 1.1.1 Non-text Content | All non-text content has a text alternative | `semanticLabel` on `Image`, `Semantics(label:)`, `Tooltip` on icon buttons |
-| 1.3.1 Info and Relationships | Structure and relationships are programmatically determinable | `Semantics` with `header`, `button`, `link` flags; `MergeSemantics` |
-| 1.3.2 Meaningful Sequence | Reading order matches visual order | `FocusTraversalGroup` with `OrderedTraversalPolicy` |
-| 1.4.1 Use of Color | Color is not the sole means of conveying information | Pair color with icons, labels, or patterns |
-| 1.4.3 Contrast (Minimum) | 4.5:1 for normal text, 3:1 for large text | `ColorScheme` with verified contrast ratios |
-| 1.4.4 Resize Text | Text scales up to 200% without loss of content | `ConstrainedBox(minHeight:)`, no fixed heights on text containers |
-| 1.4.11 Non-text Contrast | UI components and focus indicators have 3:1 contrast | Theme-based borders and focus rings with sufficient contrast |
-| 2.1.1 Keyboard | All functionality is operable via keyboard | `InkWell`, button widgets, `Focus`; never bare `GestureDetector` |
-| 2.1.2 No Keyboard Trap | Focus can be moved away from any component | Standard Flutter widgets; avoid custom `FocusNode` traps |
-| 2.3.1 Three Flashes | Nothing flashes more than 3 times per second | Limit `AnimationController` frequency |
-| 2.3.3 Animation from Interactions | Motion can be disabled | Gate on `MediaQuery.of(context).disableAnimations` |
-| 2.4.3 Focus Order | Focus order preserves meaning and operability | `FocusTraversalGroup`, `FocusTraversalOrder` |
-| 2.4.11 Focus Appearance | Focus indicators have 3:1 contrast and visible area | Custom `Border` on `Focus` with high-contrast color |
-| 2.5.5 Target Size | Touch targets are at least 44x44 CSS px (48x48 dp) | `SizedBox(width: 48, height: 48)` or `ConstrainedBox` |
-| 4.1.2 Name, Role, Value | All UI components have accessible name and role | `Semantics(label:, button: true)`, `Tooltip` |
-| 4.1.3 Status Messages | Status messages are announced without focus | `Semantics(liveRegion: true)`, `SemanticsService.announce()` |
+Each template is pre-annotated with the criteria applicable at that level. Use the template matching the level selected in Phase 1 of the Workflow.
 
----
+### Severity Guide
 
-## Complete Audit Output Format Template
+| Severity | Meaning |
+| --- | --- |
+| **CRITICAL** | Blocks assistive technology users entirely — fix before merging |
+| **MAJOR** | Significant barrier — fix in current sprint |
+| **MINOR** | Degraded experience or polish item — schedule for next sprint |
 
-Use this template when performing a full accessibility audit:
+Severity assignment:
+
+- **CRITICAL** — criterion applies at selected level AND issue completely blocks the use case (e.g., no semantic label on primary action, `GestureDetector` on a required flow, zero focus visibility)
+- **MAJOR** — criterion applies at selected level AND issue significantly degrades the experience (e.g., contrast ratio fails by > 1 point, touch target < 40dp, dialog does not trap focus)
+- **MINOR** — criterion applies at selected level AND issue is a refinement (e.g., contrast fails marginally, live region missing on non-critical status, focus indicator present but border width 1px instead of 2px)
+
+### Template (all levels)
 
 ```text
 # Flutter Accessibility Audit
 
 **Date:** YYYY-MM-DD
-**Auditor:** [name]
+**WCAG Level:** [A | AA | AAA]
+**Platforms:** [Mobile | Desktop | Web | combination]
 **Files audited:**
-- path/to/file_1.dart
-- path/to/file_2.dart
+- path/to/file.dart
 
 ## Summary
 | Severity | Count |
@@ -572,35 +426,56 @@ Use this template when performing a full accessibility audit:
 
 ### 1. [Short descriptive title]
 - **File:** path/to/file.dart ~L42
-- **WCAG:** 1.4.3 Contrast (Minimum)
-- **Severity:** CRITICAL
-- **Issue:** [Clear description of the problem]
+- **WCAG:** [criterion ID] [criterion name] (Level [A/AA/AAA])
+- **Platform(s):** [Mobile | Desktop | Web | All]
+- **Severity:** [CRITICAL | MAJOR | MINOR]
+- **Issue:** [description]
 - **Fix:**
-```dart
-// Before
-Text('Error', style: TextStyle(color: Colors.grey.shade300))
+  // Before
+  [existing code]
 
-// After
-Text('Error', style: TextStyle(color: Theme.of(context).colorScheme.error))
-```
+  // After
+  [fixed code]
 
 ### 2. [Next finding...]
-...
 
 ## Passed Checks
-- [x] A · Semantics & Screen Reader — all images have semantic labels
-- [x] B · Touch Target Sizes — all interactive elements >= 48dp
-- [x] C · Focus & Keyboard — tab order matches visual order
-- [x] D · Color Contrast — all text meets 4.5:1 ratio
-- [x] E · Text Scaling — no fixed-height text containers
-- [x] F · Animation & Motion — all animations gated on disableAnimations
+[copy the applicable checks from the level lists below]
+```
 
-## Severity Guide
-| Severity | Action |
-|----------|--------|
-| CRITICAL | Fix before merging — blocks assistive technology users |
-| MAJOR | Fix in current sprint — significant barrier |
-| MINOR | Schedule for next sprint — degraded experience |
+### Passed Checks — Level A
+
+```text
+- [x] A · Semantics & Screen Reader — all images/icons have semantic labels; roles correct
+- [x] B · Touch Target Sizes — all interactive elements >= 48dp (mobile)
+- [x] C · Focus & Keyboard — all interactions reachable via keyboard; no traps
+- [x] D · Color — color is never sole differentiator
+- [x] E · Text Scaling — no fixed-height text containers
+- [x] F · Animation & Motion — no content flashes > 3 Hz (2.3.1)
+```
+
+### Passed Checks — Level AA (Level A + these)
+
+```text
+- [x] C · Focus & Keyboard — focus indicator visible with 3:1 contrast (2.4.7, 2.4.11)
+- [x] D · Color Contrast — normal text >= 4.5:1, large text >= 3:1, UI components >= 3:1 (1.4.3, 1.4.11)
+- [x] E · Text Scaling — text scales to 200% without loss (1.4.4)
+- [x] F · Animation & Motion — all animations gated on disableAnimations (2.3.3)
+- [x] G · Orientation — not locked to single orientation (1.3.4)
+- [x] H · Input Purpose — autofillHints and keyboardType correct (1.3.5)
+- [x] I · Reflow — content reflows at 320px equivalent (1.4.10) [web/desktop]
+```
+
+### Passed Checks — Level AAA (Level AA + these)
+
+```text
+- [x] B · Touch Target Sizes — all interactive elements >= 44dp (2.5.5)
+- [x] C · Focus & Keyboard — no GestureDetector anywhere (2.1.3); indicator encloses component with 2px border (2.4.12)
+- [x] D · Color Contrast (Enhanced) — normal text >= 7:1, large text >= 4.5:1 (1.4.6)
+- [x] F · Animation & Motion — zero flashing content (2.3.2)
+- [x] J · No Timing — no mandatory time limits (2.2.3)
+- [x] K · Location — breadcrumbs or current-screen indication visible (2.4.8)
+- [x] L · Input Modality — no single-modality restriction (2.5.6)
 ```
 
 ---
@@ -892,3 +767,11 @@ void main() {
 | `AnimatedContainer` | Motion sensitivity | Gate `duration` on `MediaQuery.of(context).disableAnimations` |
 | `Hero` | Motion sensitivity | Skip `Hero` when `disableAnimations` is true |
 | `PageRoute` | Motion sensitivity | Override `buildTransitions` to return `child` directly when animations disabled |
+
+---
+
+## References
+
+- [Flutter Accessibility Guide](https://docs.flutter.dev/ui/accessibility) — official Flutter documentation on accessibility APIs, TalkBack/VoiceOver integration, and `Semantics` widget usage
+- [WCAG 2.1 Understanding Document](https://www.w3.org/WAI/WCAG21/Understanding/) — W3C explanations of each success criterion, including intent, examples, and sufficient techniques
+- [WCAG 2.1 Quick Reference](https://www.w3.org/WAI/WCAG21/quickref/) — filterable checklist of all success criteria by level
