@@ -30,7 +30,10 @@
         "go-router",
         "internationalization",
         "localization",
-        "theming"
+        "theming",
+        "security",
+        "owasp",
+        "mobile-security"
       ]
     }
   ]
