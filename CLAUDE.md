@@ -31,6 +31,8 @@ skills/
   static-security/reference.md
   testing/SKILL.md
   testing/reference.md
+  monorepo-architecture/SKILL.md
+  monorepo-architecture/reference.md
 ```
 
 ## Skill File Format

@@ -28,14 +28,17 @@
         "analyze",
         "format",
         "lint",
-        "code-quality"
+        "code-quality",
         "security",
         "owasp",
-        "mobile-security"
+        "mobile-security",
         "accessibility",
         "a11y",
         "wcag",
         "semantics",
-        "screen-reader"
+        "screen-reader",
+        "monorepo",
+        "architecture",
+        "layered-architecture"
       ]
     }

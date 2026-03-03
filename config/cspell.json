@@ -10,10 +10,12 @@
     "jailbroken",
     "mapbox",
     "mocktail",
+    "monorepo",
     "pasteable",
     "prefs",
     "pubspec",
     "riverpod",
+    "serialization",
     "stdio"
   ],
   "flagWords": []
