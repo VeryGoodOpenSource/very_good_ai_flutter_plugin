@@ -20,7 +20,8 @@ skills/
   navigation/SKILL.md
   riverpod/SKILL.md
   riverpod/reference.md
-  security/SKILL.md
+  static-security/SKILL.md
+  static-security/reference.md
   testing/SKILL.md
   testing/reference.md
   very-good-cli/SKILL.md

@@ -44,7 +44,7 @@ You can also invoke skills directly as slash commands:
 /internationalization
 /material-theming
 /very-good-cli
-/security
+/static-security
 ```
 
 ## What Each Skill Provides

@@ -1,5 +1,5 @@
 ---
-name: security
+name: static-security
 description: >
   Best practices for Flutter mobile app security. Use when reviewing or writing
   code that handles secrets, user data, network communication, authentication,
@@ -86,18 +86,6 @@ final client = HttpClient()
 ```dart
 // ✅ HTTPS base URL
 final dio = Dio(BaseOptions(baseUrl: 'https://api.example.com'));
-
-// ✅ Certificate pinning for high-sensitivity endpoints
-final result = await HttpCertificatePinning.check(
-  serverURL: 'https://api.example.com',
-  headerHttp: {},
-  sha: SHA.SHA256,
-  allowedSHAFingerprints: ['AA:BB:CC:...'],
-  timeout: 60,
-);
-if (result != 'CONNECTION_SECURE') {
-  throw CertificatePinningException();
-}
 ```
 
 Implement certificate pinning (`package:http_certificate_pinning`) for endpoints that handle authentication, payments, or personal data. Only accept certificates signed by the expected certificate authority.
@@ -108,42 +96,7 @@ Authentication controls must be enforced server-side. Client-side checks (in wid
 
 **Server-side enforcement**: the server must validate the token on every request. A 401 response from the API is the authoritative auth gate — not a widget conditional.
 
-```dart
-// ❌ Auth check only in the widget — bypassable client-side
-class SecretPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    if (!context.read<AuthBloc>().state.isAuthenticated) {
-      return const LoginPage();
-    }
-    return const SecretContent();
-  }
-}
-```
-
-```dart
-// ✅ Auth enforced at the repository layer; widget reflects state only
-class UserRepository {
-  Future<Profile> fetchProfile(String userId) async {
-    // Server validates the token — unauthenticated requests return 401
-    return _apiClient.getProfile(userId);
-  }
-}
-```
-
 **Biometric authentication**: use `package:local_auth` for biometric gating of sensitive in-app flows — do not invoke platform channels directly.
-
-```dart
-// ❌ Custom biometric implementation via platform channel — error-prone
-final result = await platform.invokeMethod('checkFingerprint');
-
-// ✅ Biometric authentication via package:local_auth
-final auth = LocalAuthentication();
-final didAuthenticate = await auth.authenticate(
-  localizedReason: 'Confirm your identity to view this information',
-  options: const AuthenticationOptions(biometricOnly: true),
-);
-```
 
 Use Firebase Authentication or Auth0 for credential management — do not build custom authentication flows.
 
@@ -175,11 +128,6 @@ final iv = List.generate(16, (_) => Random.secure().nextInt(256));
 import 'package:crypto/crypto.dart';
 import 'dart:convert';
 final hash = sha256.convert(utf8.encode(data)).toString();
-
-// ✅ Password hashing via package:dart_crypt (SHA-512-crypt)
-import 'package:dart_crypt/dart_crypt.dart';
-final hashed = Crypt.sha512(password);
-final isValid = hashed.match(inputPassword);
 
 // ✅ Encryption key from secure storage, not source code
 final key = await storage.read(key: 'encryption_key');
@@ -282,15 +230,10 @@ ignored_advisories:
   - GHSA-4rgh-jx4f-xxxx # Not applicable: we do not use the affected http.Client constructor
 ```
 
-Scan `pubspec.lock` against the [OSV database](https://osv.dev) with `osv-scanner`:
+Scan `pubspec.lock` against the [OSV database](https://osv.dev) with `osv-scanner` before every release:
 
 ```bash
-# Install (macOS)
-brew install osv-scanner
-
-# Install (Linux/CI) — download binary from https://github.com/google/osv-scanner/releases
 osv-scanner --lockfile=pubspec.lock
-# Output: table of vulnerable packages with CVE links and affected versions
 ```
 
 Check for packages with available upgrades that may include unannounced security patches:
@@ -298,31 +241,6 @@ Check for packages with available upgrades that may include unannounced security
 ```bash
 dart pub outdated
 ```
-
-### Typosquatting Signals
-
-Flag packages in `pubspec.yaml` that match any of these patterns:
-
-- Name differs from a well-known package by one character, a dash/underscore swap, or transposed letters (e.g., `flutter-secure-storage` vs `flutter_secure_storage`, `bloc_fluter` vs `flutter_bloc`)
-- No verified publisher on pub.dev (check the publisher badge on the package's pub.dev page) and fewer than 100 pub points, while performing high-privilege operations: file I/O, network requests, camera, Keychain/Keystore access
-- Publisher's GitHub repo URL does not match the package's declared homepage
-
-### Transitive Permission Creep
-
-Review `AndroidManifest.xml` for permissions that no first-party Dart code requires. Permissions can be merged in silently by transitive dependencies:
-
-```xml
-<!-- Flag: does any first-party code actually use READ_CONTACTS? -->
-<uses-permission android:name="android.permission.READ_CONTACTS" />
-```
-
-Trace which package introduced an unexpected permission:
-
-```bash
-flutter pub deps --style=tree
-```
-
-Apply the same check to `NSUsageDescription` keys in `ios/Runner/Info.plist`.
 
 ## Binary Protection
 
@@ -348,25 +266,6 @@ flutter build ipa --obfuscate --split-debug-info=build/symbols/
 
 **Runtime integrity** — `package:freerasp` detects rooted/jailbroken devices, debugger attachment, and app repackaging at runtime. This is a runtime concern outside the scope of static code review, but relevant for apps handling financial or health data.
 
-## Quick Reference
+## Additional Resources
 
-| Package                            | Replaces / Prevents                           | Category                   |
-| ---------------------------------- | --------------------------------------------- | -------------------------- |
-| `package:flutter_secure_storage`   | `SharedPreferences` for sensitive data        | Secure Storage             |
-| `package:http_certificate_pinning` | Unvalidated TLS / MITM attacks                | Network Security           |
-| `package:local_auth`               | Custom biometric implementations              | Authentication             |
-| `package:crypto`                   | Weak hash algorithms, custom crypto           | Cryptography               |
-| `package:dart_crypt`               | Insecure password storage (SHA-512-crypt)     | Cryptography               |
-| `package:formz`                    | Unvalidated raw `TextEditingController` input | Input Validation           |
-| `osv-scanner`                      | Undetected CVEs in `pubspec.lock`             | Dependency Vulnerabilities |
-| `package:freerasp`                 | Compromised device / repackaged app (runtime) | Binary Protection          |
-
-### Severity Guide
-
-When auditing a codebase with this skill, triage findings using these tiers:
-
-| Severity | Examples                                                                                                                                                     |
-| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Critical | Hardcoded API key or token; `badCertificateCallback` bypass; JWT in `SharedPreferences`; sensitive data in logs                                              |
-| Warning  | Missing certificate pinning on auth endpoints; `Random()` used for session IDs; no `package:formz` validation before API calls; `android:allowBackup="true"` |
-| Note     | Missing Dart obfuscation; `dart pub outdated` shows available patches; low-pub-point transitive dependency with broad permissions                            |
+See [reference.md](reference.md) for the package quick reference, severity triage guide, certificate pinning implementation, biometric authentication example, password hashing with `package:dart_crypt`, typosquatting detection signals, transitive permission creep checks, and `osv-scanner` installation instructions.
