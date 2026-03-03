@@ -23,7 +23,7 @@ These constraints apply to ALL accessibility work — no exceptions:
 - **Icon-only buttons must have `Tooltip` or `Semantics(label:)`** — screen readers have no other way to convey purpose
 - **Never use `ExcludeSemantics` on non-decorative content** — doing so hides meaningful information from assistive technology
 - **Fixed-height containers must not wrap `Text`** — use `minHeight` constraints; fixed heights clip text at 1.5-2x font scale
-- **All text and UI components must meet the contrast ratio for the selected WCAG level** — see [WCAG Level Criteria Reference](#wcag-level-criteria-reference) for level-specific thresholds
+- **All text and UI components must meet the contrast ratio for the selected WCAG level** — see the WCAG Level Criteria Reference section below for level-specific thresholds
 
 ---
 
@@ -72,7 +72,7 @@ Audit categories (check all six in order):
 1. **Semantics & Screen Reader** — labels, roles, live regions, merge/exclude semantics. Screen readers by platform: TalkBack (Android), VoiceOver (iOS/macOS), Narrator/NVDA/JAWS (Windows), Orca (Linux)
 2. **Touch Target Sizes** — 48x48 dp minimum for all interactive elements (mobile-critical); on desktop/web, verify keyboard focus area is visible and sufficient
 3. **Focus & Keyboard Navigation** — keyboard operability, traversal order, dialog focus trapping, focus indicators; critical for desktop and web; verify gesture fallbacks exist on mobile
-4. **Color Contrast** — text and UI component ratios at the selected level's threshold (see [WCAG Level Criteria Reference](#wcag-level-criteria-reference))
+4. **Color Contrast** — text and UI component ratios at the selected level's threshold (see the WCAG Level Criteria Reference section below)
 5. **Text Scaling** — no fixed-height text containers, no clamped text scaling, overflow handling at 200% scale
 6. **Animation & Motion** — `disableAnimations` gating on all `AnimationController`, `Hero`, and `AnimatedContainer` instances; no content flashing > 3 Hz
 
@@ -82,7 +82,7 @@ After completing all six categories, produce the Audit Report using the level-sp
 
 After delivering the report, use the `AskUserQuestion` tool with a single question:
 
-```
+```yaml
 question: "The audit is complete. How would you like to proceed with fixes?"
 header: "Fix scope"
 options:

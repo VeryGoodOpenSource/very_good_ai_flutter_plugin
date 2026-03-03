@@ -545,10 +545,7 @@ void main() {
       );
 
       final semantics = tester.getSemantics(find.text('Loading complete'));
-      expect(
-        semantics.flags & SemanticsFlag.isLiveRegion.index,
-        isNonZero,
-      );
+      expect(semantics.hasFlag(SemanticsFlag.isLiveRegion), isTrue);
 
       handle.dispose();
     });
