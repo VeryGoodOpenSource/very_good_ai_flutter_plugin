@@ -48,6 +48,8 @@ class AccessibleRatingBar extends StatelessWidget {
 ```dart
 import 'package:flutter/material.dart';
 
+enum UploadStatus { idle, uploading, success, error }
+
 class UploadStatusIndicator extends StatelessWidget {
   const UploadStatusIndicator({
     required this.status,
@@ -58,41 +60,38 @@ class UploadStatusIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Semantics(
-      liveRegion: true,
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          _buildIcon(),
-          const SizedBox(width: 8),
-          Text(_statusText),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildIcon() {
-    return switch (status) {
+    final icon = switch (status) {
       UploadStatus.idle => const SizedBox.shrink(),
       UploadStatus.uploading => const SizedBox(
           width: 16,
           height: 16,
           child: CircularProgressIndicator(strokeWidth: 2),
         ),
-      UploadStatus.success => const Icon(Icons.check_circle, color: Colors.green),
+      UploadStatus.success =>
+        const Icon(Icons.check_circle, color: Colors.green),
       UploadStatus.error => const Icon(Icons.error, color: Colors.red),
     };
+
+    final label = switch (status) {
+      UploadStatus.idle => '',
+      UploadStatus.uploading => 'Uploading...',
+      UploadStatus.success => 'Upload complete',
+      UploadStatus.error => 'Upload failed',
+    };
+
+    return Semantics(
+      liveRegion: true,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          icon,
+          const SizedBox(width: 8),
+          Text(label),
+        ],
+      ),
+    );
   }
-
-  String get _statusText => switch (status) {
-        UploadStatus.idle => '',
-        UploadStatus.uploading => 'Uploading...',
-        UploadStatus.success => 'Upload complete',
-        UploadStatus.error => 'Upload failed',
-      };
 }
-
-enum UploadStatus { idle, uploading, success, error }
 ```
 
 ---
