@@ -15,6 +15,7 @@ Very Good Skills is a collection of contextual best-practices skills that Claude
 
 | Skill | Description |
 | ----- | ----------- |
+| **Architecture** | Clean architecture principles — three-layer separation (data/domain/presentation), dependency rules, feature-first organization, monorepo structure, barrel files, and package extraction |
 | **Very Good CLI** | Project scaffolding with `very_good_cli` — templates, flavors, architecture patterns, 100% coverage targets, and `very_good_analysis` linting |
 | **Testing** | Unit, widget, and golden testing — `mocktail` mocking, `pumpApp` helpers, test structure & naming, coverage patterns, and `dart_test.yaml` configuration |
 | **Navigation** | GoRouter routing — `@TypedGoRoute` type-safe routes, deep linking, redirects, shell routes, and widget testing with `MockGoRouter` |
@@ -36,6 +37,7 @@ For example:
 You can also invoke skills directly as slash commands:
 
 ```bash
+/architecture
 /bloc
 /riverpod
 /testing

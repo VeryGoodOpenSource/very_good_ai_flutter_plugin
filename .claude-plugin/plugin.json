@@ -10,6 +10,9 @@
       "tags": [
         "flutter",
         "dart",
+        "architecture",
+        "project-structure",
+        "monorepo",
         "very-good-cli",
         "testing",
         "widget-testing",
