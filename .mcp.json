@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "very-good-cli": {
+      "command": "very_good",
+      "args": ["mcp"],
+      "env": {}
+    }
+  }
+}

@@ -9,6 +9,7 @@ Very Good AI Flutter Plugin is a Claude Code plugin that provides best-practices
 ## Repository Structure
 
 ```
+.mcp.json                # MCP server configuration (Very Good CLI)
 .claude-plugin/
   plugin.json          # Plugin manifest (name, version, tags)
 hooks/
@@ -30,7 +31,6 @@ skills/
   static-security/reference.md
   testing/SKILL.md
   testing/reference.md
-  very-good-cli/SKILL.md
 ```
 
 ## Skill File Format

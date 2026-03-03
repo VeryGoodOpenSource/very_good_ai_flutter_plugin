@@ -16,7 +16,6 @@ Very Good AI Flutter Plugin is a collection of contextual best-practices skills 
 | Skill | Description |
 | ----- | ----------- |
 | **Accessibility** | WCAG 2.1 AA compliance — semantics, screen reader support, touch targets, focus management, color contrast, text scaling, and motion sensitivity |
-| **Very Good CLI** | Project scaffolding with `very_good_cli` — templates, flavors, architecture patterns, 100% coverage targets, and `very_good_analysis` linting |
 | **Testing** | Unit, widget, and golden testing — `mocktail` mocking, `pumpApp` helpers, test structure & naming, coverage patterns, and `dart_test.yaml` configuration |
 | **Navigation** | GoRouter routing — `@TypedGoRoute` type-safe routes, deep linking, redirects, shell routes, and widget testing with `MockGoRouter` |
 | **Internationalization** | i18n/l10n — ARB files, `context.l10n` patterns, pluralization, RTL/LTR support with directional widgets, and backend localization strategies |
@@ -59,7 +58,6 @@ You can also invoke skills directly as slash commands:
 /navigation
 /internationalization
 /material-theming
-/very-good-cli
 /static-security
 ```
 
@@ -73,6 +71,28 @@ Every skill includes:
 - **Testing strategies** — unit, widget, and integration testing patterns
 - **Common workflows** — step-by-step guides for tasks like "adding a new feature" or "adding a new route"
 - **Anti-patterns** — what to avoid and why
+
+## MCP Integration
+
+This plugin includes a `.mcp.json` configuration that connects Claude Code to the Very Good CLI's built-in MCP server. This gives Claude the ability to execute CLI commands directly, complementing the skills which provide architectural guidance and best practices.
+
+**Available MCP tools:**
+
+| Tool | What it does |
+| ---- | ------------ |
+| `create` | Scaffold projects from templates (`flutter_app`, `dart_cli`, `dart_package`, `flutter_package`, `flutter_plugin`, `flame_game`, `docs_site`) |
+| `tests` | Run tests with coverage enforcement |
+| `packages_check_licenses` | Audit dependency licenses against an allowed list |
+| `packages_get` | Get dependencies for a single package or recursively across a monorepo |
+
+**Prerequisites:**
+
+- Very Good CLI v1.0+ installed: `dart pub global activate very_good_cli`
+- `very_good` must be on your PATH
+
+**How it works:**
+
+The `.mcp.json` file at the project root registers a `very-good-cli` MCP server using stdio transport. When Claude Code detects this configuration, it connects to the Very Good CLI MCP server and gains access to the tools above. The skills continue to provide knowledge and best practices while the MCP tools handle execution.
 
 [claude_code_link]: https://claude.ai/code
 [vgv_link]: https://verygood.ventures
