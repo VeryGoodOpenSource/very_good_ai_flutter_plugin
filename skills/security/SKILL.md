@@ -33,7 +33,7 @@ Files to check: Dart source files, `google-services.json`, `.env`, `*.plist`, `A
 ```dart
 // ❌ Hardcoded API key — extractable from binary
 const apiKey = 'sk-abc123';
-const mapboxToken = 'pk.eyJ1IjoiZXhhbXBsZSJ9.abc';
+const mapboxToken = 'pk.your-token-here';
 
 // ❌ Secret in config — bundled into the app
 // google-services.json:
@@ -271,7 +271,7 @@ Third-party packages are compiled directly into the app binary. A vulnerable or 
 `dart pub get` automatically surfaces hits from the GitHub Advisory Database:
 
 ```
-http 0.13.0 (affected by advisory: GHSA-4rgh-jx4f-qfcq, 1.2.0 available)
+http 0.13.0 (affected by advisory: GHSA-4rgh-jx4f-xxxx, 1.2.0 available)
 ```
 
 Any entry in `ignored_advisories` in `pubspec.yaml` must have a documented justification comment:
@@ -279,7 +279,7 @@ Any entry in `ignored_advisories` in `pubspec.yaml` must have a documented justi
 ```yaml
 # pubspec.yaml
 ignored_advisories:
-  - GHSA-4rgh-jx4f-qfcq # Not applicable: we do not use the affected http.Client constructor
+  - GHSA-4rgh-jx4f-xxxx # Not applicable: we do not use the affected http.Client constructor
 ```
 
 Scan `pubspec.lock` against the [OSV database](https://osv.dev) with `osv-scanner`:
