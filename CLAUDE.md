@@ -11,7 +11,6 @@ Very Good AI Flutter Plugin is a Claude Code plugin that provides best-practices
 ```
 .claude-plugin/
   plugin.json          # Plugin manifest (name, version, tags)
-  marketplace.json     # Marketplace registry entry
 skills/
   bloc/SKILL.md
   bloc/reference.md
@@ -45,7 +44,7 @@ Every `SKILL.md` follows this structure:
 ## Adding a New Skill
 
 1. Create `skills/<skill_name>/SKILL.md` following the format above
-2. Update tags in `.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json`
+2. Update tags in `.claude-plugin/plugin.json`
 3. Update the skills table in `README.md`
 
 ## Commits
