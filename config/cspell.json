@@ -16,7 +16,8 @@
     "pubspec",
     "riverpod",
     "serialization",
-    "stdio"
+    "stdio",
+    "WCAG"
   ],
   "flagWords": []
 }
