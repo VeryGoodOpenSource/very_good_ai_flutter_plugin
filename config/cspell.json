@@ -1,22 +1,32 @@
 {
   "language": "en",
   "words": [
+    "Bidirectionality",
+    "Bienvenido",
     "bypassable",
     "CSPRNG",
+    "dismissable",
+    "elemento",
+    "elementos",
     "formz",
     "freerasp",
     "frontmatter",
     "GHSA",
+    "goldens",
+    "hoverable",
     "jailbroken",
+    "LTRB",
     "mapbox",
     "mocktail",
     "monorepo",
+    "Mundo",
     "pasteable",
     "prefs",
     "pubspec",
     "serialization",
     "stdio",
-    "WCAG"
+    "WCAG",
+    "xxlg"
   ],
   "flagWords": []
 }
