@@ -15,6 +15,7 @@ Very Good AI Flutter Plugin is a collection of contextual best-practices skills 
 
 | Skill | Description |
 | ----- | ----------- |
+| **Accessibility** | WCAG 2.1 AA compliance — semantics, screen reader support, touch targets, focus management, color contrast, text scaling, and motion sensitivity |
 | **Very Good CLI** | Project scaffolding with `very_good_cli` — templates, flavors, architecture patterns, 100% coverage targets, and `very_good_analysis` linting |
 | **Testing** | Unit, widget, and golden testing — `mocktail` mocking, `pumpApp` helpers, test structure & naming, coverage patterns, and `dart_test.yaml` configuration |
 | **Navigation** | GoRouter routing — `@TypedGoRoute` type-safe routes, deep linking, redirects, shell routes, and widget testing with `MockGoRouter` |
@@ -22,6 +23,7 @@ Very Good AI Flutter Plugin is a collection of contextual best-practices skills 
 | **Material Theming** | Material 3 theming — `ColorScheme`, `TextTheme`, component themes, spacing systems, and light/dark mode support |
 | **Bloc** | State management with Bloc/Cubit — sealed events & states, `BlocProvider`/`BlocBuilder` widgets, event transformers, and testing with `blocTest()` & `mocktail` |
 | **Riverpod** | Reactive state management & DI — `@riverpod` code-gen providers, `AsyncValue` handling, `Notifier`/`AsyncNotifier`, family providers, and `ProviderContainer` testing |
+| **Security** | Flutter-specific static security review — secrets management, `flutter_secure_storage`, certificate pinning, `Random.secure()`, `formz` validation, dependency vulnerability scanning with `osv-scanner`, and OWASP Mobile Top 10 guidance |
 
 ## Hooks
 
@@ -50,6 +52,7 @@ For example:
 You can also invoke skills directly as slash commands:
 
 ```bash
+/accessibility
 /bloc
 /riverpod
 /testing
@@ -57,6 +60,7 @@ You can also invoke skills directly as slash commands:
 /internationalization
 /material-theming
 /very-good-cli
+/static-security
 ```
 
 ## What Each Skill Provides
