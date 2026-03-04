@@ -65,7 +65,7 @@ You can also invoke skills directly as slash commands:
 
 Every skill includes:
 
-- **Non-negotiable standards** — enforced conventions (e.g., `mocktail` over `mockito`, sealed classes for Bloc events)
+- **Core Standards** — recommended conventions (e.g., `mocktail` over `mockito`, sealed classes for Bloc events)
 - **Architecture patterns** — folder structures and layered architecture guidance
 - **Code examples** — ready-to-adapt snippets following best practices
 - **Testing strategies** — unit, widget, and integration testing patterns
