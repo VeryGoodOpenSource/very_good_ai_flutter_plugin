@@ -3,18 +3,21 @@
   "words": [
     "bypassable",
     "CSPRNG",
+    "formz",
     "freerasp",
     "frontmatter",
-    "formz",
     "GHSA",
     "jailbroken",
     "mapbox",
     "mocktail",
+    "monorepo",
     "pasteable",
     "prefs",
     "pubspec",
     "riverpod",
-    "stdio"
+    "serialization",
+    "stdio",
+    "WCAG"
   ],
   "flagWords": []
 }

@@ -23,6 +23,8 @@ skills/
   bloc/SKILL.md
   bloc/reference.md
   internationalization/SKILL.md
+  layered-architecture/SKILL.md
+  layered-architecture/reference.md
   material-theming/SKILL.md
   navigation/SKILL.md
   riverpod/SKILL.md
