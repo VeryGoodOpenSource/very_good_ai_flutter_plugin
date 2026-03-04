@@ -27,8 +27,6 @@ skills/
   layered-architecture/reference.md
   material-theming/SKILL.md
   navigation/SKILL.md
-  riverpod/SKILL.md
-  riverpod/reference.md
   static-security/SKILL.md
   static-security/reference.md
   testing/SKILL.md
