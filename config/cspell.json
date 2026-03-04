@@ -4,6 +4,7 @@
     "Bidirectionality",
     "Bienvenido",
     "bypassable",
+    "dartdoc",
     "CSPRNG",
     "dismissable",
     "elemento",
@@ -14,6 +15,7 @@
     "GHSA",
     "goldens",
     "hoverable",
+    "lerp",
     "jailbroken",
     "LTRB",
     "mapbox",
@@ -26,6 +28,8 @@
     "serialization",
     "stdio",
     "WCAG",
+    "widgetbook",
+    "Widgetbook",
     "xxlg"
   ],
   "flagWords": []
