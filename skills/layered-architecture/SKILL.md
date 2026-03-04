@@ -396,4 +396,3 @@ Flavors change only the configuration (base URLs, API keys) — the architecture
 - For Bloc/Cubit patterns and Page/View separation — see the **bloc** skill
 - For project scaffolding use the `very_good_cli` MCP server `create dart_package` tool
 - For testing data clients, repositories, and Blocs — see the **testing** skill
-- For provider-based architecture alternative — see the **riverpod** skill

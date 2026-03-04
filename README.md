@@ -22,7 +22,6 @@ Very Good AI Flutter Plugin is a collection of contextual best-practices skills 
 | **Material Theming** | Material 3 theming — `ColorScheme`, `TextTheme`, component themes, spacing systems, and light/dark mode support |
 | **Bloc** | State management with Bloc/Cubit — sealed events & states, `BlocProvider`/`BlocBuilder` widgets, event transformers, and testing with `blocTest()` & `mocktail` |
 | **Layered Architecture** | VGV layered architecture — four-layer package structure (Data, Repository, Business Logic, Presentation), dependency rules, data flow, and bootstrap wiring |
-| **Riverpod** | Reactive state management & DI — `@riverpod` code-gen providers, `AsyncValue` handling, `Notifier`/`AsyncNotifier`, family providers, and `ProviderContainer` testing |
 | **Security** | Flutter-specific static security review — secrets management, `flutter_secure_storage`, certificate pinning, `Random.secure()`, `formz` validation, dependency vulnerability scanning with `osv-scanner`, and OWASP Mobile Top 10 guidance |
 
 ## Hooks
@@ -58,7 +57,6 @@ You can also invoke skills directly as slash commands:
 /layered-architecture
 /material-theming
 /navigation
-/riverpod
 /static-security
 /testing
 ```
