@@ -25,6 +25,20 @@ Very Good AI Flutter Plugin is a collection of contextual best-practices skills 
 | **Riverpod** | Reactive state management & DI — `@riverpod` code-gen providers, `AsyncValue` handling, `Notifier`/`AsyncNotifier`, family providers, and `ProviderContainer` testing |
 | **Security** | Flutter-specific static security review — secrets management, `flutter_secure_storage`, certificate pinning, `Random.secure()`, `formz` validation, dependency vulnerability scanning with `osv-scanner`, and OWASP Mobile Top 10 guidance |
 
+## Hooks
+
+This plugin includes PostToolUse hooks that automatically run Dart analysis and formatting on `.dart` files after every `Edit` or `Write` tool call.
+
+| Hook | Behavior |
+| ---- | -------- |
+| **Analyze** | Runs `dart analyze` on the modified file; exits 2 on failure (blocking — Claude must fix issues before continuing) |
+| **Format** | Runs `dart format` on the modified file; always exits 0 (non-blocking — formatting is applied silently) |
+
+### Prerequisites
+
+- **Dart SDK** — must be available on your `PATH`
+- **jq** — used to parse the hook payload; hooks are skipped gracefully if `jq` is not installed
+
 ## Usage
 
 Skills activate automatically when Claude detects relevant context in your conversation. Simply ask Claude to help with a Flutter or Dart task, and the appropriate skill's guidance will be applied.

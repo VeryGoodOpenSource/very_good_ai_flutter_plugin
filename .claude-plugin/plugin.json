@@ -23,6 +23,11 @@
         "internationalization",
         "localization",
         "theming",
+        "hooks",
+        "analyze",
+        "format",
+        "lint",
+        "code-quality"
         "security",
         "owasp",
         "mobile-security"
