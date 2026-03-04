@@ -22,6 +22,11 @@
         "go-router",
         "internationalization",
         "localization",
-        "theming"
+        "theming",
+        "accessibility",
+        "a11y",
+        "wcag",
+        "semantics",
+        "screen-reader"
       ]
     }
