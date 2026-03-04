@@ -39,12 +39,12 @@ Every `SKILL.md` follows this structure:
 
 1. **YAML frontmatter** — `name` (lowercase letters, numbers, and hyphens only) and `description` fields
 2. **H1 title** — human-readable skill name
-3. **Standards (Non-Negotiable)** — enforced constraints, always first
+3. **Core Standards** — enforced constraints, always first
 4. **Content sections** — architecture, code examples, workflows, anti-patterns
 
 ## Writing Conventions
 
-- Frame standards as non-negotiable — no soft language ("consider", "prefer")
+- Frame standards as clear directives — no soft language ("consider", "prefer")
 - Use fenced code blocks with language identifiers for all examples
 - Provide complete, copy-pasteable snippets, not fragments
 - Reference packages by full name (e.g., `package:mocktail`)

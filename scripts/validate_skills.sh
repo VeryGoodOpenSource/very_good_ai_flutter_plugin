@@ -5,7 +5,7 @@
 #   3. name matches the parent directory name
 #   4. description field present and non-empty
 #   5. H1 heading after frontmatter
-#   6. "## Standards (Non-Negotiable)" section exists
+#   6. "## Core Standards" section exists
 
 errors=0
 
@@ -81,9 +81,9 @@ while IFS= read -r file; do
   fi
 
   # --- Check 8: Standards section ---
-  standards_found=$(grep -c '^## Standards (Non-Negotiable)' "$file")
+  standards_found=$(grep -c '^## Core Standards' "$file")
   if [[ "$standards_found" -eq 0 ]]; then
-    echo "::error file=$file::Missing '## Standards (Non-Negotiable)' section"
+    echo "::error file=$file::Missing '## Core Standards' section"
     errors=$((errors + 1))
     file_errors=$((file_errors + 1))
   fi

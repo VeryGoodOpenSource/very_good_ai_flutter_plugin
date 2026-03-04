@@ -9,9 +9,9 @@ Layered monorepo architecture for Flutter apps — four layers organized as inde
 
 ---
 
-## Standards (Non-Negotiable)
+## Core Standards
 
-These constraints apply to ALL layered architecture work — no exceptions:
+Apply these standards to ALL layered architecture work:
 
 - **Four layers** — Data, Repository, Business Logic, Presentation — every feature spans exactly these four layers
 - **Unidirectional dependencies** — Presentation → Business Logic → Repository → Data — never skip or invert a layer

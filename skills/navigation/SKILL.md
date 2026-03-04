@@ -7,9 +7,9 @@ description: Best practices for navigation and routing in Flutter using GoRouter
 
 Routing and navigation best practices for Flutter applications using GoRouter, the Flutter team's recommended routing package built on the Navigator 2.0 API.
 
-## Standards (Non-Negotiable)
+## Core Standards
 
-These constraints apply to ALL navigation work — no exceptions:
+Apply these standards to ALL navigation work:
 
 - **Use `package:go_router` for all navigation** — never raw Navigator 2.0 or Navigator 1.0 push/pop
 - **Use `@TypedGoRoute` annotations for type-safe routes** — never raw string paths in route definitions
