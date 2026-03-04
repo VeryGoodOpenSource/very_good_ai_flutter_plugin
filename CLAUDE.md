@@ -23,6 +23,8 @@ skills/
   bloc/SKILL.md
   bloc/reference.md
   internationalization/SKILL.md
+  layered-architecture/SKILL.md
+  layered-architecture/reference.md
   material-theming/SKILL.md
   navigation/SKILL.md
   riverpod/SKILL.md
@@ -31,8 +33,6 @@ skills/
   static-security/reference.md
   testing/SKILL.md
   testing/reference.md
-  monorepo-architecture/SKILL.md
-  monorepo-architecture/reference.md
 ```
 
 ## Skill File Format

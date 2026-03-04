@@ -1,4 +1,4 @@
-# Monorepo Architecture — Reference
+# Layered Architecture — Reference
 
 Extended examples, full pubspec files, testing patterns, and model transformation recipes.
 

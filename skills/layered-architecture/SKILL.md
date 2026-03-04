@@ -1,9 +1,9 @@
 ---
-name: monorepo-architecture
+name: layered-architecture
 description: Best practices for VGV layered monorepo architecture in Flutter. Use when structuring a multi-package Flutter app, creating data or repository packages, defining layer boundaries, or wiring dependencies between packages.
 ---
 
-# Monorepo Architecture
+# Layered Architecture
 
 Layered monorepo architecture for Flutter apps — four layers organized as independent Dart packages with strict unidirectional dependencies.
 
@@ -11,7 +11,7 @@ Layered monorepo architecture for Flutter apps — four layers organized as inde
 
 ## Standards (Non-Negotiable)
 
-These constraints apply to ALL monorepo architecture work — no exceptions:
+These constraints apply to ALL layered architecture work — no exceptions:
 
 - **Four layers** — Data, Repository, Business Logic, Presentation — every feature spans exactly these four layers
 - **Unidirectional dependencies** — Presentation → Business Logic → Repository → Data — never skip or invert a layer
