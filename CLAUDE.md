@@ -12,6 +12,8 @@ Very Good AI Flutter Plugin is a Claude Code plugin that provides best-practices
 .claude-plugin/
   plugin.json          # Plugin manifest (name, version, tags)
 skills/
+  accessibility/SKILL.md
+  accessibility/reference.md
   bloc/SKILL.md
   bloc/reference.md
   internationalization/SKILL.md

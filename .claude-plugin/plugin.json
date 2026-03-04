@@ -26,5 +26,10 @@
         "security",
         "owasp",
         "mobile-security"
+        "accessibility",
+        "a11y",
+        "wcag",
+        "semantics",
+        "screen-reader"
       ]
     }
