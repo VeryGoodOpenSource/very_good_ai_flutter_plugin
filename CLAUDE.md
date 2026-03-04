@@ -38,6 +38,7 @@ skills/
   testing/SKILL.md
   testing/reference.md
   very-good-ui/SKILL.md
+  very-good-ui/reference.md
 ```
 
 ## Skill File Format
