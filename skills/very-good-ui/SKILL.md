@@ -48,7 +48,7 @@ my_ui/
 │   │       └── ...
 │   └── helpers/
 │       └── pump_app.dart         # Test helper wrapping widgets in MaterialApp + theme
-├── gallery/                      # Optional: standalone app showcasing widgets
+├── widgetbook/                   # Widgetbook catalog submodule (sandbox + showcase)
 │   └── ...
 └── pubspec.yaml
 ```
@@ -411,6 +411,222 @@ export 'src/widgets/app_card.dart';
 export 'src/widgets/app_text_field.dart';
 ```
 
+## Widgetbook Catalog
+
+The UI package includes a `widgetbook/` submodule — a standalone Flutter app powered by [Widgetbook](https://pub.dev/packages/widgetbook) that serves as both a **developer sandbox** for building widgets in isolation and a **showcase** for browsing every widget in the package.
+
+### Catalog Structure
+
+```
+my_ui/
+├── lib/
+│   └── ...                          # UI package source
+├── widgetbook/                      # Catalog submodule
+│   ├── lib/
+│   │   ├── main.dart                # Entry point — runs WidgetbookApp
+│   │   └── widgetbook/
+│   │       ├── widgetbook.dart      # WidgetbookApp widget with addons
+│   │       ├── widgetbook.directories.g.dart  # Generated — do not edit
+│   │       ├── use_cases/
+│   │       │   ├── app_button.dart  # Use cases for AppButton
+│   │       │   ├── app_card.dart
+│   │       │   └── ...              # One file per widget
+│   │       └── widgets/
+│   │           ├── widgets.dart     # Barrel file for catalog helpers
+│   │           └── use_case_decorator.dart  # Wrapper for consistent presentation
+│   ├── pubspec.yaml                 # Package name: widgetbook_catalog
+│   ├── analysis_options.yaml
+│   └── .gitignore
+└── pubspec.yaml
+```
+
+### pubspec.yaml
+
+The catalog depends on the UI package via a path reference and uses Widgetbook's annotation + code generation approach:
+
+```yaml
+name: widgetbook_catalog
+description: "Widgetbook catalog for My UI"
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.2.3 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  my_ui:
+    path: ..
+  widgetbook: ^3.7.0
+  widgetbook_annotation: ^3.1.0
+
+dev_dependencies:
+  build_runner: ^2.4.7
+  flutter_test:
+    sdk: flutter
+  very_good_analysis: ^7.0.0
+  widgetbook_generator: ^3.7.0
+
+flutter:
+  uses-material-design: true
+```
+
+### Entry Point
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:widgetbook_catalog/widgetbook/widgetbook.dart';
+
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(const WidgetbookApp());
+}
+```
+
+### WidgetbookApp
+
+The root widget configures Widgetbook with theme addons and a use-case decorator:
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:my_ui/my_ui.dart';
+import 'package:widgetbook/widgetbook.dart';
+import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
+import 'package:widgetbook_catalog/widgetbook/widgetbook.directories.g.dart';
+import 'package:widgetbook_catalog/widgetbook/widgets/widgets.dart';
+
+@widgetbook.App()
+class WidgetbookApp extends StatelessWidget {
+  const WidgetbookApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Widgetbook.material(
+      directories: directories,
+      addons: [
+        BuilderAddon(
+          name: 'Decorator',
+          builder: (context, child) {
+            return UseCaseDecorator(child: child);
+          },
+        ),
+        ThemeAddon(
+          themes: [
+            WidgetbookTheme(name: 'Light', data: AppTheme.light),
+            WidgetbookTheme(name: 'Dark', data: AppTheme.dark),
+          ],
+          themeBuilder: (context, theme, child) {
+            return Theme(
+              data: theme,
+              child: DefaultTextStyle(
+                style: theme.textTheme.bodyMedium ?? const TextStyle(),
+                child: child,
+              ),
+            );
+          },
+        ),
+      ],
+    );
+  }
+}
+```
+
+### Use-Case Decorator
+
+A wrapper widget that provides a consistent background for all use cases:
+
+```dart
+class UseCaseDecorator extends StatelessWidget {
+  const UseCaseDecorator({required this.child, super.key});
+
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    return ColoredBox(
+      color: colorScheme.surfaceContainerHighest,
+      child: SizedBox.expand(child: Material(child: child)),
+    );
+  }
+}
+```
+
+### Writing Use Cases
+
+Each widget gets a dedicated file in `use_cases/` with one or more `@widgetbook.UseCase` annotations. Each use case is a top-level function that returns a `Widget`:
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:my_ui/my_ui.dart';
+import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
+
+@widgetbook.UseCase(name: 'primary', type: AppButton)
+Widget primary(BuildContext context) => Center(
+      child: AppButton(
+        onPressed: () {},
+        child: const Text('Primary'),
+      ),
+    );
+
+@widgetbook.UseCase(name: 'secondary', type: AppButton)
+Widget secondary(BuildContext context) => Center(
+      child: AppButton(
+        onPressed: () {},
+        variant: AppButtonVariant.secondary,
+        child: const Text('Secondary'),
+      ),
+    );
+
+@widgetbook.UseCase(name: 'outline', type: AppButton)
+Widget outline(BuildContext context) => Center(
+      child: AppButton(
+        onPressed: () {},
+        variant: AppButtonVariant.outline,
+        child: const Text('Outline'),
+      ),
+    );
+
+@widgetbook.UseCase(name: 'disabled', type: AppButton)
+Widget disabled(BuildContext context) => const Center(
+      child: AppButton(
+        onPressed: null,
+        child: Text('Disabled'),
+      ),
+    );
+
+@widgetbook.UseCase(name: 'all sizes', type: AppButton)
+Widget allSizes(BuildContext context) => Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        spacing: 8,
+        children: [
+          for (final size in AppButtonSize.values)
+            AppButton(
+              onPressed: () {},
+              size: size,
+              child: Text(size.name),
+            ),
+        ],
+      ),
+    );
+```
+
+### Code Generation
+
+Widgetbook uses `build_runner` to scan `@widgetbook.UseCase` annotations and generate the `widgetbook.directories.g.dart` file. Run the generator after adding or modifying use cases:
+
+```bash
+cd widgetbook && dart run build_runner build --delete-conflicting-outputs
+```
+
+### Running the Catalog
+
+```bash
+cd widgetbook && flutter run -d chrome
+```
+
 ## Anti-Patterns
 
 | Anti-Pattern | Correct Approach |
@@ -430,6 +646,8 @@ export 'src/widgets/app_text_field.dart';
 2. Compose Material widgets internally; read custom tokens via `context.appColors` / `context.appSpacing`
 3. Export the file from the barrel file (`lib/my_ui.dart`)
 4. Create `test/src/widgets/app_<name>_test.dart` with widget tests
+5. Add use cases in `widgetbook/lib/widgetbook/use_cases/app_<name>.dart` covering all variants
+6. Re-run `dart run build_runner build --delete-conflicting-outputs` in `widgetbook/`
 
 ### Adding a New Custom Token
 
