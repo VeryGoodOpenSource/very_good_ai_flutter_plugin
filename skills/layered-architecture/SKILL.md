@@ -19,7 +19,7 @@ These constraints apply to ALL layered architecture work — no exceptions:
 - **Business Logic and Presentation live in `lib/`** — organized by feature within the app
 - **Data layer packages contain zero domain/business logic** — they must be reusable in unrelated projects
 - **No inter-repository dependencies** — repositories never import other repositories
-- **No Flutter SDK in data or repository packages** — scaffold with `very_good create dart_package`
+- **No Flutter SDK in data or repository packages** — scaffold with the `very_good_cli` MCP server `create dart_package` tool
 - **One repository per domain** — `user_repository`, `weather_repository`, `auth_repository`
 - **Path dependencies for local packages** — never `git:` or pub version references for packages in the same repo
 - **Barrel exports at every package boundary** — `src/` is never imported directly by consumers
@@ -131,7 +131,7 @@ The data layer handles all external communication. Each data package wraps a sin
 
 **Rules:**
 - Models represent the external data shape — match the API/storage schema exactly
-- No Flutter imports — use `very_good create dart_package`
+- No Flutter imports — use the `very_good_cli` MCP server `create dart_package` tool
 - Constructor-inject HTTP clients for testability
 - Response models use `fromJson` / `toJson` factories
 - Export everything through a barrel file — never expose `src/`
@@ -176,7 +176,7 @@ The repository layer orchestrates data sources and exposes domain models. Each r
 
 **Rules:**
 - No inter-repository dependencies — repositories are isolated
-- No Flutter SDK — use `very_good create dart_package`
+- No Flutter SDK — the `very_good_cli` MCP server `create dart_package` tool
 - Domain models live in the repository package — not in data packages
 - Transform data models into domain models — never leak API response shapes upstream
 - Accept all data clients via constructor injection
@@ -353,7 +353,7 @@ Flavors change only the configuration (base URLs, API keys) — the architecture
 | Domain models in data layer | Couples external API shape to internal domain — API changes break the entire app | Data layer has response models; Repository layer has domain models with transformation |
 | Business logic in repository | Repository becomes untestable monolith mixing orchestration with rules | Repository transforms data; Bloc/Cubit contains all business rules |
 | `git:` or pub version for local packages | Breaks monorepo — changes require publish/push cycles instead of instant local edits | Use `path:` dependencies for all packages within the monorepo |
-| Flutter imports in data/repository packages | Prevents packages from being used in Dart-only contexts (CLI tools, servers) | Scaffold with `very_good create dart_package` — no Flutter SDK dependency |
+| Flutter imports in data/repository packages | Prevents packages from being used in Dart-only contexts (CLI tools, servers) | Scaffold with the `very_good_cli` MCP server `create dart_package` tool — no Flutter SDK dependency |
 | One giant repository for everything | God-object with too many responsibilities — impossible to test in isolation | One repository per domain boundary (`user_repository`, `settings_repository`) |
 | Importing `src/` directly | Breaks encapsulation — consumers depend on internal structure | Export public API through barrel files; import the package, never `src/` paths |
 
@@ -361,18 +361,18 @@ Flavors change only the configuration (base URLs, API keys) — the architecture
 
 ### Adding a New Data Source
 
-1. Scaffold the package: `very_good create dart_package <name>_api_client --output-directory packages`
+1. Scaffold the package with the `very_good_cli` MCP server `create dart_package` tool: `<name>_api_client --output-directory packages`
 2. Add external dependencies to `pubspec.yaml` (e.g., `http`, `json_annotation`)
 3. Create response models in `lib/src/models/` with `fromJson`/`toJson`
 4. Create barrel file `lib/src/models/models.dart` exporting all models
 5. Implement the client class in `lib/src/<name>_api_client.dart`
 6. Create the package barrel file `lib/<name>_api_client.dart` exporting `src/` contents
 7. Write unit tests in `test/` mirroring `lib/` structure — see the **testing** skill
-8. Run `very_good test -r` from the package directory
+8. Use `very_good_cli` MCP server tool `test` from the package directory
 
 ### Adding a New Repository
 
-1. Scaffold the package: `very_good create dart_package <name>_repository --output-directory packages`
+1. Scaffold the package with the `very_good_cli` MCP server `create dart_package` tool: `<name>_repository --output-directory packages`
 2. Add path dependencies to data layer packages in `pubspec.yaml`
 3. Add `equatable` to dependencies for domain models
 4. Create domain models in `lib/src/models/` extending `Equatable`
@@ -394,6 +394,6 @@ Flavors change only the configuration (base URLs, API keys) — the architecture
 
 - [Complete worked example and pubspec reference](reference.md)
 - For Bloc/Cubit patterns and Page/View separation — see the **bloc** skill
-- For project scaffolding and `very_good create` commands — see the **very-good-cli** skill
+- For project scaffolding use the `very_good_cli` MCP server `create dart_package` tool
 - For testing data clients, repositories, and Blocs — see the **testing** skill
 - For provider-based architecture alternative — see the **riverpod** skill
