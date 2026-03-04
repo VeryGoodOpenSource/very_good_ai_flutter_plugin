@@ -13,7 +13,8 @@
     "pasteable",
     "prefs",
     "pubspec",
-    "riverpod"
+    "riverpod",
+    "stdio"
   ],
   "flagWords": []
 }
