@@ -7,9 +7,9 @@ description: Best practices for Flutter theming using Material 3. Use when creat
 
 Material 3 theming best practices for Flutter applications using `ThemeData` as the single source of truth for colors, typography, component styles, and spacing.
 
-## Standards (Non-Negotiable)
+## Core Standards
 
-These constraints apply to ALL theming work — no exceptions:
+Apply these standards to ALL theming work:
 
 - **Use `ThemeData` as the single source of truth** — never inline colors or text styles in widgets
 - **Reference colors via `Theme.of(context).colorScheme`** — never `Colors.blue`, `Colors.red`, or any hardcoded `Color` values

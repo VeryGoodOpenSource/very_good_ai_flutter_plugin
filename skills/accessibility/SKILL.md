@@ -9,9 +9,9 @@ Flutter accessibility auditing and remediation across WCAG 2.1 conformance level
 
 ---
 
-## Standards (Non-Negotiable)
+## Core Standards
 
-These constraints apply to ALL accessibility work — no exceptions:
+Apply these standards to ALL accessibility work:
 
 - **Begin every audit by asking the user which WCAG 2.1 conformance level they are targeting (A, AA, or AAA)** — never assume AA
 - **Begin every audit by asking which platforms are targeted (mobile, desktop, web)** — screen reader behavior and keyboard requirements differ per platform

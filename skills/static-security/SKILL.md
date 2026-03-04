@@ -10,9 +10,9 @@ description: >
 
 Flutter apps compile all Dart code directly into a binary that runs on untrusted devices. This skill covers static security review for Flutter/Dart codebases, anchored to the [VGV Security in Mobile Apps](https://engineering.verygood.ventures/general-practices/security_in_mobile_apps/) guide and the [OWASP Mobile Top 10](https://owasp.org/www-project-mobile-top-10/). Every finding in this skill is something detectable by reading source code — no pen-testing or runtime analysis.
 
-## Standards (Non-Negotiable)
+## Core Standards
 
-These constraints apply to ALL Flutter security work — no exceptions:
+Apply these standards to ALL Flutter security work:
 
 - **Never hardcode secrets** — API keys, tokens, and passwords in source code or config files are compiled into the binary and extractable via reverse engineering; serve them from a backend service
 - **Use `package:flutter_secure_storage` for sensitive on-device data** — `SharedPreferences` is plaintext and unencrypted; never store tokens, PII, or session data there

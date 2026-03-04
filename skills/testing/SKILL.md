@@ -7,9 +7,9 @@ description: Best practices for Dart unit tests, Flutter widget tests, and golde
 
 Testing fundamentals for Dart and Flutter projects — unit tests, widget tests, and golden file tests — using `package:test`, `package:flutter_test`, `package:mocktail`, and `package:bloc_test`.
 
-## Standards (Non-Negotiable)
+## Core Standards
 
-These constraints apply to ALL test work — no exceptions:
+Apply these standards to ALL test work:
 
 - **Descriptive test names** — verbose, readable names that describe the behavior; never `'works'` or `'renders'`
 - **Hierarchical group/test structure that reads as natural sentences** — top-level `group` for the class, nested `group` for the method, `test` for the behavior (e.g., `UserRepository` → `getUser` → `returns User when API succeeds`)

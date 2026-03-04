@@ -7,9 +7,9 @@ description: Best practices for internationalization (i18n) and localization (l1
 
 Internationalization (i18n) and localization (l10n) best practices for Flutter applications using Flutter's built-in localization system with ARB files as the single source of truth.
 
-## Standards (Non-Negotiable)
+## Core Standards
 
-These constraints apply to ALL internationalization work — no exceptions:
+Apply these standards to ALL internationalization work:
 
 - **Never hardcode user-facing strings** — all text must go through the l10n system
 - **Use Flutter's built-in localization system** — `flutter_localizations` + `intl`, never third-party i18n libraries
