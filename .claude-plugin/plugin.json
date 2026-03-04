@@ -23,6 +23,9 @@
         "internationalization",
         "localization",
         "theming",
+        "security",
+        "owasp",
+        "mobile-security"
         "accessibility",
         "a11y",
         "wcag",

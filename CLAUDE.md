@@ -21,6 +21,8 @@ skills/
   navigation/SKILL.md
   riverpod/SKILL.md
   riverpod/reference.md
+  static-security/SKILL.md
+  static-security/reference.md
   testing/SKILL.md
   testing/reference.md
   very-good-cli/SKILL.md
@@ -48,6 +50,7 @@ Every `SKILL.md` follows this structure:
 1. Create `skills/<skill_name>/SKILL.md` following the format above
 2. Update tags in `.claude-plugin/plugin.json`
 3. Update the skills table in `README.md`
+4. Update the repository structure in `CLAUDE.md`
 
 ## Commits
 

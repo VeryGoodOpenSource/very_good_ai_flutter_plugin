@@ -1,9 +1,17 @@
 {
   "language": "en",
   "words": [
+    "bypassable",
+    "CSPRNG",
+    "freerasp",
     "frontmatter",
+    "formz",
+    "GHSA",
+    "jailbroken",
+    "mapbox",
     "mocktail",
     "pasteable",
+    "prefs",
     "pubspec",
     "riverpod"
   ],
