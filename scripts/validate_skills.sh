@@ -4,8 +4,9 @@
 #   2. name field present and matching ^vgv-[a-z0-9-]+$
 #   3. name equals "vgv-" + parent directory name
 #   4. description field present and non-empty
-#   5. H1 heading after frontmatter
-#   6. "## Core Standards" section exists
+#   5. allowed-tools field present and non-empty
+#   6. H1 heading after frontmatter
+#   7. "## Core Standards" section exists
 
 errors=0
 
@@ -56,7 +57,22 @@ while IFS= read -r file; do
     fi
   fi
 
-  # --- Check 6: description field ---
+  # --- Check 6: allowed-tools field ---
+  allowed_tools_line=$(echo "$frontmatter" | grep -m1 '^allowed-tools:')
+  if [[ -z "$allowed_tools_line" ]]; then
+    echo "::error file=$file::Missing 'allowed-tools' field in frontmatter"
+    errors=$((errors + 1))
+    file_errors=$((file_errors + 1))
+  else
+    allowed_tools_value=$(echo "$allowed_tools_line" | sed 's/^allowed-tools:[[:space:]]*//')
+    if [[ -z "$allowed_tools_value" ]]; then
+      echo "::error file=$file::Empty 'allowed-tools' field in frontmatter"
+      errors=$((errors + 1))
+      file_errors=$((file_errors + 1))
+    fi
+  fi
+
+  # --- Check 7: description field ---
   desc_line=$(echo "$frontmatter" | grep -m1 '^description:')
   if [[ -z "$desc_line" ]]; then
     echo "::error file=$file::Missing 'description' field in frontmatter"
@@ -71,7 +87,7 @@ while IFS= read -r file; do
     fi
   fi
 
-  # --- Check 7: H1 heading after frontmatter ---
+  # --- Check 8: H1 heading after frontmatter ---
   after_frontmatter=$(tail -n +"$((closing_line + 1))" "$file")
   h1_found=$(echo "$after_frontmatter" | grep -m1 '^# ')
   if [[ -z "$h1_found" ]]; then
@@ -80,7 +96,7 @@ while IFS= read -r file; do
     file_errors=$((file_errors + 1))
   fi
 
-  # --- Check 8: Standards section ---
+  # --- Check 9: Standards section ---
   standards_found=$(grep -c '^## Core Standards' "$file")
   if [[ "$standards_found" -eq 0 ]]; then
     echo "::error file=$file::Missing '## Core Standards' section"
