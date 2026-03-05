@@ -1,5 +1,5 @@
 ---
-name: static-security
+name: vgv-static-security
 description: >
   Best practices for Flutter mobile app security. Use when reviewing or writing
   code that handles secrets, user data, network communication, authentication,

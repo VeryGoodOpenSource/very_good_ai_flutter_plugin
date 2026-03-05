@@ -1,8 +1,8 @@
 #!/bin/bash
 # Validates that every skills/*/SKILL.md follows the required structure:
 #   1. YAML frontmatter delimiters (opening and closing ---)
-#   2. name field present and matching ^[a-z0-9-]+$
-#   3. name matches the parent directory name
+#   2. name field present and matching ^vgv-[a-z0-9-]+$
+#   3. name equals "vgv-" + parent directory name
 #   4. description field present and non-empty
 #   5. H1 heading after frontmatter
 #   6. "## Core Standards" section exists
@@ -42,15 +42,15 @@ while IFS= read -r file; do
   else
     # --- Check 4: name format ---
     name_value=$(echo "$name_line" | sed 's/^name:[[:space:]]*//')
-    if [[ ! "$name_value" =~ ^[a-z0-9-]+$ ]]; then
-      echo "::error file=$file::Invalid name '$name_value' — must match ^[a-z0-9-]+$"
+    if [[ ! "$name_value" =~ ^vgv-[a-z0-9-]+$ ]]; then
+      echo "::error file=$file::Invalid name '$name_value' — must match ^vgv-[a-z0-9-]+$"
       errors=$((errors + 1))
       file_errors=$((file_errors + 1))
     fi
 
     # --- Check 5: name matches directory ---
-    if [[ "$name_value" != "$dir_name" ]]; then
-      echo "::error file=$file::Frontmatter name '$name_value' does not match directory name '$dir_name'"
+    if [[ "$name_value" != "vgv-$dir_name" ]]; then
+      echo "::error file=$file::Frontmatter name '$name_value' does not match expected 'vgv-$dir_name'"
       errors=$((errors + 1))
       file_errors=$((file_errors + 1))
     fi
