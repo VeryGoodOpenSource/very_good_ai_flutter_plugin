@@ -15,14 +15,14 @@ Very Good AI Flutter Plugin is a collection of contextual best-practices skills 
 
 | Skill | Description |
 | ----- | ----------- |
-| **Accessibility** | WCAG 2.1 AA compliance — semantics, screen reader support, touch targets, focus management, color contrast, text scaling, and motion sensitivity |
-| **Testing** | Unit, widget, and golden testing — `mocktail` mocking, `pumpApp` helpers, test structure & naming, coverage patterns, and `dart_test.yaml` configuration |
-| **Navigation** | GoRouter routing — `@TypedGoRoute` type-safe routes, deep linking, redirects, shell routes, and widget testing with `MockGoRouter` |
-| **Internationalization** | i18n/l10n — ARB files, `context.l10n` patterns, pluralization, RTL/LTR support with directional widgets, and backend localization strategies |
-| **Material Theming** | Material 3 theming — `ColorScheme`, `TextTheme`, component themes, spacing systems, and light/dark mode support |
-| **Bloc** | State management with Bloc/Cubit — sealed events & states, `BlocProvider`/`BlocBuilder` widgets, event transformers, and testing with `blocTest()` & `mocktail` |
-| **Layered Architecture** | VGV layered architecture — four-layer package structure (Data, Repository, Business Logic, Presentation), dependency rules, data flow, and bootstrap wiring |
-| **Security** | Flutter-specific static security review — secrets management, `flutter_secure_storage`, certificate pinning, `Random.secure()`, `formz` validation, dependency vulnerability scanning with `osv-scanner`, and OWASP Mobile Top 10 guidance |
+| [**Accessibility**](skills/accessibility/SKILL.md) | WCAG 2.1 AA compliance — semantics, screen reader support, touch targets, focus management, color contrast, text scaling, and motion sensitivity |
+| [**Testing**](skills/testing/SKILL.md) | Unit, widget, and golden testing — `mocktail` mocking, `pumpApp` helpers, test structure & naming, coverage patterns, and `dart_test.yaml` configuration |
+| [**Navigation**](skills/navigation/SKILL.md) | GoRouter routing — `@TypedGoRoute` type-safe routes, deep linking, redirects, shell routes, and widget testing with `MockGoRouter` |
+| [**Internationalization**](skills/internationalization/SKILL.md) | i18n/l10n — ARB files, `context.l10n` patterns, pluralization, RTL/LTR support with directional widgets, and backend localization strategies |
+| [**Material Theming**](skills/material-theming/SKILL.md) | Material 3 theming — `ColorScheme`, `TextTheme`, component themes, spacing systems, and light/dark mode support |
+| [**Bloc**](skills/bloc/SKILL.md) | State management with Bloc/Cubit — sealed events & states, `BlocProvider`/`BlocBuilder` widgets, event transformers, and testing with `blocTest()` & `mocktail` |
+| [**Layered Architecture**](skills/layered-architecture/SKILL.md) | VGV layered architecture — four-layer package structure (Data, Repository, Business Logic, Presentation), dependency rules, data flow, and bootstrap wiring |
+| [**Security**](skills/static-security/SKILL.md) | Flutter-specific static security review — secrets management, `flutter_secure_storage`, certificate pinning, `Random.secure()`, `formz` validation, dependency vulnerability scanning with `osv-scanner`, and OWASP Mobile Top 10 guidance |
 
 ## Hooks
 
