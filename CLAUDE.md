@@ -54,7 +54,7 @@ Every `SKILL.md` follows this structure:
 
 1. Create `skills/<skill_name>/SKILL.md` following the format above
 2. Update tags in `.claude-plugin/plugin.json`
-3. Update the skills table in `README.md`
+3. Update the skills table in `README.md` (skill name must link to the `SKILL.md` file)
 4. Update the repository structure in `CLAUDE.md`
 
 ## Hooks
