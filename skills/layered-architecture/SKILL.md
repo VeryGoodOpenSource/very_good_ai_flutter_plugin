@@ -1,5 +1,5 @@
 ---
-name: layered-architecture
+name: vgv-layered-architecture
 description: Best practices for VGV layered monorepo architecture in Flutter. Use when structuring a multi-package Flutter app, creating data or repository packages, defining layer boundaries, or wiring dependencies between packages.
 ---
 

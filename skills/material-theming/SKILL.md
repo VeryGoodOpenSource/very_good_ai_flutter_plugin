@@ -1,5 +1,5 @@
 ---
-name: material-theming
+name: vgv-material-theming
 description: Best practices for Flutter theming using Material 3. Use when creating, modifying, or reviewing ThemeData, ColorScheme, TextTheme, component themes, spacing systems, or light/dark mode support.
 ---
 

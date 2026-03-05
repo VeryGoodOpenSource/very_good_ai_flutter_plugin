@@ -1,5 +1,5 @@
 ---
-name: navigation
+name: vgv-navigation
 description: Best practices for navigation and routing in Flutter using GoRouter. Use when creating, modifying, or reviewing routes, deep links, redirects, or navigation logic that uses package:go_router or package:go_router_builder.
 ---
 

@@ -51,14 +51,14 @@ For example:
 You can also invoke skills directly as slash commands:
 
 ```bash
-/accessibility
-/bloc
-/internationalization
-/layered-architecture
-/material-theming
-/navigation
-/static-security
-/testing
+/vgv-accessibility
+/vgv-bloc
+/vgv-internationalization
+/vgv-layered-architecture
+/vgv-material-theming
+/vgv-navigation
+/vgv-static-security
+/vgv-testing
 ```
 
 ## What Each Skill Provides
