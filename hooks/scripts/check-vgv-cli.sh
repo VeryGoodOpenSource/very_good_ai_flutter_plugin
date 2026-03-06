@@ -7,9 +7,9 @@ if ! command -v jq &>/dev/null; then
   exit 1
 fi
 
-MIN_VERSION="1.0.0"
+MIN_VERSION="1.1.0"
 MIN_MAJOR=1
-MIN_MINOR=0
+MIN_MINOR=1
 MIN_PATCH=0
 
 deny() {
