@@ -7,45 +7,19 @@ if ! command -v jq &>/dev/null; then
   exit 1
 fi
 
-MIN_VERSION="1.1.0"
-MIN_MAJOR=1
-MIN_MINOR=1
-MIN_PATCH=0
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/vgv-cli-common.sh"
 
-deny() {
-  jq -n \
-    --arg reason "$1" \
-    '{
-      hookSpecificOutput: {
-        hookEventName: "PreToolUse",
-        permissionDecision: "deny",
-        permissionDecisionReason: $reason
-      }
-    }'
-  exit 0
-}
-
-# CLI not installed
-if ! command -v very_good &>/dev/null; then
-  deny "VeryGoodCLI is not installed. This tool requires VeryGoodCLI >= ${MIN_VERSION}. Install with: dart pub global activate very_good_cli"
-fi
-
-# Parse version (first semver from first line)
-RAW=$(very_good --version 2>/dev/null)
-VERSION=$(echo "$RAW" | head -1 | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | head -1)
-
-if [ -z "$VERSION" ]; then
-  deny "Could not determine VeryGoodCLI version. This tool requires VeryGoodCLI >= ${MIN_VERSION}. Check with: very_good --version"
-fi
-
-IFS='.' read -r MAJOR MINOR PATCH <<< "$VERSION"
-
-# Version too old
-if [ "$MAJOR" -lt "$MIN_MAJOR" ] 2>/dev/null ||
-   { [ "$MAJOR" -eq "$MIN_MAJOR" ] && [ "$MINOR" -lt "$MIN_MINOR" ]; } 2>/dev/null ||
-   { [ "$MAJOR" -eq "$MIN_MAJOR" ] && [ "$MINOR" -eq "$MIN_MINOR" ] && [ "$PATCH" -lt "$MIN_PATCH" ]; } 2>/dev/null; then
-  deny "VeryGoodCLI ${VERSION} is too old. This tool requires VeryGoodCLI >= ${MIN_VERSION}. Update with: dart pub global activate very_good_cli"
-fi
+cli_status=$(check_vgv_cli)
+case "$cli_status" in
+  not_installed)
+    deny "VeryGoodCLI is not installed. This tool requires VeryGoodCLI >= ${MIN_VERSION}. Install with: dart pub global activate very_good_cli"
+    ;;
+  outdated:*)
+    version="${cli_status#outdated:}"
+    deny "VeryGoodCLI ${version} is too old. This tool requires VeryGoodCLI >= ${MIN_VERSION}. Update with: dart pub global activate very_good_cli"
+    ;;
+esac
 
 # Version OK
 exit 0
