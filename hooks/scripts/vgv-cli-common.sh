@@ -1,5 +1,5 @@
 #!/bin/bash
-# Shared helpers for VeryGoodCLI version checks and hook deny responses.
+# Shared helpers for Very Good CLI version checks and hook deny responses.
 
 MIN_VERSION="1.1.0"
 MIN_MAJOR=1
@@ -19,7 +19,7 @@ deny() {
   exit 0
 }
 
-# Check VeryGoodCLI availability and version.
+# Check Very Good CLI availability and version.
 # Returns: "ok", "not_installed", or "outdated:<version>"
 check_vgv_cli() {
   if ! command -v very_good &>/dev/null; then

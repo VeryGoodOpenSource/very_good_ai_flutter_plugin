@@ -26,11 +26,11 @@ deny_with_cli_check() {
   cli_status=$(check_vgv_cli)
   case "$cli_status" in
     not_installed)
-      deny "VeryGoodCLI is required but was not found. Install with: dart pub global activate very_good_cli"
+      deny "Very Good CLI is required but was not found. Install with: dart pub global activate very_good_cli"
       ;;
     outdated:*)
       local version="${cli_status#outdated:}"
-      deny "VeryGoodCLI ${version} is too old (requires >= ${MIN_VERSION}). Update with: dart pub global activate very_good_cli"
+      deny "Very Good CLI ${version} is too old (requires >= ${MIN_VERSION}). Update with: dart pub global activate very_good_cli"
       ;;
     *)
       deny "$mcp_hint"
