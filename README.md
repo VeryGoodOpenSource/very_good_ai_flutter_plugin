@@ -11,6 +11,36 @@ Developed with 💙 by [Very Good Ventures][vgv_link] 🦄
 
 Very Good AI Flutter Plugin is a collection of contextual best-practices skills that Claude uses when helping you write Flutter and Dart code. Each skill provides opinionated, production-quality guidance covering architecture patterns, naming conventions, folder structures, code examples, testing strategies, and anti-patterns to avoid, so you get code that follows [VGV standards][vgv_link] out of the box.
 
+## Installation
+
+### Project-level (recommended)
+
+Install the plugin for a specific project so every collaborator benefits automatically:
+
+```bash
+claude plugin add --project https://github.com/VeryGoodOpenSource/very_good_ai_flutter_plugin
+```
+
+This writes the plugin reference into your project's `.claude/plugins.json`, which you can commit to source control.
+
+### Global
+
+Install the plugin once for all projects on your machine:
+
+```bash
+claude plugin add https://github.com/VeryGoodOpenSource/very_good_ai_flutter_plugin
+```
+
+### Verify installation
+
+Run the following to confirm the plugin is active:
+
+```bash
+claude plugin list
+```
+
+You should see `very-good-ai-flutter-plugin` in the output.
+
 ## Skills
 
 | Skill | Description |
