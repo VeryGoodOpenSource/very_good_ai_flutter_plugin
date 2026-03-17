@@ -18,6 +18,7 @@ hooks/
     analyze.sh         # Runs dart analyze on modified .dart files
     format.sh          # Runs dart format on modified .dart files
 skills/
+  create-project/SKILL.md
   accessibility/SKILL.md
   accessibility/reference.md
   bloc/SKILL.md
