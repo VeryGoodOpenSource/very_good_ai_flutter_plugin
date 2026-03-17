@@ -54,7 +54,7 @@ Use `AskUserQuestion` to collect only what you cannot infer. Batch questions int
 
 - Use `dart_package` (not `flutter_package`) for data layer and repository layer packages in the **layered-architecture** pattern — these must not depend on Flutter SDK
 - If a user provides a project name with dashes, convert to underscores — Dart package names only allow lowercase letters, numbers, and underscores
-- Templates that produce apps, plugins, or games require an organization name — do not skip this or it defaults to `com.example.verygoodcore`
+- Templates that produce apps, plugins, or games require an organization name — do not skip this or it defaults to a placeholder value
 
 ---
 
@@ -113,4 +113,4 @@ Use `AskUserQuestion` to collect only what you cannot infer. Batch questions int
 | Asking user to pick a template name | Users think in terms of what they're building, not CLI subcommands | Infer the template from context |
 | Over-asking for optional parameters | Slows down the workflow | Only ask for what you cannot infer |
 | Using `flutter_package` for a data layer | Adds unnecessary Flutter SDK dependency | Use `dart_package` for data and repository layer packages |
-| Skipping organization name for apps/plugins | Defaults to `com.example.verygoodcore` | Ask when the template requires it |
+| Skipping organization name for apps/plugins | Defaults to a placeholder value | Ask when the template requires it |
