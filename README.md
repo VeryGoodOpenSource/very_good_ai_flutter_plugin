@@ -13,7 +13,16 @@ Very Good AI Flutter Plugin is a collection of contextual best-practices skills 
 
 ## Installation
 
-Install this plugin through the [Very Good Claude Marketplace][marketplace_link]. See the marketplace README for setup instructions.
+### From the Marketplace
+
+Inside Claude Code:
+
+```bash
+/plugin marketplace add VeryGoodOpenSource/very_good_claude_marketplace
+/plugin install <very_good_plugin>
+```
+
+For more details, see the [Very Good Claude Marketplace][marketplace_link].
 
 ## Skills
 
