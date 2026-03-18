@@ -13,33 +13,16 @@ Very Good AI Flutter Plugin is a collection of contextual best-practices skills 
 
 ## Installation
 
-### Project-level (recommended)
+### From the Marketplace
 
-Install the plugin for a specific project so every collaborator benefits automatically:
-
-```bash
-claude plugin add --project https://github.com/VeryGoodOpenSource/very_good_ai_flutter_plugin
-```
-
-This writes the plugin reference into your project's `.claude/plugins.json`, which you can commit to source control.
-
-### Global
-
-Install the plugin once for all projects on your machine:
+Inside Claude Code:
 
 ```bash
-claude plugin add https://github.com/VeryGoodOpenSource/very_good_ai_flutter_plugin
+/plugin marketplace add VeryGoodOpenSource/very_good_claude_marketplace
+/plugin install <very_good_plugin>
 ```
 
-### Verify installation
-
-Run the following to confirm the plugin is active:
-
-```bash
-claude plugin list
-```
-
-You should see `very-good-ai-flutter-plugin` in the output.
+For more details, see the [Very Good Claude Marketplace][marketplace_link].
 
 ## Skills
 
@@ -128,6 +111,7 @@ This plugin includes a `.mcp.json` configuration that connects Claude Code to th
 
 The `.mcp.json` file at the project root registers a `very-good-cli` MCP server using stdio transport. When Claude Code detects this configuration, it connects to the Very Good CLI MCP server and gains access to the tools above. The skills continue to provide knowledge and best practices while the MCP tools handle execution.
 
+[marketplace_link]: https://github.com/VeryGoodOpenSource/very_good_claude_marketplace
 [claude_code_link]: https://claude.ai/code
 [vgv_link]: https://verygood.ventures
 [very_good_ventures_link_dark]: https://verygood.ventures#gh-dark-mode-only
