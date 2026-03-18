@@ -13,7 +13,7 @@ Scaffold a new Dart or Flutter project using Very Good CLI templates.
 
 ## Core Standards
 
-- **Use the Very Good CLI MCP server to create projects and install dependencies** — never run CLI commands via shell
+- **Use the Very Good CLI MCP server when available; fall back to shell commands if it is not connected** — prefer `mcp__very-good-cli__create` and `mcp__very-good-cli__packages_get`, but if the MCP server is unavailable run `very_good create <template> <name>` and `very_good packages get` via Bash
 - **Infer the template from context** — determine the right template based on what the user wants to build, not by asking them to pick a subcommand name
 - **Use `AskUserQuestion` only for information you cannot infer** — project name and organization are the most common missing pieces
 - **Install dependencies after creation**
@@ -44,9 +44,8 @@ Use `AskUserQuestion` to collect only what you cannot infer. Batch questions int
 
 ### Step 3: Create and Set Up
 
-1. Create the project using the Very Good CLI MCP server
-2. Install dependencies using the Very Good CLI MCP server
-3. Suggest relevant follow-up skills (**layered-architecture**, **bloc**, **testing**, etc.)
+1. Create the project using the Very Good CLI MCP server (or `very_good create` via Bash if MCP is unavailable)
+2. Install dependencies using the Very Good CLI MCP server (or `very_good packages get` via Bash if MCP is unavailable)
 
 ---
 
@@ -64,7 +63,7 @@ Use `AskUserQuestion` to collect only what you cannot infer. Batch questions int
 
 1. Infer: `flutter_app`
 2. Ask for project name and organization
-3. Create, install dependencies, suggest **layered-architecture** and **bloc**
+3. Create and install dependencies
 
 ### User says "I need a package for my weather API client, put it in packages/"
 
@@ -90,9 +89,8 @@ Use `AskUserQuestion` to collect only what you cannot infer. Batch questions int
 
 ### MCP server not connected
 
-- Verify the Very Good CLI MCP server is running
-- Confirm `very_good` is installed: `dart pub global activate very_good_cli`
-- Confirm `very_good` is on PATH
+- Fall back to running `very_good create` and `very_good packages get` via Bash
+- If `very_good` is not found, install it with `dart pub global activate very_good_cli`
 
 ### Invalid project name error
 
