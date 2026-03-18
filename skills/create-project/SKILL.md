@@ -1,7 +1,7 @@
 ---
 name: vgv-create-project
 description: Scaffold a new Dart or Flutter project from a Very Good CLI template. Use when user says "create a new project", "start a new flutter app", "scaffold a package", "initialize a dart cli", "new flame game", or "generate a plugin". Supports flutter_app, dart_package, flutter_package, flutter_plugin, dart_cli, flame_game, and docs_site templates.
-allowed-tools: AskUserQuestion,mcp__very-good-cli__create,mcp__very-good-cli__packages_get,Read,Glob,Grep
+allowed-tools: mcp__very-good-cli__create,mcp__very-good-cli__packages_get
 argument-hint: "[template] [project-name]"
 ---
 
@@ -13,7 +13,7 @@ Scaffold a new Dart or Flutter project using Very Good CLI templates.
 
 ## Core Standards
 
-- **Use the Very Good CLI MCP server when available; fall back to shell commands if it is not connected** — prefer `mcp__very-good-cli__create` and `mcp__very-good-cli__packages_get`, but if the MCP server is unavailable run `very_good create <template> <name>` and `very_good packages get` via Bash
+- **Use the Very Good CLI MCP server** — use `mcp__very-good-cli__create` and `mcp__very-good-cli__packages_get` to scaffold projects and install dependencies
 - **Infer the template from context** — determine the right template based on what the user wants to build, not by asking them to pick a subcommand name
 - **Use `AskUserQuestion` only for information you cannot infer** — project name and organization are the most common missing pieces
 - **Install dependencies after creation**
@@ -24,19 +24,9 @@ Scaffold a new Dart or Flutter project using Very Good CLI templates.
 
 ### Step 1: Understand What the User Wants to Build
 
-Infer the template from the user's description. Do NOT ask users to pick a template name — figure it out from context:
+Infer the subcommand from the user's description — the available subcommands and their descriptions are defined by the `mcp__very-good-cli__create` tool. Do NOT ask users to pick a subcommand name — figure it out from context.
 
-| User intent | Template |
-| --- | --- |
-| Building a mobile/web/desktop app | `flutter_app` |
-| Building a reusable library that uses Flutter widgets | `flutter_package` |
-| Building a reusable library with pure Dart (no Flutter) | `dart_package` |
-| Building a plugin that wraps platform-specific APIs | `flutter_plugin` |
-| Building a command-line tool | `dart_cli` |
-| Building a 2D game | `flame_game` |
-| Building a documentation site | `docs_site` |
-
-If the intent is ambiguous, use `AskUserQuestion` to clarify with a high-level question about what they're building — not which template they want.
+If the intent is ambiguous, use `AskUserQuestion` to clarify with a high-level question about what they're building — not which subcommand they want.
 
 ### Step 2: Gather Missing Parameters
 
@@ -44,8 +34,8 @@ Use `AskUserQuestion` to collect only what you cannot infer. Batch questions int
 
 ### Step 3: Create and Set Up
 
-1. Create the project using the Very Good CLI MCP server (or `very_good create` via Bash if MCP is unavailable)
-2. Install dependencies using the Very Good CLI MCP server (or `very_good packages get` via Bash if MCP is unavailable)
+1. Create the project using `mcp__very-good-cli__create`
+2. Install dependencies using `mcp__very-good-cli__packages_get`
 
 ---
 
@@ -86,11 +76,6 @@ Use `AskUserQuestion` to collect only what you cannot infer. Batch questions int
 ---
 
 ## Troubleshooting
-
-### MCP server not connected
-
-- Fall back to running `very_good create` and `very_good packages get` via Bash
-- If `very_good` is not found, install it with `dart pub global activate very_good_cli`
 
 ### Invalid project name error
 
