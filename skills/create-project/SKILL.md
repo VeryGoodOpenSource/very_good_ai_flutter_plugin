@@ -13,7 +13,7 @@ Scaffold a new Dart or Flutter project using Very Good CLI templates.
 
 ## Core Standards
 
-- **Use the Very Good CLI MCP server** — use `mcp__very-good-cli__create` and `mcp__very-good-cli__packages_get` to scaffold projects and install dependencies
+- **Use the Very Good CLI MCP server** to scaffold projects and install dependencies
 - **Infer the template from context** — determine the right template based on what the user wants to build, not by asking them to pick a subcommand name
 - **Use `AskUserQuestion` only for information you cannot infer** — project name and organization are the most common missing pieces
 - **Install dependencies after creation**
@@ -24,7 +24,7 @@ Scaffold a new Dart or Flutter project using Very Good CLI templates.
 
 ### Step 1: Understand What the User Wants to Build
 
-Infer the subcommand from the user's description — the available subcommands and their descriptions are defined by the `mcp__very-good-cli__create` tool. Do NOT ask users to pick a subcommand name — figure it out from context.
+Infer the subcommand from the user's description — the available subcommands and their descriptions are defined by the Very Good CLI MCP server. Do NOT ask users to pick a subcommand name — figure it out from context.
 
 If the intent is ambiguous, use `AskUserQuestion` to clarify with a high-level question about what they're building — not which subcommand they want.
 
@@ -34,8 +34,8 @@ Use `AskUserQuestion` to collect only what you cannot infer. Batch questions int
 
 ### Step 3: Create and Set Up
 
-1. Create the project using `mcp__very-good-cli__create`
-2. Install dependencies using `mcp__very-good-cli__packages_get`
+1. Create the project using the Very Good CLI MCP server
+2. Install dependencies using the Very Good CLI MCP server
 
 ---
 
