@@ -1,0 +1,43 @@
+#!/bin/bash
+# Shared helpers for Very Good CLI version checks and hook deny responses.
+
+MIN_VERSION="1.1.0"
+MIN_MAJOR=1
+MIN_MINOR=1
+MIN_PATCH=0
+
+deny() {
+  jq -n \
+    --arg reason "$1" \
+    '{
+      hookSpecificOutput: {
+        hookEventName: "PreToolUse",
+        permissionDecision: "deny",
+        permissionDecisionReason: $reason
+      }
+    }'
+  exit 0
+}
+
+# Check Very Good CLI availability and version.
+# Returns: "ok", "not_installed", or "outdated:<version>"
+check_vgv_cli() {
+  if ! command -v very_good &>/dev/null; then
+    echo "not_installed"
+    return
+  fi
+  RAW=$(very_good --version 2>/dev/null)
+  VERSION=$(echo "$RAW" | head -1 | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | head -1)
+  if [ -z "$VERSION" ]; then
+    echo "not_installed"
+    return
+  fi
+  IFS='.' read -r MAJOR MINOR PATCH <<< "$VERSION"
+  if [ "$MAJOR" -lt "$MIN_MAJOR" ] 2>/dev/null ||
+     { [ "$MAJOR" -eq "$MIN_MAJOR" ] && [ "$MINOR" -lt "$MIN_MINOR" ]; } 2>/dev/null ||
+     { [ "$MAJOR" -eq "$MIN_MAJOR" ] && [ "$MINOR" -eq "$MIN_MINOR" ] && [ "$PATCH" -lt "$MIN_PATCH" ]; } 2>/dev/null; then
+    echo "outdated:$VERSION"
+    return
+  fi
+  echo "ok"
+}

@@ -1,6 +1,28 @@
 {
   "description": "Very Good AI Flutter Plugin hooks for Dart and Flutter development",
   "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "mcp__very-good-cli__.*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ${CLAUDE_PLUGIN_ROOT}/hooks/scripts/check-vgv-cli.sh",
+            "timeout": 10
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ${CLAUDE_PLUGIN_ROOT}/hooks/scripts/block-cli-workarounds.sh",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
     "PostToolUse": [
       {
         "matcher": "Edit|Write",
@@ -20,3 +42,4 @@
     ]
   }
 }
+
