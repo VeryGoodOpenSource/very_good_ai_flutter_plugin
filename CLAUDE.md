@@ -13,19 +13,23 @@ Very Good AI Flutter Plugin is a Claude Code plugin that provides best-practices
 .claude-plugin/
   plugin.json          # Plugin manifest (name, version, tags)
 hooks/
-  hooks.json           # PostToolUse hook definitions (analyze, format)
+  hooks.json           # Hook definitions (PreToolUse and PostToolUse)
   scripts/
     analyze.sh         # Runs dart analyze on modified .dart files
+    block-cli-workarounds.sh  # Prevents direct CLI bypass via Bash
+    check-vgv-cli.sh   # Validates VGV CLI installed and >= 1.1.0
     format.sh          # Runs dart format on modified .dart files
+    vgv-cli-common.sh  # Shared utilities for VGV CLI hook scripts
 skills/
-  create-project/SKILL.md
   accessibility/SKILL.md
   accessibility/reference.md
   bloc/SKILL.md
   bloc/reference.md
+  create-project/SKILL.md
   internationalization/SKILL.md
   layered-architecture/SKILL.md
   layered-architecture/reference.md
+  license-compliance/SKILL.md
   material-theming/SKILL.md
   navigation/SKILL.md
   static-security/SKILL.md
@@ -64,13 +68,25 @@ Every `SKILL.md` follows this structure:
 
 ## Hooks
 
-The `hooks/` directory contains PostToolUse hooks that run automatically after `Edit` or `Write` tool calls:
+The `hooks/` directory contains PreToolUse and PostToolUse hooks defined in `hooks.json`.
 
-- `hooks.json` declares the hook definitions with an `Edit|Write` matcher
-- `analyze.sh` — runs `dart analyze` on the modified `.dart` file; exits 2 on failure (blocking — Claude must fix the issue)
-- `format.sh` — runs `dart format` on the modified `.dart` file; always exits 0 (non-blocking)
+### PreToolUse Hooks
 
-Both scripts require **jq** to parse the hook payload (they skip gracefully if `jq` is not installed).
+These run **before** a tool call is executed:
+
+- `mcp__very-good-cli__.*` matcher → `check-vgv-cli.sh` — validates that the Very Good CLI is installed and at version >= 1.1.0; exits 2 on failure (blocking)
+- `Bash` matcher → `block-cli-workarounds.sh` — prevents direct CLI bypass of VGV CLI commands through the Bash tool; exits 2 on failure (blocking)
+
+Both PreToolUse scripts share common utilities from `vgv-cli-common.sh`.
+
+### PostToolUse Hooks
+
+These run **after** a tool call completes:
+
+- `Edit|Write` matcher → `analyze.sh` — runs `dart analyze` on the modified `.dart` file; exits 2 on failure (blocking — Claude must fix the issue)
+- `Edit|Write` matcher → `format.sh` — runs `dart format` on the modified `.dart` file; always exits 0 (non-blocking)
+
+All hook scripts require **jq** to parse the hook payload (they skip gracefully if `jq` is not installed).
 
 ## Commits
 
