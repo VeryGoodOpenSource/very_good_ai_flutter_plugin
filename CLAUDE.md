@@ -75,7 +75,7 @@ The `hooks/` directory contains SessionStart, PreToolUse, and PostToolUse hooks 
 
 These run **when a session begins**:
 
-- `warn-missing-mcp.sh` — checks if Very Good CLI is installed and >= 1.1.0; prints a warning to stderr if missing or outdated (non-blocking)
+- `warn-missing-mcp.sh` — checks if Very Good CLI is installed and >= 1.1.0; outputs a warning to Claude's context if missing or outdated (non-blocking)
 
 ### PreToolUse Hooks
 
