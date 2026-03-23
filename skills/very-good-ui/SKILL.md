@@ -1,6 +1,7 @@
 ---
 name: very-good-ui
-description: Best practices for building a Flutter UI package on top of Material — custom components, ThemeExtension-based theming, consistent APIs, and widget tests.
+description: Best practices for building a Flutter UI package on top of Material — custom components, ThemeExtension-based theming, consistent APIs, and widget tests. Use when user says "create a ui package". Supports app_ui_package template.
+allowed-tools: Edit,mcp__very-good-cli__create
 ---
 
 # Very Good UI
@@ -198,12 +199,8 @@ widgetbook/
 
 ### Creating the Package
 
-Use Very Good CLI to scaffold the package:
+Use the Very Good CLI MCP tool to scaffold the package:
 
-```bash
-very_good create flutter_package my_ui --description "A custom Flutter UI package"
 ```
-
-## Additional Resources
-
-See [reference.md](reference.md) for complete code examples: `ThemeExtension` implementations (`AppColors`, `AppSpacing`), `AppTheme` class with light/dark variants, `BuildContext` extensions, example widget (`AppButton`), widget tests, Widgetbook catalog setup (`pubspec.yaml`, `WidgetbookApp`, `UseCaseDecorator`, use-case files).
+mcp__very-good-cli__create(template: "app_ui_package", name: "my_ui", description: "A custom Flutter UI package")
+```
