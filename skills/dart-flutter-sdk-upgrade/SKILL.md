@@ -18,6 +18,18 @@ version bumps, no test changes.
 
 ---
 
+## Core Standards
+
+Apply these standards to ALL SDK upgrade work:
+
+- **Flutter and Dart versions differ** — always look up the Dart version bundled with the target Flutter release from https://docs.flutter.dev/install/archive
+- **CI uses `^MAJOR.MINOR.x`** — wildcard patch so CI always gets the latest patch
+- **pubspec pins exact patch** — use `^MAJOR.MINOR.PATCH` with the specific patch version
+- **Pure Dart packages** — use the Dart version directly, no Flutter mapping needed
+- **Verify with `pub get` and `analyze`** — don't silently resolve conflicts
+
+---
+
 ## 0. Resolve target version
 
 Flutter bundles a specific Dart release — their version numbers do **not** match. For
