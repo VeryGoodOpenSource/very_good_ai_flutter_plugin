@@ -1,15 +1,6 @@
 ---
 name: vgv-very-good-analysis-upgrade
-description: >
-  Upgrade the `very_good_analysis` lint package to a new version across Dart/Flutter projects.
-  Handles the full upgrade workflow: bumping the version in pubspec.yaml, running flutter analyze
-  to surface new lint warnings from newly enabled rules, fixing those warnings with minimal focused
-  changes, and opening a PR that contains only the version bump and lint fixes.
-  Use this skill whenever the user mentions "upgrade very_good_analysis", "bump VGA", "new very_good_analysis
-  version is out", "update lint rules", "very_good_analysis PR", "flutter lint upgrade", or any
-  request to update the analysis options package in a Flutter or Dart project — even if they just
-  say "the new VGA is on pub.dev, can you open the PR?". Also use it when someone asks to fix
-  lint warnings that appeared after a very_good_analysis bump.
+description: Upgrade very_good_analysis lint package to new version across Dart/Flutter projects. Handles version bump, lint fixes, and PR creation.
 allowed-tools: Read,Glob,Grep,Bash
 ---
 
@@ -39,10 +30,9 @@ Confirm two things before proceeding:
 1. **Target version** — if the user didn't specify a version, fetch the latest from the pub.dev API
    and use that. Don't ask — just look it up and proceed:
 
-   ```bash
-   curl -s https://pub.dev/api/packages/very_good_analysis | python3 -c \
-     "import sys, json; d=json.load(sys.stdin); print(d['latest']['version'])"
-   ```
+    ```bash
+    curl -s https://pub.dev/api/packages/very_good_analysis | jq -r '.latest.version'
+    ```
 
    Tell the user which version you're upgrading to before making any changes.
 
@@ -102,17 +92,6 @@ Work through the warnings one by one. Keep fixes **minimal and lint-compliance-o
 - Don't fix pre-existing lint warnings that existed before the bump
 - If a warning looks like it might require a behavioral change (not just style), flag it for
   human review rather than silently fixing it
-
-Common patterns you'll encounter:
-
-| Lint rule                   | Typical fix                                          |
-| --------------------------- | ---------------------------------------------------- |
-| `prefer_const_constructors` | Add `const` keyword                                  |
-| `use_super_parameters`      | Convert `super.param` to initializer                 |
-| `unnecessary_late`          | Remove `late` from immediately-initialized variables |
-| `avoid_dynamic_calls`       | Cast the receiver to a specific type                 |
-| `require_trailing_commas`   | Add trailing comma in argument/parameter lists       |
-| `unnecessary_null_checks`   | Remove redundant `!` operators                       |
 
 After fixing, re-run `flutter analyze` to confirm zero warnings remain.
 
