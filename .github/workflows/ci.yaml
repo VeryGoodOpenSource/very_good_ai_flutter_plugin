@@ -64,7 +64,8 @@ jobs:
         with:
           path: ${{ matrix.skill }}
           validate-references: 'true'
-          skip-checks: 'name-match-directory'
+          fail-on-warning: 'true'
+          ignore-rules: 'name-match-directory,unknown-field'
       - name: Check results
         if: always()
         run: |
