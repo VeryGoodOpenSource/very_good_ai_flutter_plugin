@@ -1,5 +1,5 @@
 ---
-name: upgrade-very-good-analysis
+name: vgv-very-good-analysis-upgrade
 description: >
   Upgrade the `very_good_analysis` lint package to a new version across Dart/Flutter projects.
   Handles the full upgrade workflow: bumping the version in pubspec.yaml, running flutter analyze
@@ -10,6 +10,7 @@ description: >
   request to update the analysis options package in a Flutter or Dart project — even if they just
   say "the new VGA is on pub.dev, can you open the PR?". Also use it when someone asks to fix
   lint warnings that appeared after a very_good_analysis bump.
+allowed-tools: Read,Glob,Grep,Bash
 ---
 
 # Upgrade very_good_analysis
@@ -17,6 +18,17 @@ description: >
 This skill guides the full upgrade of `very_good_analysis` in a Dart or Flutter project.
 The goal is a clean, focused PR: nothing more than the version bump in `pubspec.yaml` plus
 the minimal code changes needed to satisfy any new lint rules introduced in that version.
+
+---
+
+## Core Standards
+
+These standards apply to every `very_good_analysis` upgrade.
+
+- **Keep the PR focused** — include only the version bump and required lint fixes
+- **Fix only new warnings** — do not address pre-existing issues in the same PR
+- **Avoid behavior changes** — if a lint fix alters runtime behavior, flag it for review
+- **Verify with analysis** — end with a clean `flutter analyze` or `dart analyze`
 
 ---
 
