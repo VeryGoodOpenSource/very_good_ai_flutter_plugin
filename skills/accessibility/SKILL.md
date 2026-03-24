@@ -78,7 +78,7 @@ Audit categories (check all six in order):
 5. **Text Scaling** — no fixed-height text containers, no clamped text scaling, overflow handling at 200% scale
 6. **Animation & Motion** — `disableAnimations` gating on all `AnimationController`, `Hero`, and `AnimatedContainer` instances; no content flashing > 3 Hz
 
-After completing all six categories, produce the Audit Report using the level-specific template in [reference.md](reference.md).
+After completing all six categories, produce the Audit Report using the level-specific template in [references/audit-templates.md](references/audit-templates.md).
 
 ### Phase 4 — Remediation Scope Selection
 
@@ -320,12 +320,10 @@ AnimatedContainer(
 
 ## Additional Resources
 
-See [reference.md](reference.md) for:
-
-- Extended code examples per category (full widget classes, `AccessibleRatingBar`, `AccessiblePageRoute`, etc.)
-- Level-specific audit report templates (A, AA, AAA) with pre-annotated passed checks
-- Full accessibility test suite (`tester.ensureSemantics()` patterns)
-- Widget-to-accessibility requirements mapping table
+- [Extended code examples](references/examples.md) — full widget classes per category (`AccessibleRatingBar`, `AccessiblePageRoute`, etc.)
+- [Audit report templates](references/audit-templates.md) — level-specific templates (A, AA, AAA) with pre-annotated passed checks
+- [Full accessibility test suite](references/testing.md) — `tester.ensureSemantics()` patterns covering all six categories
+- [Widget-to-accessibility mapping](references/widget-mapping.md) — quick-reference table of Flutter widgets and their accessibility requirements
 
 Official references:
 
