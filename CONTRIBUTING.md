@@ -86,7 +86,7 @@ If the spelling check flags a legitimate word, add it to `config/cspell.json` in
 
 Use [Conventional Commits](https://www.conventionalcommits.org/) with the format:
 
-```
+```text
 type(scope): description
 ```
 

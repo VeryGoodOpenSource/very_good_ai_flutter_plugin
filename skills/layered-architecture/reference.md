@@ -904,7 +904,7 @@ dev_dependencies:
 
 Data models (response models) reflect the external API shape. Domain models reflect the app's internal representation. The repository layer transforms between them.
 
-```
+```text
 API JSON → UserResponse (data model) → User (domain model)
 ```
 

@@ -130,7 +130,7 @@ tags:
   golden:
 ```
 
-2. Define a `TestTag` constant (if not already present):
+1. Define a `TestTag` constant (if not already present):
 
 ```dart
 // test/helpers/test_tags.dart

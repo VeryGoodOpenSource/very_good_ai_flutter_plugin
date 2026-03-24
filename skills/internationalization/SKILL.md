@@ -232,7 +232,6 @@ showDialog<bool>(
 );
 ```
 
-
 ## Text Directionality
 
 ### The `Directionality` Widget

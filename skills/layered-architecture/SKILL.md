@@ -36,7 +36,7 @@ Apply these standards to ALL layered architecture work:
 | **Business Logic** | State management — processes user actions, emits state changes | `lib/<feature>/bloc/` or `lib/<feature>/cubit/` | Repository layer | `LoginBloc`, `ProfileCubit` |
 | **Presentation** | UI — widgets, pages, views, layout | `lib/<feature>/view/` | Business Logic layer | `LoginPage`, `ProfileView` |
 
-```
+```text
 ┌─────────────────────────────────────────────┐
 │              Presentation                   │
 │          (lib/<feature>/view/)              │
@@ -60,7 +60,7 @@ Apply these standards to ALL layered architecture work:
 
 ## Monorepo Structure
 
-```
+```text
 my_app/
 ├── lib/
 │   ├── app/

@@ -217,7 +217,7 @@ class TodoRepository {
 
 ### Feature Folder Structure
 
-```
+```text
 lib/
 ├── todos/
 │   ├── todos.dart                  # Barrel file

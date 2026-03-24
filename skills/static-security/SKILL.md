@@ -220,7 +220,7 @@ Third-party packages are compiled directly into the app binary. A vulnerable or 
 
 `dart pub get` automatically surfaces hits from the GitHub Advisory Database:
 
-```
+```text
 http 0.13.0 (affected by advisory: GHSA-4rgh-jx4f-xxxx, 1.2.0 available)
 ```
 

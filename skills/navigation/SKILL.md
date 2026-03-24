@@ -27,7 +27,7 @@ Structure routes hierarchically with logical parent-child relationships. Sub-rou
 
 ### Hierarchical Structure (Preferred)
 
-```
+```text
 /flutter
   /flutter/news
   /flutter/chat
@@ -41,7 +41,7 @@ Structure routes hierarchically with logical parent-child relationships. Sub-rou
 
 ### Flat Structure (Avoid)
 
-```
+```text
 /flutter-news
 /flutter-chat
 /android-news
