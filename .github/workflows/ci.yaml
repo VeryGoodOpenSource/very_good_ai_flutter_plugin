@@ -41,7 +41,7 @@ jobs:
           BASE=${{ github.event.pull_request.base.sha }}
           HEAD=${{ github.event.pull_request.head.sha }}
           SKILLS=$(git diff --name-only $BASE $HEAD | \
-            grep 'SKILL.md' | \
+            { grep 'SKILL.md' || true; } | \
             xargs -I {} dirname {} | \
             sort -u | \
             jq -R -s -c 'split("\n") | map(select(length > 0))')
