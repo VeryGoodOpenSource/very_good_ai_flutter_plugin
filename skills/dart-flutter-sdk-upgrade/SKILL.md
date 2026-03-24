@@ -37,6 +37,7 @@ example, Flutter 3.41.0 ships with Dart 3.11.0. You must look up the correct Dar
 for the target Flutter release before editing any files.
 
 **How to find the Dart version:**
+
 1. Open https://docs.flutter.dev/install/archive
 2. Find the target Flutter stable release
 3. Note the Dart version listed alongside it
@@ -73,8 +74,8 @@ with:
   dart_sdk: "^3.11.x" # ← Dart version (not Flutter version)
 ```
 
-If a file uses `flutter_channel: stable` instead of a pinned version, ask the user whether
-they want to pin it — pinning is generally preferred at VGV.
+If a file uses `flutter_channel: stable` instead of a pinned version,
+pin the version — VGV always pins Flutter versions in CI workflows.
 
 ---
 
@@ -87,7 +88,7 @@ patch version — the one the user specifies or the current stable at the time o
 
 ```yaml
 environment:
-  sdk: ^3.11.0    # ← Dart version bundled with the target Flutter release
+  sdk: ^3.11.0 # ← Dart version bundled with the target Flutter release
   flutter: ^3.41.0 # ← Flutter version
 ```
 
@@ -127,7 +128,7 @@ Before committing, confirm the diff contains only:
 - `pubspec.yaml` (one or more)
 
 ```bash
-git diff --name-only
+git diff HEAD --name-only
 ```
 
 Suggested commit/PR message:
