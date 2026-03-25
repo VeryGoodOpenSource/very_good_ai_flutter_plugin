@@ -26,6 +26,7 @@ skills/
   bloc/SKILL.md
   bloc/reference.md
   create-project/SKILL.md
+  dart-flutter-sdk-upgrade/SKILL.md
   internationalization/SKILL.md
   layered-architecture/SKILL.md
   layered-architecture/reference.md
