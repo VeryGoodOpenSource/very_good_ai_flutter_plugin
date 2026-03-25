@@ -58,7 +58,7 @@ my_ui/
 
 ## ThemeExtension Tokens
 
-The base theme setup (`ThemeData`, `ColorScheme`, `TextTheme`, component themes, spacing constants) is covered by the **Material Theming** skill. This section covers the `ThemeExtension` layer unique to UI packages — custom tokens for values Material does not provide (e.g., success/warning/info colors, spacing scale as animatable values).
+The base theme setup (`ThemeData`, `ColorScheme`, `TextTheme`, component themes, spacing constants) is covered by the **Material Theming** skill. This section covers the `ThemeExtension` layer unique to UI packages — custom tokens for values Material does not provide (e.g., success/warning/info colors, spacing scale with animation support).
 
 ### Key Classes
 
