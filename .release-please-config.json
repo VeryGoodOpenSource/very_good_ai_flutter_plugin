@@ -10,7 +10,6 @@
   "pull-request-header": ":rotating_light: There are changes ready for release :rocket:\n\nℹ Merge this PR once the team confirms the release is ready.\n",
   "pull-request-title-pattern": "chore: ${version}",
   "include-component-in-tag": false,
-  "separate-pull-requests": true,
   "packages": {
     ".": {
       "release-type": "simple",
