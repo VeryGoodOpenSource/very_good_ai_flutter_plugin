@@ -1,12 +1,14 @@
 ---
-name: very-good-ui
+name: vgv-ui-package
 description: Best practices for building a Flutter UI package on top of Material — custom components, ThemeExtension-based theming, consistent APIs, and widget tests. Use when user says "create a ui package". Supports app_ui_package template.
 allowed-tools: Edit,mcp__very-good-cli__create
 ---
 
-# Very Good UI
+# UI Package
 
 Best practices for creating a Flutter UI package — a reusable widget library that builds on top of `package:flutter/material.dart`, extending it with app-specific components, custom design tokens via `ThemeExtension`, and a consistent API surface.
+
+> **Theming foundation:** This skill focuses on UI package structure, widget APIs, and testing. For foundational Material 3 theming (`ColorScheme`, `TextTheme`, component themes, spacing constants, light/dark mode), see the **Material Theming** skill (`/vgv-material-theming`). The two skills are complementary — Material Theming covers how to set up and use `ThemeData`; this skill covers how to extend it with `ThemeExtension` tokens and package reusable widgets around it.
 
 ## Core Standards
 
@@ -15,7 +17,7 @@ Apply these standards to ALL UI package work:
 - **Build on Material** — depend on `flutter/material.dart` and compose Material widgets; do not rebuild primitives that Material already provides
 - **One widget per file** — each public widget lives in its own file named after the widget in snake_case (e.g., `app_button.dart`)
 - **Barrel file for public API** — expose all public widgets and theme classes through a single barrel file (e.g., `lib/my_ui.dart`) that also re-exports `material.dart`
-- **Extend theming with `ThemeExtension`** — use Material's `ThemeData`, `ColorScheme`, and `TextTheme` as the base; add app-specific tokens (spacing, custom colors) via `ThemeExtension<T>`
+- **Extend theming with `ThemeExtension`** — use Material's `ThemeData`, `ColorScheme`, and `TextTheme` as the base (see Material Theming skill); add app-specific tokens (spacing, custom colors) via `ThemeExtension<T>`
 - **Every widget has a corresponding widget test** — behavioral tests verify interactions, callbacks, and state changes
 - **Prefix all public classes** — use a consistent prefix (e.g., `App`, `Vg`) to avoid naming collisions with Material widgets
 - **Use `const` constructors everywhere possible** — all widget constructors must be `const` when feasible
@@ -54,9 +56,9 @@ my_ui/
 └── pubspec.yaml
 ```
 
-## Theming System
+## ThemeExtension Tokens
 
-Use Material's `ThemeData`, `ColorScheme`, and `TextTheme` as the base. Add app-specific tokens via `ThemeExtension<T>` — only for values Material does not cover (e.g., success, warning, info colors; spacing scale).
+The base theme setup (`ThemeData`, `ColorScheme`, `TextTheme`, component themes, spacing constants) is covered by the **Material Theming** skill. This section covers the `ThemeExtension` layer unique to UI packages — custom tokens for values Material does not provide (e.g., success/warning/info colors, spacing scale as animatable values).
 
 ### Key Classes
 
@@ -64,7 +66,7 @@ Use Material's `ThemeData`, `ColorScheme`, and `TextTheme` as the base. Add app-
 | ----- | ------- |
 | `AppColors extends ThemeExtension<AppColors>` | Custom color tokens beyond `ColorScheme` (success, warning, info + on-variants) |
 | `AppSpacing extends ThemeExtension<AppSpacing>` | Spacing scale (xxs through xxlg) with `copyWith` and `lerp` |
-| `AppTheme` | Composes `ThemeData` with `ColorScheme.fromSeed`, custom extensions, for light and dark variants |
+| `AppTheme` | Composes `ThemeData` with `ColorScheme.fromSeed` + custom extensions, for light and dark variants |
 | `AppThemeBuildContext` extension | Shorthand `context.appColors` and `context.appSpacing` |
 
 Every `ThemeExtension` must implement `copyWith` and `lerp` for theme animation support.
