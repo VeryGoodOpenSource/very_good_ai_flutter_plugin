@@ -47,6 +47,9 @@
     "theming",
     "very-good-cli",
     "wcag",
-    "widget-testing"
+    "widget-testing",
+    "sdk-upgrade",
+    "dart-sdk",
+    "flutter-sdk"
   ]
 }

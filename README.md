@@ -38,6 +38,7 @@ For more details, see the [Very Good Claude Marketplace][marketplace_link].
 | [**Layered Architecture**](skills/layered-architecture/SKILL.md) | VGV layered architecture — four-layer package structure (Data, Repository, Business Logic, Presentation), dependency rules, data flow, and bootstrap wiring |
 | [**Security**](skills/static-security/SKILL.md) | Flutter-specific static security review — secrets management, `flutter_secure_storage`, certificate pinning, `Random.secure()`, `formz` validation, dependency vulnerability scanning with `osv-scanner`, and OWASP Mobile Top 10 guidance |
 | [**License Compliance**](skills/license-compliance/SKILL.md) | Dependency license auditing — categorizes licenses (permissive, weak/strong copyleft, unknown), flags non-compliant or missing licenses, and produces a structured compliance report using Very Good CLI |
+| [**Dart/Flutter SDK Upgrade**](skills/dart-flutter-sdk-upgrade/SKILL.md) | Bump Dart and Flutter SDK constraints across packages — CI workflow versions, pubspec.yaml environment constraints, and PR preparation for SDK upgrades |
 
 ## Hooks
 
@@ -76,6 +77,7 @@ You can also invoke skills directly as slash commands:
 /vgv-static-security
 /vgv-testing
 /vgv-license-compliance
+/vgv-dart-flutter-sdk-upgrade
 ```
 
 ## What Each Skill Provides
