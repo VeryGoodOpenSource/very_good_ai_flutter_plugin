@@ -229,7 +229,7 @@ class UserRepository {
 }
 ```
 
-See [worked-example.md](references/worked-example.md) for the complete `user_repository` package with pubspec, barrel files, and error handling.
+See [worked-example.md](references/worked-example.md) for the complete `user_repository` package with pubspec, barrel files, and error handling. See [model-transformation.md](references/model-transformation.md) for detailed transformation patterns between data and domain models.
 
 ## Dependency Graph
 
@@ -394,6 +394,8 @@ Flavors change only the configuration (base URLs, API keys) — the architecture
 ## Additional Resources
 
 - [Complete worked example](references/worked-example.md) and [pubspec reference](references/pubspec.md)
+- [Model transformation patterns](references/model-transformation.md) — data model vs domain model conversion
+- [Package-level testing](references/testing.md) — testing data clients and repositories in isolation
 - For Bloc/Cubit patterns and Page/View separation — see the **bloc** skill
 - For project scaffolding use the `very_good_cli` MCP server `create dart_package` tool
 - For testing data clients, repositories, and Blocs — see the **testing** skill
