@@ -156,3 +156,9 @@ which is fine — don't re-introduce them.
 **flutter pub get fails**: If dependency resolution fails after the bump (version conflicts),
 investigate the conflict before proceeding. Don't force-upgrade other dependencies just to
 make the bump work — surface the conflict to the user.
+
+---
+
+## Additional Resources
+
+See [reference.md](reference.md) for a quick-reference table of common lint rules introduced by `very_good_analysis` upgrades and their typical fixes (`prefer_const_constructors`, `use_super_parameters`, `unnecessary_late`, `avoid_dynamic_calls`, `require_trailing_commas`, `unnecessary_null_checks`).
