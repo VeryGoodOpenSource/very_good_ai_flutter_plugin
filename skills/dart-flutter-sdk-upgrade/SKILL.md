@@ -22,7 +22,7 @@ version bumps, no test changes.
 
 Apply these standards to ALL SDK upgrade work:
 
-- **Flutter and Dart versions differ** — always look up the Dart version bundled with the target Flutter release from https://docs.flutter.dev/install/archive
+- **Flutter and Dart versions differ** — always look up the Dart version bundled with the target Flutter release from <https://docs.flutter.dev/install/archive>
 - **CI uses `^MAJOR.MINOR.x`** — wildcard patch so CI always gets the latest patch
 - **pubspec pins exact patch** — use `^MAJOR.MINOR.PATCH` with the specific patch version
 - **Pure Dart packages** — use the Dart version directly, no Flutter mapping needed
@@ -38,7 +38,7 @@ for the target Flutter release before editing any files.
 
 **How to find the Dart version:**
 
-1. Open https://docs.flutter.dev/install/archive
+1. Open <https://docs.flutter.dev/install/archive>
 2. Find the target Flutter stable release
 3. Note the Dart version listed alongside it
 
@@ -133,7 +133,7 @@ git diff HEAD --name-only
 
 Suggested commit/PR message:
 
-```
+```text
 chore: bump Flutter to 3.41.0 / Dart to 3.11.0
 
 - Update flutter_version in .github/workflows/ to ^3.41.x (CI resolves latest patch)

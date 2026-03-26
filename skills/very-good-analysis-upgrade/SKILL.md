@@ -123,7 +123,7 @@ git add pubspec.yaml pubspec.lock   # always include these
 
 Commit with a clear message following the project's conventions. A good default:
 
-```
+```text
 chore: upgrade very_good_analysis to x.y.z
 
 Bump very_good_analysis from <old> to <new> and resolve

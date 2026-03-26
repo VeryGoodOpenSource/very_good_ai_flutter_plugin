@@ -468,4 +468,8 @@ Always call `pump()` (or `pumpAndSettle()`) after every interaction — widgets 
 
 ## Additional Resources
 
-See [reference.md](reference.md) for the full widget test structure example, themes/localization testing, matchers quick reference, golden file testing (setup, writing goldens, tagging, running/updating, anti-patterns), `dart_test.yaml` configuration (tags, commands, platform overrides), coverage patterns (achieving full coverage, `copyWith` testing), and the package/imports quick reference.
+- [references/widget-tests.md](references/widget-tests.md) — widget test structure and themes/localization testing
+- [references/golden-tests.md](references/golden-tests.md) — golden file testing (setup, writing goldens, tagging, running/updating, anti-patterns)
+- [references/matchers.md](references/matchers.md) — matchers quick reference
+- [references/configuration.md](references/configuration.md) — `dart_test.yaml` configuration (tags, commands, platform overrides)
+- [references/coverage.md](references/coverage.md) — coverage patterns and package/imports reference
