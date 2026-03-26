@@ -10,7 +10,7 @@ jobs:
     name: 📝 Markdown Quality
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Lint Markdown
         uses: DavidAnson/markdownlint-cli2-action@v19
         with:
@@ -20,7 +20,7 @@ jobs:
     name: ✍️ Spelling Check
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Spell Check Code
         uses: streetsidesoftware/cspell-action@v6
         with:
@@ -32,7 +32,7 @@ jobs:
     outputs:
       skills: ${{ steps.changed-skills.outputs.skills }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
       - name: Get changed skills
@@ -57,7 +57,7 @@ jobs:
       matrix:
         skill: ${{ fromJson(needs.detect-changed-skills.outputs.skills) }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Validate ${{ matrix.skill }}
         id: validate
         uses: Flash-Brew-Digital/validate-skill@v1
@@ -76,6 +76,6 @@ jobs:
     name: 📦 Manifest Validation
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Validate Plugin Manifest
         run: bash ./scripts/validate_plugin_manifest.sh
