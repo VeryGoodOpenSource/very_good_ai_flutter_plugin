@@ -1,6 +1,6 @@
 {
   "name": "very-good-ai-flutter-plugin",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Best-practice skills for Flutter and Dart covering accessibility, BLoC, testing, theming, navigation, security, internationalization, and architecture — plus automated dart analyze and format hooks.",
   "homepage": "https://github.com/VeryGoodOpenSource/very_good_ai_flutter_plugin",
   "repository": "https://github.com/VeryGoodOpenSource/very_good_ai_flutter_plugin",
