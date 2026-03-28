@@ -11,6 +11,10 @@ Developed with 💙 by [Very Good Ventures][vgv_link] 🦄
 
 Very Good AI Flutter Plugin is a collection of contextual best-practices skills that Claude uses when helping you write Flutter and Dart code. Each skill provides opinionated, production-quality guidance covering architecture patterns, naming conventions, folder structures, code examples, testing strategies, and anti-patterns to avoid, so you get code that follows [VGV standards][vgv_link] out of the box.
 
+## Agent Compatibility
+
+This repository includes an [`AGENTS.md`](AGENTS.md) file that provides repo conventions to any AI coding agent. Any agent that reads `AGENTS.md` at the repository root will understand the skill format, writing conventions, hooks, and contribution workflow.
+
 ## Installation
 
 ### From the Marketplace
@@ -39,6 +43,7 @@ For more details, see the [Very Good Claude Marketplace][marketplace_link].
 | [**Security**](skills/static-security/SKILL.md) | Flutter-specific static security review — secrets management, `flutter_secure_storage`, certificate pinning, `Random.secure()`, `formz` validation, dependency vulnerability scanning with `osv-scanner`, and OWASP Mobile Top 10 guidance |
 | [**License Compliance**](skills/license-compliance/SKILL.md) | Dependency license auditing — categorizes licenses (permissive, weak/strong copyleft, unknown), flags non-compliant or missing licenses, and produces a structured compliance report using Very Good CLI |
 | [**Dart/Flutter SDK Upgrade**](skills/dart-flutter-sdk-upgrade/SKILL.md) | Bump Dart and Flutter SDK constraints across packages — CI workflow versions, pubspec.yaml environment constraints, and PR preparation for SDK upgrades |
+| [**Very Good Analysis Upgrade**](skills/very-good-analysis-upgrade/SKILL.md) | Upgrade `very_good_analysis` lint package — version bump, lint fixes for new rules, and focused PR creation |
 
 ## Hooks
 
