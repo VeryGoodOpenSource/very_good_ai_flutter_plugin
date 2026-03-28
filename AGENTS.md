@@ -1,10 +1,10 @@
-# CLAUDE.md
+# AGENTS.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository. See [`AGENTS.md`](AGENTS.md) for platform-agnostic repo conventions.
+This file provides repository conventions to AI coding agents working with this codebase. It is the platform-agnostic companion to `CLAUDE.md`, which contains Claude Code-specific extensions.
 
 ## Project Overview
 
-Very Good AI Flutter Plugin is a Claude Code plugin that provides best-practices skills for Flutter and Dart development. It is a **documentation-only repository** — there is no Dart/Flutter source code, no `pubspec.yaml`, and no tests. All value lives in the markdown skill files.
+Very Good AI Flutter Plugin provides best-practices skills for Flutter and Dart development. It is a **documentation-only repository** — there is no Dart/Flutter source code, no `pubspec.yaml`, and no tests. All value lives in the markdown skill files.
 
 ## Repository Structure
 
@@ -67,7 +67,7 @@ Every `SKILL.md` follows this structure:
 1. Create `skills/<skill_name>/SKILL.md` following the format above
 2. Update tags in `.claude-plugin/plugin.json`
 3. Update the skills table in `README.md` (skill name must link to the `SKILL.md` file)
-4. Update the repository structure in `CLAUDE.md` and `AGENTS.md`
+4. Update the repository structure in `AGENTS.md` and `CLAUDE.md`
 
 ## Hooks
 
@@ -86,7 +86,7 @@ Both PreToolUse scripts share common utilities from `vgv-cli-common.sh`.
 
 These run **after** a tool call completes:
 
-- `Edit|Write` matcher → `analyze.sh` — runs `dart analyze` on the modified `.dart` file; exits 2 on failure (blocking — Claude must fix the issue)
+- `Edit|Write` matcher → `analyze.sh` — runs `dart analyze` on the modified `.dart` file; exits 2 on failure (blocking — the agent must fix the issue)
 - `Edit|Write` matcher → `format.sh` — runs `dart format` on the modified `.dart` file; always exits 0 (non-blocking)
 
 All hook scripts require **jq** to parse the hook payload (they skip gracefully if `jq` is not installed).
