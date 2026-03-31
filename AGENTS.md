@@ -1,10 +1,10 @@
-# CLAUDE.md
+# AGENTS.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository. See [`AGENTS.md`](AGENTS.md) for platform-agnostic repo conventions.
+This file provides repository conventions to AI coding agents working with this codebase. It is the platform-agnostic companion to `CLAUDE.md`, which contains Claude Code-specific extensions.
 
 ## Project Overview
 
-Very Good AI Flutter Plugin is a Claude Code plugin that provides best-practices skills for Flutter and Dart development. It is a **documentation-only repository** — there is no Dart/Flutter source code, no `pubspec.yaml`, and no tests. All value lives in the markdown skill files.
+Very Good AI Flutter Plugin provides best-practices skills for Flutter and Dart development. It is a **documentation-only repository** — there is no Dart/Flutter source code, no `pubspec.yaml`, and no tests. All value lives in the markdown skill files.
 
 ## Repository Structure
 
@@ -20,7 +20,6 @@ hooks/
     check-vgv-cli.sh   # Validates VGV CLI installed and >= 1.1.0
     format.sh          # Runs dart format on modified .dart files
     vgv-cli-common.sh  # Shared utilities for VGV CLI hook scripts
-    warn-missing-mcp.sh  # Warns at session start if VGV CLI is missing/outdated
 skills/
   accessibility/SKILL.md
   accessibility/reference.md
@@ -68,17 +67,11 @@ Every `SKILL.md` follows this structure:
 1. Create `skills/<skill_name>/SKILL.md` following the format above
 2. Update tags in `.claude-plugin/plugin.json`
 3. Update the skills table in `README.md` (skill name must link to the `SKILL.md` file)
-4. Update the repository structure in `CLAUDE.md` and `AGENTS.md`
+4. Update the repository structure in `AGENTS.md` and `CLAUDE.md`
 
 ## Hooks
 
-The `hooks/` directory contains SessionStart, PreToolUse, and PostToolUse hooks defined in `hooks.json`.
-
-### SessionStart Hooks
-
-These run **when a session begins**:
-
-- `warn-missing-mcp.sh` — checks if Very Good CLI is installed and >= 1.1.0; outputs a warning to Claude's context if missing or outdated (non-blocking)
+The `hooks/` directory contains PreToolUse and PostToolUse hooks defined in `hooks.json`.
 
 ### PreToolUse Hooks
 
@@ -93,7 +86,7 @@ Both PreToolUse scripts share common utilities from `vgv-cli-common.sh`.
 
 These run **after** a tool call completes:
 
-- `Edit|Write` matcher → `analyze.sh` — runs `dart analyze` on the modified `.dart` file; exits 2 on failure (blocking — Claude must fix the issue)
+- `Edit|Write` matcher → `analyze.sh` — runs `dart analyze` on the modified `.dart` file; exits 2 on failure (blocking — the agent must fix the issue)
 - `Edit|Write` matcher → `format.sh` — runs `dart format` on the modified `.dart` file; always exits 0 (non-blocking)
 
 All hook scripts require **jq** to parse the hook payload (they skip gracefully if `jq` is not installed).
