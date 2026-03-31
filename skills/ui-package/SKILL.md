@@ -80,8 +80,4 @@ my_ui/
 
 ## Creating the Package
 
-Use the Very Good CLI MCP tool to scaffold the package:
-
-```text
-mcp__very-good-cli__create(template: "app_ui_package", name: "my_ui", description: "A custom Flutter UI package")
-```
+Use the Very Good CLI MCP tool to scaffold the `app_ui_package`.
