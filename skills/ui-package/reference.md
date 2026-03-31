@@ -73,7 +73,7 @@ The UI package includes a `widgetbook/` submodule — a standalone Flutter app p
 
 ### Catalog Structure
 
-```
+```text
 widgetbook/
 ├── lib/
 │   ├── main.dart                # Entry point — runs WidgetbookApp
