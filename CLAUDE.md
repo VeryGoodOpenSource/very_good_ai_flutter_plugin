@@ -60,6 +60,7 @@ Every `SKILL.md` follows this structure:
 - Provide complete, copy-pasteable snippets, not fragments
 - Reference packages by full name (e.g., `package:mocktail`)
 - Include anti-patterns alongside correct patterns when helpful
+- Align pipe characters vertically in all markdown tables (enforced by markdownlint MD060)
 
 ## Adding a New Skill
 

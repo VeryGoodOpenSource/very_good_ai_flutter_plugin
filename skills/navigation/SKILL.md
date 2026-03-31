@@ -116,9 +116,9 @@ class FlutterPageRoute extends GoRouteData {
 
 ### `go()` vs `push()`
 
-| Method   | URL Updates | Back Button | Use Case                                    |
-| -------- | ----------- | ----------- | ------------------------------------------- |
-| `go()`   | Yes         | App bar     | Standard navigation between screens         |
+| Method   | URL Updates | Back Button | Use Case                                     |
+| -------- | ----------- | ----------- | -------------------------------------------- |
+| `go()`   | Yes         | App bar     | Standard navigation between screens          |
 | `push()` | No          | System      | When expecting return data from popped route |
 
 ### Using `go()` (Default)
@@ -210,12 +210,12 @@ class AppShellRoute extends ShellRouteData {
 
 ## Quick Reference
 
-| Package              | Purpose                                      |
-| -------------------- | -------------------------------------------- |
-| `go_router`          | Declarative routing built on Navigator 2.0   |
-| `go_router_builder`  | Code generation for type-safe route classes   |
+| Package             | Purpose                                     |
+| ------------------- | ------------------------------------------- |
+| `go_router`         | Declarative routing built on Navigator 2.0  |
+| `go_router_builder` | Code generation for type-safe route classes |
 
 | Command                                                    | Purpose                          |
 | ---------------------------------------------------------- | -------------------------------- |
-| `dart run build_runner build --delete-conflicting-outputs`  | Generate type-safe route helpers |
-| `dart run build_runner watch --delete-conflicting-outputs`  | Watch and regenerate on changes  |
+| `dart run build_runner build --delete-conflicting-outputs` | Generate type-safe route helpers |
+| `dart run build_runner watch --delete-conflicting-outputs` | Watch and regenerate on changes  |
