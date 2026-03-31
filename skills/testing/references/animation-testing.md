@@ -138,6 +138,74 @@ testWidgets('details page slides in from right', (tester) async {
 });
 ```
 
+## Testing with Injected Controllers
+
+When a widget exposes an optional `@visibleForTesting` controller parameter, inject a controller in tests to drive animations directly:
+
+```dart
+testWidgets('pulsing dot scales when active', (tester) async {
+  final controller = AnimationController(
+    duration: Durations.long2,
+    vsync: const TestVSync(),
+  );
+  addTearDown(controller.dispose);
+
+  await tester.pumpWidget(
+    MaterialApp(
+      home: PulsingDot(
+        isActive: true,
+        controller: controller,
+      ),
+    ),
+  );
+
+  // Drive animation to midpoint
+  controller.value = 0.5;
+  await tester.pump();
+
+  final transform = tester.widget<Transform>(find.byType(Transform));
+  // Verify scale is between start and end
+  expect(transform.transform.getMaxScaleOnAxis(), greaterThan(1.0));
+
+  // Drive to completion
+  controller.value = 1.0;
+  await tester.pump();
+
+  final finalTransform = tester.widget<Transform>(find.byType(Transform));
+  expect(finalTransform.transform.getMaxScaleOnAxis(), closeTo(1.05, 0.01));
+});
+```
+
+Verify calls on the controller using `mocktail` when you need to assert `forward()`, `reverse()`, or `repeat()` were called:
+
+```dart
+class MockAnimationController extends Mock implements AnimationController {}
+
+testWidgets('stops animation when isActive becomes false', (tester) async {
+  final controller = MockAnimationController();
+  when(() => controller.repeat(reverse: true)).thenReturn();
+  when(() => controller.stop()).thenReturn();
+  when(() => controller.reset()).thenReturn();
+  when(() => controller.value).thenReturn(0.0);
+  when(() => controller.status).thenReturn(AnimationStatus.dismissed);
+
+  await tester.pumpWidget(
+    MaterialApp(
+      home: PulsingDot(isActive: true, controller: controller),
+    ),
+  );
+  verify(() => controller.repeat(reverse: true)).called(1);
+
+  await tester.pumpWidget(
+    MaterialApp(
+      home: PulsingDot(isActive: false, controller: controller),
+    ),
+  );
+  verify(() => controller.stop()).called(1);
+  verify(() => controller.reset()).called(1);
+});
+```
+
 ## Animation Testing Tips
 
 - **Use `pumpAndSettle()`** to let all animations complete — but set a timeout for infinite animations: `await tester.pumpAndSettle(const Duration(seconds: 5))`
