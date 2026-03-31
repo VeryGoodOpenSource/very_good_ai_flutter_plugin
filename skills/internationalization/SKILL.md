@@ -23,10 +23,10 @@ Apply these standards to ALL internationalization work:
 
 ## Key Definitions
 
-| Term                          | Definition                                                                                  |
-| ----------------------------- | ------------------------------------------------------------------------------------------- |
-| **Locale**                    | Set of properties defining user region, language, and preferences (currency, time, numbers)  |
-| **Localization (l10n)**       | Process of adapting software for a specific language by translating text and adding regional layouts |
+| Term                            | Definition                                                                                            |
+| ------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| **Locale**                      | Set of properties defining user region, language, and preferences (currency, time, numbers)           |
+| **Localization (l10n)**         | Process of adapting software for a specific language by translating text and adding regional layouts  |
 | **Internationalization (i18n)** | Process of designing software so it can be adapted to different languages without engineering changes |
 
 ## Setup Pipeline and ARB File Format
@@ -138,17 +138,17 @@ See [references/backend.md](references/backend.md) for multi-language content st
 
 ## Quick Reference
 
-| Package                    | Purpose                                |
-| -------------------------- | -------------------------------------- |
-| `flutter_localizations`    | Flutter's built-in localization support |
-| `intl`                     | Internationalization utilities          |
+| Package                 | Purpose                                 |
+| ----------------------- | --------------------------------------- |
+| `flutter_localizations` | Flutter's built-in localization support |
+| `intl`                  | Internationalization utilities          |
 
-| Command              | Purpose                                     |
-| -------------------- | ------------------------------------------- |
-| `flutter gen-l10n`   | Generate localization classes from ARB files |
+| Command            | Purpose                                      |
+| ------------------ | -------------------------------------------- |
+| `flutter gen-l10n` | Generate localization classes from ARB files |
 
-| File               | Purpose                                          |
-| ------------------ | ------------------------------------------------ |
+| File               | Purpose                                            |
+| ------------------ | -------------------------------------------------- |
 | `l10n.yaml`        | Localization configuration (ARB dir, output, etc.) |
-| `app_en.arb`       | Template ARB file (source of truth)              |
-| `app_<locale>.arb` | Translated ARB file for each locale              |
+| `app_en.arb`       | Template ARB file (source of truth)                |
+| `app_<locale>.arb` | Translated ARB file for each locale                |

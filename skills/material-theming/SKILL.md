@@ -162,12 +162,12 @@ See [references/spacing.md](references/spacing.md) for the full `AppSpacing` cla
 | `cardTheme`               | Card default styling                         |
 | `dialogTheme`             | Dialog default styling                       |
 
-| Material 3 Color Role | Typical Use                          |
-| ---------------------- | ------------------------------------ |
-| `primary`              | Key UI elements, FAB, active states  |
-| `onPrimary`            | Text/icons on primary color          |
-| `secondary`            | Less prominent UI elements           |
-| `surface`              | Card, sheet, dialog backgrounds      |
-| `onSurface`            | Text/icons on surface color          |
-| `error`                | Error indicators, destructive actions |
-| `outline`              | Borders, dividers                    |
+| Material 3 Color Role | Typical Use                           |
+| --------------------- | ------------------------------------- |
+| `primary`             | Key UI elements, FAB, active states   |
+| `onPrimary`           | Text/icons on primary color           |
+| `secondary`           | Less prominent UI elements            |
+| `surface`             | Card, sheet, dialog backgrounds       |
+| `onSurface`           | Text/icons on surface color           |
+| `error`               | Error indicators, destructive actions |
+| `outline`             | Borders, dividers                     |

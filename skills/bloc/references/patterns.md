@@ -60,7 +60,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 ```
 
 | Transformer       | Behavior                                              |
-| ------------------ | ---------------------------------------------------- |
+| ------------------| ----------------------------------------------------- |
 | `concurrent()`    | Process all events concurrently (default)             |
 | `sequential()`    | Process events one at a time in order                 |
 | `droppable()`     | Ignore new events while one is processing             |
