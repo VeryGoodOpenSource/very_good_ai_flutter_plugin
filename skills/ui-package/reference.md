@@ -1,14 +1,10 @@
 # UI Package — Reference
 
-Extended examples, testing patterns, and common workflows for the UI Package skill.
+Concrete examples and step-by-step workflows for the UI Package skill.
 
 ---
 
-## ThemeExtension Tokens
-
-The base theme setup (`ThemeData`, `ColorScheme`, `TextTheme`, component themes, spacing constants) is covered by the **Material Theming** skill. This section covers the `ThemeExtension` layer unique to UI packages — custom tokens for values Material does not provide (e.g., success/warning/info colors, spacing scale with animation support).
-
-### Key Classes
+## ThemeExtension Key Classes
 
 | Class | Purpose |
 | ----- | ------- |
@@ -19,11 +15,7 @@ The base theme setup (`ThemeData`, `ColorScheme`, `TextTheme`, component themes,
 
 Every `ThemeExtension` must implement `copyWith` and `lerp` for theme animation support.
 
-## Testing
-
-### Test Helper
-
-Create a `pumpApp` helper that wraps widgets in a `MaterialApp` with the full theme:
+## Test Helper
 
 ```dart
 extension PumpApp on WidgetTester {
@@ -41,16 +33,7 @@ extension PumpApp on WidgetTester {
 }
 ```
 
-### Test Patterns
-
-- Test rendering: verify the widget shows the expected content
-- Test interactions: verify callbacks fire on tap/input
-- Test disabled state: verify callbacks do not fire when `onPressed` is `null`
-- Test all variants: cover each enum value (variant, size, etc.)
-
-## Barrel File
-
-Re-export Material and the full public API through a single barrel file:
+## Barrel File Example
 
 ```dart
 /// My UI — a custom Flutter widget library built on Material.
@@ -68,29 +51,6 @@ export 'src/widgets/app_text_field.dart';
 ```
 
 ## Widgetbook Catalog
-
-The UI package includes a `widgetbook/` submodule — a standalone Flutter app powered by Widgetbook that serves as both a **developer sandbox** for building widgets in isolation and a **showcase** for browsing every widget in the package. The submodule package name in `pubspec.yaml` is `widgetbook_catalog`.
-
-### Catalog Structure
-
-```text
-widgetbook/
-├── lib/
-│   ├── main.dart                # Entry point — runs WidgetbookApp
-│   └── widgetbook/
-│       ├── widgetbook.dart      # WidgetbookApp widget with addons
-│       ├── widgetbook.directories.g.dart  # Generated — do not edit
-│       ├── use_cases/
-│       │   ├── app_button.dart  # Use cases for AppButton
-│       │   ├── app_card.dart
-│       │   └── ...              # One file per widget
-│       └── widgets/
-│           ├── widgets.dart     # Barrel file for catalog helpers
-│           └── use_case_decorator.dart  # Wrapper for consistent presentation
-├── pubspec.yaml                 # Package name: widgetbook_catalog
-├── analysis_options.yaml
-└── .gitignore
-```
 
 ### Key Concepts
 
