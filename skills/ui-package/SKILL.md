@@ -56,21 +56,6 @@ my_ui/
 └── pubspec.yaml
 ```
 
-## ThemeExtension Tokens
-
-The base theme setup (`ThemeData`, `ColorScheme`, `TextTheme`, component themes, spacing constants) is covered by the **Material Theming** skill. This section covers the `ThemeExtension` layer unique to UI packages — custom tokens for values Material does not provide (e.g., success/warning/info colors, spacing scale with animation support).
-
-### Key Classes
-
-| Class | Purpose |
-| ----- | ------- |
-| `AppColors extends ThemeExtension<AppColors>` | Custom color tokens beyond `ColorScheme` (success, warning, info + on-variants) |
-| `AppSpacing extends ThemeExtension<AppSpacing>` | Spacing scale (xxs through xxlg) with `copyWith` and `lerp` |
-| `AppTheme` | Composes `ThemeData` with `ColorScheme.fromSeed` + custom extensions, for light and dark variants |
-| `AppThemeBuildContext` extension | Shorthand `context.appColors` and `context.appSpacing` |
-
-Every `ThemeExtension` must implement `copyWith` and `lerp` for theme animation support.
-
 ## Building Widgets
 
 ### Widget API Guidelines
@@ -81,93 +66,6 @@ Every `ThemeExtension` must implement `copyWith` and `lerp` for theme animation 
 - Provide sensible defaults derived from the theme when a parameter is not supplied
 - Expose callbacks with `ValueChanged<T>` or `VoidCallback` — do not use raw `Function`
 - Use `Widget?` for optional slot-based composition (leading, trailing icons, etc.)
-
-## Testing
-
-### Test Helper
-
-Create a `pumpApp` helper that wraps widgets in a `MaterialApp` with the full theme:
-
-```dart
-extension PumpApp on WidgetTester {
-  Future<void> pumpApp(
-    Widget widget, {
-    ThemeData? theme,
-  }) {
-    return pumpWidget(
-      MaterialApp(
-        theme: theme ?? AppTheme.light,
-        home: Scaffold(body: widget),
-      ),
-    );
-  }
-}
-```
-
-### Test Patterns
-
-- Test rendering: verify the widget shows the expected content
-- Test interactions: verify callbacks fire on tap/input
-- Test disabled state: verify callbacks do not fire when `onPressed` is `null`
-- Test all variants: cover each enum value (variant, size, etc.)
-
-## Barrel File
-
-Re-export Material and the full public API through a single barrel file:
-
-```dart
-/// My UI — a custom Flutter widget library built on Material.
-library;
-
-export 'package:flutter/material.dart';
-
-export 'src/extensions/build_context_extensions.dart';
-export 'src/theme/app_colors.dart';
-export 'src/theme/app_spacing.dart';
-export 'src/theme/app_theme.dart';
-export 'src/widgets/app_button.dart';
-export 'src/widgets/app_card.dart';
-export 'src/widgets/app_text_field.dart';
-```
-
-## Widgetbook Catalog
-
-The UI package includes a `widgetbook/` submodule — a standalone Flutter app powered by Widgetbook that serves as both a **developer sandbox** for building widgets in isolation and a **showcase** for browsing every widget in the package. The submodule package name in `pubspec.yaml` is `widgetbook_catalog`.
-
-### Catalog Structure
-
-```
-widgetbook/
-├── lib/
-│   ├── main.dart                # Entry point — runs WidgetbookApp
-│   └── widgetbook/
-│       ├── widgetbook.dart      # WidgetbookApp widget with addons
-│       ├── widgetbook.directories.g.dart  # Generated — do not edit
-│       ├── use_cases/
-│       │   ├── app_button.dart  # Use cases for AppButton
-│       │   ├── app_card.dart
-│       │   └── ...              # One file per widget
-│       └── widgets/
-│           ├── widgets.dart     # Barrel file for catalog helpers
-│           └── use_case_decorator.dart  # Wrapper for consistent presentation
-├── pubspec.yaml                 # Package name: widgetbook_catalog
-├── analysis_options.yaml
-└── .gitignore
-```
-
-### Key Concepts
-
-- **Use cases**: top-level functions annotated with `@widgetbook.UseCase(name:, type:)`, one file per widget in `use_cases/`
-- **Use-case decorator**: a `UseCaseDecorator` widget that wraps every use case with a consistent background
-- **Theme addon**: `ThemeAddon` wired to `AppTheme.light` and `AppTheme.dark` for switching themes in the catalog
-- **Code generation**: Widgetbook uses `build_runner` to scan annotations and generate `widgetbook.directories.g.dart`
-
-### Commands
-
-| Command | Purpose |
-| ------- | ------- |
-| `cd widgetbook && dart run build_runner build --delete-conflicting-outputs` | Regenerate use-case directories after adding/modifying use cases |
-| `cd widgetbook && flutter run -d chrome` | Run the catalog locally |
 
 ## Anti-Patterns
 
@@ -180,26 +78,7 @@ widgetbook/
 | Using `dynamic` or `Object` for callback types | Use `VoidCallback`, `ValueChanged<T>`, or specific function typedefs |
 | Exposing internal implementation files directly | Use a barrel file; keep all files under `src/` private |
 
-## Common Workflows
-
-### Adding a New Widget
-
-1. Create `lib/src/widgets/app_<name>.dart` with a `const` constructor and documentation
-2. Compose Material widgets internally; read custom tokens via `context.appColors` / `context.appSpacing`
-3. Export the file from the barrel file (`lib/my_ui.dart`)
-4. Create `test/src/widgets/app_<name>_test.dart` with widget tests
-5. Add use cases in `widgetbook/lib/widgetbook/use_cases/app_<name>.dart` covering all variants
-6. Re-run `dart run build_runner build --delete-conflicting-outputs` in `widgetbook/`
-
-### Adding a New Custom Token
-
-1. Add the token to the appropriate `ThemeExtension` class (`AppColors` or `AppSpacing`)
-2. Update `copyWith` and `lerp` methods
-3. Update `AppTheme.light` and `AppTheme.dark` to include the new token value
-4. Update existing tests that construct the extension directly
-5. Use the new token in widgets via the `BuildContext` extension
-
-### Creating the Package
+## Creating the Package
 
 Use the Very Good CLI MCP tool to scaffold the package:
 
