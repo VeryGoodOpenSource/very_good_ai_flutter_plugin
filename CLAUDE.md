@@ -38,6 +38,7 @@ skills/
   static-security/reference.md
   testing/SKILL.md
   testing/reference.md
+  ui-package/SKILL.md
 ```
 
 ## Skill File Format
