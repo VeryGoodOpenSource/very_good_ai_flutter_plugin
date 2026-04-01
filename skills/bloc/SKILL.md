@@ -30,7 +30,7 @@ Apply these standards to ALL Bloc/Cubit work:
 
 | Aspect            | Cubit                          | Bloc                                    |
 | ----------------- | ------------------------------ | --------------------------------------- |
-| API               | Functions → `emit(state)`      | Events → `on<Event>` → `emit(state)`   |
+| API               | Functions → `emit(state)`      | Events → `on<Event>` → `emit(state)`    |
 | Complexity        | Low                            | Higher                                  |
 | Traceability      | Less (no event log)            | Full (events + transitions)             |
 | When to use       | Simple state, UI-driven logic  | Complex flows, event-driven, transforms |
@@ -76,13 +76,13 @@ class CounterBloc extends Bloc<CounterEvent, int> {
 
 **Pattern:** `BlocSubject` + `Noun` + `VerbPastTense`
 
-| Event class name              | Meaning                          |
-| ----------------------------- | -------------------------------- |
-| `TodoListSubscriptionRequested` | Subscribing to todo list stream |
-| `TodoListTodoDeleted`         | Deleting a specific todo         |
-| `TodoListUndoDeletionRequested` | Undoing the last deletion      |
-| `LoginFormSubmitted`          | Submitting the login form        |
-| `ProfilePageRefreshed`        | Refreshing the profile page      |
+| Event class name                | Meaning                          |
+| ------------------------------- | -------------------------------- |
+| `TodoListSubscriptionRequested` | Subscribing to todo list stream  |
+| `TodoListTodoDeleted`           | Deleting a specific todo         |
+| `TodoListUndoDeletionRequested` | Undoing the last deletion        |
+| `LoginFormSubmitted`            | Submitting the login form        |
+| `ProfilePageRefreshed`          | Refreshing the profile page      |
 
 ```dart
 sealed class TodoListEvent extends Equatable {

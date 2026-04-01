@@ -20,6 +20,7 @@ hooks/
     check-vgv-cli.sh   # Validates VGV CLI installed and >= 1.1.0
     format.sh          # Runs dart format on modified .dart files
     vgv-cli-common.sh  # Shared utilities for VGV CLI hook scripts
+    warn-missing-mcp.sh  # Warns at session start if VGV CLI is missing/outdated
 skills/
   accessibility/SKILL.md
   accessibility/reference.md
@@ -43,6 +44,7 @@ skills/
   static-security/reference.md
   testing/SKILL.md
   testing/reference.md
+  ui-package/SKILL.md
 ```
 
 ## Skill File Format
@@ -65,6 +67,7 @@ Every `SKILL.md` follows this structure:
 - Provide complete, copy-pasteable snippets, not fragments
 - Reference packages by full name (e.g., `package:mocktail`)
 - Include anti-patterns alongside correct patterns when helpful
+- Align pipe characters vertically in all markdown tables (enforced by markdownlint MD060)
 
 ## Adding a New Skill
 
@@ -75,7 +78,13 @@ Every `SKILL.md` follows this structure:
 
 ## Hooks
 
-The `hooks/` directory contains PreToolUse and PostToolUse hooks defined in `hooks.json`.
+The `hooks/` directory contains SessionStart, PreToolUse, and PostToolUse hooks defined in `hooks.json`.
+
+### SessionStart Hooks
+
+These run **when a session begins**:
+
+- `warn-missing-mcp.sh` — checks if Very Good CLI is installed and >= 1.1.0; outputs a warning to Claude's context if missing or outdated (non-blocking)
 
 ### PreToolUse Hooks
 
