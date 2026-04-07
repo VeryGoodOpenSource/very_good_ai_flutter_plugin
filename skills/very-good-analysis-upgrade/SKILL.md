@@ -2,6 +2,8 @@
 name: vgv-very-good-analysis-upgrade
 description: Upgrade very_good_analysis lint package to new version across Dart/Flutter projects. Handles version bump, lint fixes, and PR creation.
 allowed-tools: Read,Glob,Grep,Bash
+model: sonnet
+effort: medium
 ---
 
 # Upgrade very_good_analysis
