@@ -14,7 +14,7 @@ jobs:
       - name: Lint Markdown
         uses: DavidAnson/markdownlint-cli2-action@v23
         with:
-          globs: '**/*.md'
+          globs: '**/*.md !CHANGELOG.md'
           config: 'config/custom.markdownlint.jsonc'
   spelling:
     name: ✍️ Spelling Check
@@ -24,7 +24,7 @@ jobs:
       - name: Spell Check Code
         uses: streetsidesoftware/cspell-action@v8
         with:
-          files: '**/*.md'
+          files: '**/*.md !CHANGELOG.md'
           config: 'config/cspell.json'
   detect-changed-skills:
     name: 🔎 Detect Changed Skills
