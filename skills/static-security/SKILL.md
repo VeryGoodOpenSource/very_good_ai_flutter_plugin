@@ -6,6 +6,7 @@ description: >
   or cryptography. Covers static security concerns — not pen-testing or runtime analysis.
 argument-hint: "[file-or-directory]"
 allowed-tools: Read,Glob,Grep,mcp__very-good-cli__packages_check_licenses
+effort: high
 ---
 
 # Security
