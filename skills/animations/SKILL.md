@@ -82,11 +82,11 @@ Use Flutter's built-in `Durations` and `Easing` classes. These align with the Ma
 | `Easing.standard`               | Default for most animations                      |
 | `Easing.standardDecelerate`     | Elements entering the screen                     |
 | `Easing.standardAccelerate`     | Elements leaving the screen                      |
-| `Easing.emphasized`             | Important transitions that need emphasis           |
+| `Easing.emphasized`             | Important transitions that need emphasis         |
 | `Easing.emphasizedDecelerate`   | Hero/shared element entering                     |
 | `Easing.emphasizedAccelerate`   | Hero/shared element leaving                      |
 | `Easing.legacy`                 | Backward compatibility only — avoid in new code  |
-| `Easing.linear`                 | Progress indicators, continuous rotation           |
+| `Easing.linear`                 | Progress indicators, continuous rotation         |
 
 ### Centralized Motion Constants
 
