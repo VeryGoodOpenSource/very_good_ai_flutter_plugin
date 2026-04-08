@@ -8,6 +8,8 @@ description: >
   "scan for license issues", or "pre-release license check".
 argument-hint: "[project-directory]"
 allowed-tools: Read,Glob,Grep,mcp__very-good-cli__packages_check_licenses
+model: sonnet
+effort: medium
 ---
 
 # License Compliance

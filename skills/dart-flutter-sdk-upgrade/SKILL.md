@@ -9,6 +9,8 @@ description: >
   "update SDK constraints", "upgrade Dart SDK", "update CI Flutter version",
   "bump SDK version", or "prep the SDK upgrade PR".
 allowed-tools: Read,Glob,Grep,Edit,Write,Bash
+model: sonnet
+effort: medium
 ---
 
 # VGV Flutter/Dart SDK Upgrade — Quick Reference
