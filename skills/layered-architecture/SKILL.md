@@ -1,7 +1,7 @@
 ---
 name: vgv-layered-architecture
 description: Best practices for VGV layered monorepo architecture in Flutter. Use when structuring a multi-package Flutter app, creating data or repository packages, defining layer boundaries, or wiring dependencies between packages.
-allowed-tools: Read,Glob,Grep,mcp__very-good-cli__create,mcp__very-good-cli__packages_get,mcp__very-good-cli__test
+allowed-tools: Read Glob Grep mcp__very-good-cli__create mcp__very-good-cli__packages_get mcp__very-good-cli__test
 effort: high
 ---
 

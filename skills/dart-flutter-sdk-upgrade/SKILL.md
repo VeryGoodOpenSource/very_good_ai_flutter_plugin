@@ -8,7 +8,7 @@ description: >
   the exact patch version (e.g., ^3.50.1). Trigger on phrases like "bump Flutter to 3.x",
   "update SDK constraints", "upgrade Dart SDK", "update CI Flutter version",
   "bump SDK version", or "prep the SDK upgrade PR".
-allowed-tools: Read,Glob,Grep,Edit,Write,Bash
+allowed-tools: Read Glob Grep Edit Write Bash
 model: sonnet
 effort: medium
 ---
