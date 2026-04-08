@@ -78,7 +78,7 @@ class _StaggeredEntryState extends State<StaggeredEntry>
 Animate list items sequentially by offsetting each item's delay:
 
 ```dart
-class StaggeredListItem extends StatelessWidget {
+class StaggeredListItem extends StatefulWidget {
   const StaggeredListItem({
     required this.index,
     required this.itemCount,
@@ -93,23 +93,39 @@ class StaggeredListItem extends StatelessWidget {
   final Widget child;
 
   @override
-  Widget build(BuildContext context) {
-    final start = (index / itemCount).clamp(0.0, 1.0);
-    final end = ((index + 1) / itemCount).clamp(0.0, 1.0);
+  State<StaggeredListItem> createState() => _StaggeredListItemState();
+}
 
-    final curvedAnimation = CurvedAnimation(
-      parent: animation,
+class _StaggeredListItemState extends State<StaggeredListItem> {
+  late final CurvedAnimation _curvedAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    final start = (widget.index / widget.itemCount).clamp(0.0, 1.0);
+    final end = ((widget.index + 1) / widget.itemCount).clamp(0.0, 1.0);
+    _curvedAnimation = CurvedAnimation(
+      parent: widget.animation,
       curve: Interval(start, end, curve: Easing.emphasized),
     );
+  }
 
+  @override
+  void dispose() {
+    _curvedAnimation.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return FadeTransition(
-      opacity: curvedAnimation,
+      opacity: _curvedAnimation,
       child: SlideTransition(
         position: Tween<Offset>(
           begin: const Offset(0, 0.1),
           end: Offset.zero,
-        ).animate(curvedAnimation),
-        child: child,
+        ).animate(_curvedAnimation),
+        child: widget.child,
       ),
     );
   }
