@@ -1,4 +1,4 @@
-# Very Good AI Flutter Plugin
+# VGV AI Flutter Plugin
 
 [![Very Good Ventures][logo_white]][very_good_ventures_link_dark]
 [![Very Good Ventures][logo_black]][very_good_ventures_link_light]
@@ -19,7 +19,7 @@ Inside Claude Code:
 
 ```bash
 /plugin marketplace add VeryGoodOpenSource/very_good_claude_marketplace
-/plugin install very-good-ai-flutter-plugin@very_good_claude_marketplace
+/plugin install vgv-ai-flutter-plugin@very_good_claude_marketplace
 ```
 
 For more details, see the [Very Good Claude Marketplace][marketplace_link].
