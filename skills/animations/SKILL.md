@@ -28,7 +28,7 @@ Apply these standards to ALL animation work:
 
 Choose the simplest approach that meets the requirement:
 
-```
+```text
 Does the widget rebuild when the value changes?
   |
   YES --> Does the framework provide an AnimatedFoo widget?
@@ -63,17 +63,17 @@ Use Flutter's built-in `Durations` and `Easing` classes. These align with the Ma
 | `Durations.short3`     | 150ms  | Fades, color changes                      |
 | `Durations.short4`     | 200ms  | Small element enter/exit                  |
 | `Durations.medium1`    | 250ms  | Component expand/collapse                 |
-| `Durations.medium2`    | 300ms  | Standard transitions                     |
-| `Durations.medium3`    | 350ms  | Medium-distance moves                    |
-| `Durations.medium4`    | 400ms  | Page transitions                         |
-| `Durations.long1`      | 450ms  | Complex layout changes                   |
+| `Durations.medium2`    | 300ms  | Standard transitions                      |
+| `Durations.medium3`    | 350ms  | Medium-distance moves                     |
+| `Durations.medium4`    | 400ms  | Page transitions                          |
+| `Durations.long1`      | 450ms  | Complex layout changes                    |
 | `Durations.long2`      | 500ms  | Large element enter/exit                  |
-| `Durations.long3`      | 550ms  | Full-screen transitions                  |
-| `Durations.long4`      | 600ms  | Extended motion sequences                |
-| `Durations.extralong1` | 700ms  | Staggered group animations               |
-| `Durations.extralong2` | 800ms  | Complex staggered sequences              |
-| `Durations.extralong3` | 900ms  | Elaborate choreographed motion           |
-| `Durations.extralong4` | 1000ms | Maximum recommended animation length     |
+| `Durations.long3`      | 550ms  | Full-screen transitions                   |
+| `Durations.long4`      | 600ms  | Extended motion sequences                 |
+| `Durations.extralong1` | 700ms  | Staggered group animations                |
+| `Durations.extralong2` | 800ms  | Complex staggered sequences               |
+| `Durations.extralong3` | 900ms  | Elaborate choreographed motion            |
+| `Durations.extralong4` | 1000ms | Maximum recommended animation length      |
 
 ### Easing Tokens
 
@@ -82,11 +82,11 @@ Use Flutter's built-in `Durations` and `Easing` classes. These align with the Ma
 | `Easing.standard`               | Default for most animations                      |
 | `Easing.standardDecelerate`     | Elements entering the screen                     |
 | `Easing.standardAccelerate`     | Elements leaving the screen                      |
-| `Easing.emphasized`             | Important transitions that need emphasis          |
+| `Easing.emphasized`             | Important transitions that need emphasis           |
 | `Easing.emphasizedDecelerate`   | Hero/shared element entering                     |
 | `Easing.emphasizedAccelerate`   | Hero/shared element leaving                      |
 | `Easing.legacy`                 | Backward compatibility only — avoid in new code  |
-| `Easing.linear`                 | Progress indicators, continuous rotation          |
+| `Easing.linear`                 | Progress indicators, continuous rotation           |
 
 ### Centralized Motion Constants
 
@@ -157,20 +157,20 @@ AnimatedSlide(
 
 ### Built-in Implicit Widgets Reference
 
-| Widget                   | Animated Property              |
-| ------------------------ | ------------------------------ |
-| `AnimatedContainer`      | Multiple (size, color, border) |
-| `AnimatedOpacity`        | `opacity`                      |
-| `AnimatedSlide`          | `offset` (as fraction of size) |
-| `AnimatedAlign`          | `alignment`                    |
-| `AnimatedPadding`        | `padding`                      |
-| `AnimatedPositioned`     | `left`, `top`, `right`, etc.   |
-| `AnimatedScale`          | `scale`                        |
-| `AnimatedRotation`       | `turns`                        |
-| `AnimatedSwitcher`       | Cross-fade between children    |
-| `AnimatedCrossFade`      | Cross-fade between two widgets |
-| `AnimatedSize`           | Animates size changes of child |
-| `AnimatedDefaultTextStyle`| `style`                       |
+| Widget                     | Animated Property              |
+| -------------------------- | ------------------------------ |
+| `AnimatedContainer`        | Multiple (size, color, border) |
+| `AnimatedOpacity`          | `opacity`                      |
+| `AnimatedSlide`            | `offset` (as fraction of size) |
+| `AnimatedAlign`            | `alignment`                    |
+| `AnimatedPadding`          | `padding`                      |
+| `AnimatedPositioned`       | `left`, `top`, `right`, etc.   |
+| `AnimatedScale`            | `scale`                        |
+| `AnimatedRotation`         | `turns`                        |
+| `AnimatedSwitcher`         | Cross-fade between children    |
+| `AnimatedCrossFade`        | Cross-fade between two widgets |
+| `AnimatedSize`             | Animates size changes of child |
+| `AnimatedDefaultTextStyle` | `style`                        |
 
 See [references/animated-switcher.md](references/animated-switcher.md) for `AnimatedSwitcher` patterns including custom transitions and size-change handling.
 
@@ -249,143 +249,7 @@ class _MyWidgetState extends State<MyWidget>
 }
 ```
 
-### Responding to Widget Updates
-
-Use `didUpdateWidget` to start, stop, or reverse an animation when a property changes:
-
-```dart
-class _AnimatedGlowState extends State<AnimatedGlow>
-    with SingleTickerProviderStateMixin {
-  late final AnimationController _controller;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(
-      duration: Durations.long2,
-      vsync: this,
-    );
-    if (widget.isGlowing) {
-      _controller.repeat(reverse: true);
-    }
-  }
-
-  @override
-  void didUpdateWidget(AnimatedGlow oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    if (widget.isGlowing != oldWidget.isGlowing) {
-      if (widget.isGlowing) {
-        _controller.repeat(reverse: true);
-      } else {
-        _controller.stop();
-        _controller.reset();
-      }
-    }
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  // ...
-}
-```
-
-Do not start animations in `build()`. Use `initState` for initial playback and `didUpdateWidget` for subsequent state changes.
-
-### Constructor Injection for Testable Controllers
-
-Expose an optional controller parameter to allow tests to drive the animation directly:
-
-```dart
-class PulsingDot extends StatefulWidget {
-  const PulsingDot({
-    required this.isActive,
-    super.key,
-    @visibleForTesting this.controller,
-  });
-
-  final bool isActive;
-
-  @visibleForTesting
-  final AnimationController? controller;
-
-  @override
-  State<PulsingDot> createState() => _PulsingDotState();
-}
-
-class _PulsingDotState extends State<PulsingDot>
-    with SingleTickerProviderStateMixin {
-  late final AnimationController _controller;
-  bool _ownsController = false;
-
-  @override
-  void initState() {
-    super.initState();
-    if (widget.controller != null) {
-      _controller = widget.controller!;
-    } else {
-      _ownsController = true;
-      _controller = AnimationController(
-        duration: Durations.long2,
-        vsync: this,
-      );
-    }
-  }
-
-  @override
-  void dispose() {
-    if (_ownsController) {
-      _controller.dispose();
-    }
-    super.dispose();
-  }
-
-  // ...
-}
-```
-
-Only dispose the controller if the widget created it. Tests that inject a controller are responsible for its lifecycle.
-
-### Transition Widgets vs AnimatedBuilder
-
-**Single property** — use the built-in transition widget directly. Less code, same performance:
-
-```dart
-// Good — single property, use the transition widget
-FadeTransition(
-  opacity: _fadeAnimation,
-  child: child,
-)
-```
-
-**Multiple properties combined** — use `AnimatedBuilder` to compose them in one builder:
-
-```dart
-// Good — multiple properties, use AnimatedBuilder
-AnimatedBuilder(
-  animation: _controller,
-  builder: (context, child) {
-    return Opacity(
-      opacity: _fadeAnimation.value,
-      child: SlideTransition(
-        position: _slideAnimation,
-        child: child,
-      ),
-    );
-  },
-  child: child,
-)
-```
-
-| Scenario | Use |
-| --- | --- |
-| Animate one property (opacity, position, scale, rotation) | `FadeTransition`, `SlideTransition`, `ScaleTransition`, `RotationTransition` |
-| Animate multiple properties together | `AnimatedBuilder` with manual composition |
-
-**Avoid subclassing `AnimatedWidget`** — couples the animation to a specific widget class, making reuse harder.
+See [references/explicit-animations.md](references/explicit-animations.md) for `didUpdateWidget` patterns, constructor injection for testable controllers, and transition widget vs `AnimatedBuilder` guidance.
 
 ### Chained Animations with Intervals
 
@@ -583,7 +447,7 @@ AnimatedOpacity(
 ## Additional Resources
 
 - [references/animated-switcher.md](references/animated-switcher.md) — `AnimatedSwitcher` patterns (cross-fade, custom transitions, size changes)
+- [references/explicit-animations.md](references/explicit-animations.md) — `didUpdateWidget`, testable controllers, transition widgets vs `AnimatedBuilder`
 - [references/staggered-animations.md](references/staggered-animations.md) — staggered entry animations and staggered list items
 - [references/page-transitions.md](references/page-transitions.md) — reusable `AppPageTransitions` helper and GoRouter integration
 - [references/looping-animations.md](references/looping-animations.md) — repeating, pulsing, and continuous rotation patterns
-- [Animation Testing](../testing/references/animation-testing.md) — testing patterns for implicit, explicit, and page transition animations
