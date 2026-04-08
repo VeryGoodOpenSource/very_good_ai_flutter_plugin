@@ -48,7 +48,7 @@ Every `SKILL.md` follows this structure:
 1. **YAML frontmatter** with the following fields:
    - `name` _(required)_ — prefixed with `vgv-`, lowercase letters, numbers, and hyphens only (e.g., `vgv-bloc`)
    - `description` _(required)_ — when the skill should be triggered
-   - `allowed-tools` _(required)_ — comma-separated list of tools the skill may use (e.g., `Read,Glob,Grep`)
+   - `allowed-tools` _(optional)_ — space-separated list of tools the skill may use (e.g., `Read Glob Grep`)
    - `argument-hint` _(optional)_ — placeholder hint shown to the user (e.g., `"[file-or-directory]"`)
 2. **H1 title** — human-readable skill name
 3. **Core Standards** — enforced constraints, always first
