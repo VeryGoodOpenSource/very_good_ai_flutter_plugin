@@ -15,7 +15,7 @@ First of all, thank you for taking the time to contribute! 🎉👍 Before you d
 | **New skill** | `skills/<skill-name>/SKILL.md` |
 | **Improve an existing skill** | Edit the relevant `skills/*/SKILL.md` or `reference.md` |
 | **Hooks** | `hooks/` directory |
-| **Bug reports & feature requests** | [GitHub Issues](https://github.com/VeryGoodOpenSource/very_good_ai_flutter_plugin/issues) |
+| **Bug reports & feature requests** | [GitHub Issues](https://github.com/VeryGoodOpenSource/vgv_ai_flutter_plugin/issues) |
 
 ## Adding a New Skill
 
