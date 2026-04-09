@@ -19,7 +19,7 @@ Inside Claude Code:
 
 ```bash
 /plugin marketplace add VeryGoodOpenSource/very_good_claude_marketplace
-/plugin install vgv-ai-flutter-plugin@very_good_claude_marketplace
+/plugin install vgv-ai-flutter-plugin@very-good-claude-code-marketplace
 ```
 
 For more details, see the [Very Good Claude Marketplace][marketplace_link].
