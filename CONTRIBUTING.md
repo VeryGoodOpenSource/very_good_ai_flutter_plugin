@@ -1,4 +1,4 @@
-# 🦄 Contributing to Very Good AI Flutter Plugin
+# 🦄 Contributing to VGV AI Flutter Plugin
 
 First of all, thank you for taking the time to contribute! 🎉👍 Before you do, please carefully read this guide.
 
