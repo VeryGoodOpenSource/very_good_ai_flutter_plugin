@@ -78,7 +78,7 @@ Every pull request runs the following checks automatically:
 | Spelling | Runs cspell on all `*.md` files | `config/cspell.json` |
 | File size | Ensures no file exceeds 50 KB | `scripts/check_large_files.sh` |
 | Skill validation | Validates `SKILL.md` frontmatter and structure | `scripts/validate_skills.sh` |
-| Manifest validation | Validates `.claude-plugin/plugin.json` | `scripts/validate_plugin_manifest.sh` |
+| Plugin validation | Validates and test-installs the plugin | `claude plugin validate .` |
 
 If the spelling check flags a legitimate word, add it to `config/cspell.json` in the `words` array.
 

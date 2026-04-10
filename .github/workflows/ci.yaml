@@ -76,10 +76,12 @@ jobs:
           echo "Valid: ${{ steps.validate.outputs.valid }}"
           echo "Errors: ${{ steps.validate.outputs.errors }}"
           echo "Warnings: ${{ steps.validate.outputs.warnings }}"
-  manifest-validation:
-    name: 📦 Manifest Validation
+  plugin-validate:
+    name: 📦 Plugin Validation
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - name: Validate Plugin Manifest
-        run: bash ./scripts/validate_plugin_manifest.sh
+      - name: Install Claude Code
+        run: npm install -g @anthropic-ai/claude-code
+      - name: Validate Plugin
+        run: claude plugin validate .
