@@ -1,4 +1,4 @@
-# 🦄 Contributing to Very Good AI Flutter Plugin
+# 🦄 Contributing to VGV AI Flutter Plugin
 
 First of all, thank you for taking the time to contribute! 🎉👍 Before you do, please carefully read this guide.
 
@@ -15,7 +15,7 @@ First of all, thank you for taking the time to contribute! 🎉👍 Before you d
 | **New skill** | `skills/<skill-name>/SKILL.md` |
 | **Improve an existing skill** | Edit the relevant `skills/*/SKILL.md` or `reference.md` |
 | **Hooks** | `hooks/` directory |
-| **Bug reports & feature requests** | [GitHub Issues](https://github.com/VeryGoodOpenSource/very_good_ai_flutter_plugin/issues) |
+| **Bug reports & feature requests** | [GitHub Issues](https://github.com/VeryGoodOpenSource/vgv-ai-flutter-plugin/issues) |
 
 ## Adding a New Skill
 

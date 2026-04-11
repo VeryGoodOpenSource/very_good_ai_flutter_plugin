@@ -1,5 +1,5 @@
 {
-  "description": "Very Good AI Flutter Plugin hooks for Dart and Flutter development",
+  "description": "VGV AI Flutter Plugin hooks for Dart and Flutter development",
   "hooks": {
     "SessionStart": [
       {
