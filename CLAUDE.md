@@ -4,14 +4,16 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-VGV AI Flutter Plugin is a Claude Code plugin that provides best-practices skills for Flutter and Dart development. It is a **documentation-only repository** — there is no Dart/Flutter source code, no `pubspec.yaml`, and no tests. All value lives in the markdown skill files.
+VGV AI Flutter Plugin is a plugin for **Claude Code** and **Cursor** that provides best-practices skills for Flutter and Dart development. It is a **documentation-only repository** — there is no Dart/Flutter source code, no `pubspec.yaml`, and no tests. All value lives in the markdown skill files.
 
 ## Repository Structure
 
 ```text
 .mcp.json                # MCP server configuration (Very Good CLI)
 .claude-plugin/
-  plugin.json          # Plugin manifest (name, version, tags)
+  plugin.json          # Claude Code plugin manifest (name, version, tags)
+.cursor-plugin/
+  plugin.json          # Cursor plugin manifest — maps skills/, hooks/, and .mcp.json
 hooks/
   hooks.json           # Hook definitions (PreToolUse and PostToolUse)
   scripts/
@@ -39,6 +41,7 @@ skills/
   testing/SKILL.md
   testing/reference.md
   ui-package/SKILL.md
+  very-good-analysis-upgrade/SKILL.md
 ```
 
 ## Skill File Format
@@ -66,7 +69,7 @@ Every `SKILL.md` follows this structure:
 ## Adding a New Skill
 
 1. Create `skills/<skill_name>/SKILL.md` following the format above
-2. Update tags in `.claude-plugin/plugin.json`
+2. Update tags in `.claude-plugin/plugin.json` and `.cursor-plugin/plugin.json`
 3. Update the skills table in `README.md` (skill name must link to the `SKILL.md` file)
 4. Update the repository structure in `CLAUDE.md`
 
