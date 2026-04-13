@@ -13,7 +13,7 @@ VGV AI Flutter Plugin is a collection of contextual best-practices skills that C
 
 ## Installation
 
-### From the Marketplace
+### Claude Code
 
 Inside Claude Code:
 
@@ -23,6 +23,16 @@ Inside Claude Code:
 ```
 
 For more details, see the [Very Good Claude Marketplace][marketplace_link].
+
+### Cursor
+
+Inside Cursor's AI chat or composer:
+
+```bash
+/add-plugin vgv-ai-flutter-plugin
+```
+
+Or install from the [Cursor Marketplace][cursor_marketplace_link].
 
 ## Skills
 
@@ -116,6 +126,7 @@ This plugin includes a `.mcp.json` configuration that connects Claude Code to th
 The `.mcp.json` file at the project root registers a `very-good-cli` MCP server using stdio transport. When Claude Code detects this configuration, it connects to the Very Good CLI MCP server and gains access to the tools above. The skills continue to provide knowledge and best practices while the MCP tools handle execution.
 
 [marketplace_link]: https://github.com/VeryGoodOpenSource/very_good_claude_marketplace
+[cursor_marketplace_link]: https://cursor.com/marketplace
 [claude_code_link]: https://claude.ai/code
 [vgv_link]: https://verygood.ventures
 [very_good_ventures_link_dark]: https://verygood.ventures#gh-dark-mode-only
