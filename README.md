@@ -1,4 +1,4 @@
-# Very Good AI Flutter Plugin
+# VGV AI Flutter Plugin
 
 [![Very Good Ventures][logo_white]][very_good_ventures_link_dark]
 [![Very Good Ventures][logo_black]][very_good_ventures_link_light]
@@ -9,7 +9,7 @@ Developed with 💙 by [Very Good Ventures][vgv_link] 🦄
 
 ## Overview
 
-Very Good AI Flutter Plugin is a collection of contextual best-practices skills that Claude uses when helping you write Flutter and Dart code. Each skill provides opinionated, production-quality guidance covering architecture patterns, naming conventions, folder structures, code examples, testing strategies, and anti-patterns to avoid, so you get code that follows [VGV standards][vgv_link] out of the box.
+VGV AI Flutter Plugin is a collection of contextual best-practices skills that Claude uses when helping you write Flutter and Dart code. Each skill provides opinionated, production-quality guidance covering architecture patterns, naming conventions, folder structures, code examples, testing strategies, and anti-patterns to avoid, so you get code that follows [VGV standards][vgv_link] out of the box.
 
 ## Installation
 
@@ -19,7 +19,7 @@ Inside Claude Code:
 
 ```bash
 /plugin marketplace add VeryGoodOpenSource/very_good_claude_marketplace
-/plugin install very-good-ai-flutter-plugin@very_good_claude_marketplace
+/plugin install vgv-ai-flutter-plugin@very-good-claude-code-marketplace
 ```
 
 For more details, see the [Very Good Claude Marketplace][marketplace_link].
