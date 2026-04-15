@@ -31,6 +31,7 @@ For more details, see the [Very Good Claude Marketplace][marketplace_link].
 | [**Create Project**](skills/create-project/SKILL.md) | Scaffold new Dart/Flutter projects from Very Good CLI templates — `flutter_app`, `dart_package`, `flutter_plugin`, `dart_cli`, `flame_game`, and more |
 | [**Accessibility**](skills/accessibility/SKILL.md) | WCAG 2.1 AA compliance — semantics, screen reader support, touch targets, focus management, color contrast, text scaling, and motion sensitivity |
 | [**Testing**](skills/testing/SKILL.md) | Unit, widget, and golden testing — `mocktail` mocking, `pumpApp` helpers, test structure & naming, coverage patterns, and `dart_test.yaml` configuration |
+| [**Debug**](skills/debug/SKILL.md) | Hypothesis-driven debugging for bugs, regressions, crashes, flaky behavior, routing failures, and state issues — focused reproduction, targeted instrumentation, root-cause isolation, and minimal fixes |
 | [**Navigation**](skills/navigation/SKILL.md) | GoRouter routing — `@TypedGoRoute` type-safe routes, deep linking, redirects, shell routes, and widget testing with `MockGoRouter` |
 | [**Internationalization**](skills/internationalization/SKILL.md) | i18n/l10n — ARB files, `context.l10n` patterns, pluralization, RTL/LTR support with directional widgets, and backend localization strategies |
 | [**Material Theming**](skills/material-theming/SKILL.md) | Material 3 theming — `ColorScheme`, `TextTheme`, component themes, spacing systems, and light/dark mode support |
@@ -71,6 +72,7 @@ You can also invoke skills directly as slash commands:
 /vgv-create-project
 /vgv-accessibility
 /vgv-bloc
+/vgv-debug
 /vgv-internationalization
 /vgv-layered-architecture
 /vgv-material-theming
