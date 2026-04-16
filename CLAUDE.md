@@ -26,7 +26,7 @@ skills/
   accessibility/reference.md
   animations/SKILL.md
   animations/references/
-    animated-switcher.md
+    explicit-animations.md
     looping-animations.md
     page-transitions.md
     staggered-animations.md

@@ -52,41 +52,7 @@ Does the widget rebuild when the value changes?
 
 ## Material 3 Motion Tokens
 
-Use Flutter's built-in `Durations` and `Easing` classes. These align with the Material 3 motion specification.
-
-### Duration Tokens
-
-| Token                  | Value  | Use Case                                  |
-| ---------------------- | ------ | ----------------------------------------- |
-| `Durations.short1`     | 50ms   | Micro-interactions (ripple start)         |
-| `Durations.short2`     | 100ms  | Small state changes (icon swap)           |
-| `Durations.short3`     | 150ms  | Fades, color changes                      |
-| `Durations.short4`     | 200ms  | Small element enter/exit                  |
-| `Durations.medium1`    | 250ms  | Component expand/collapse                 |
-| `Durations.medium2`    | 300ms  | Standard transitions                      |
-| `Durations.medium3`    | 350ms  | Medium-distance moves                     |
-| `Durations.medium4`    | 400ms  | Page transitions                          |
-| `Durations.long1`      | 450ms  | Complex layout changes                    |
-| `Durations.long2`      | 500ms  | Large element enter/exit                  |
-| `Durations.long3`      | 550ms  | Full-screen transitions                   |
-| `Durations.long4`      | 600ms  | Extended motion sequences                 |
-| `Durations.extralong1` | 700ms  | Staggered group animations                |
-| `Durations.extralong2` | 800ms  | Complex staggered sequences               |
-| `Durations.extralong3` | 900ms  | Elaborate choreographed motion            |
-| `Durations.extralong4` | 1000ms | Maximum recommended animation length      |
-
-### Easing Tokens
-
-| Token                           | Use Case                                         |
-| ------------------------------- | ------------------------------------------------ |
-| `Easing.standard`               | Default for most animations                      |
-| `Easing.standardDecelerate`     | Elements entering the screen                     |
-| `Easing.standardAccelerate`     | Elements leaving the screen                      |
-| `Easing.emphasized`             | Important transitions that need emphasis         |
-| `Easing.emphasizedDecelerate`   | Hero/shared element entering                     |
-| `Easing.emphasizedAccelerate`   | Hero/shared element leaving                      |
-| `Easing.legacy`                 | Backward compatibility only — avoid in new code  |
-| `Easing.linear`                 | Progress indicators, continuous rotation         |
+Use Flutter's built-in `Durations` and `Easing` classes — never hardcode `Duration(milliseconds: ...)` or use `Curves.*` for new code. The framework constants align with the Material 3 motion specification; refer to the Flutter `Durations` and `Easing` class documentation for the full token list.
 
 ### Centralized Motion Constants
 
@@ -113,66 +79,7 @@ abstract class AppMotion {
 
 ## Implicit Animations
 
-Use implicit animations when the widget rebuilds with new target values. The framework interpolates automatically.
-
-### AnimatedContainer
-
-```dart
-AnimatedContainer(
-  duration: Durations.medium2,
-  curve: Easing.standard,
-  width: isExpanded ? 200 : 100,
-  height: isExpanded ? 200 : 100,
-  decoration: BoxDecoration(
-    color: isActive
-        ? colorScheme.primaryContainer
-        : colorScheme.surfaceContainerHighest,
-    borderRadius: BorderRadius.circular(isExpanded ? 16 : 8),
-  ),
-  child: child,
-)
-```
-
-### AnimatedOpacity
-
-```dart
-AnimatedOpacity(
-  duration: Durations.short3,
-  curve: Easing.standard,
-  opacity: isVisible ? 1.0 : 0.0,
-  child: child,
-)
-```
-
-### AnimatedSlide
-
-```dart
-AnimatedSlide(
-  duration: Durations.medium2,
-  curve: Easing.emphasized,
-  offset: isVisible ? Offset.zero : const Offset(0, 0.25),
-  child: child,
-)
-```
-
-### Built-in Implicit Widgets Reference
-
-| Widget                     | Animated Property              |
-| -------------------------- | ------------------------------ |
-| `AnimatedContainer`        | Multiple (size, color, border) |
-| `AnimatedOpacity`          | `opacity`                      |
-| `AnimatedSlide`            | `offset` (as fraction of size) |
-| `AnimatedAlign`            | `alignment`                    |
-| `AnimatedPadding`          | `padding`                      |
-| `AnimatedPositioned`       | `left`, `top`, `right`, etc.   |
-| `AnimatedScale`            | `scale`                        |
-| `AnimatedRotation`         | `turns`                        |
-| `AnimatedSwitcher`         | Cross-fade between children    |
-| `AnimatedCrossFade`        | Cross-fade between two widgets |
-| `AnimatedSize`             | Animates size changes of child |
-| `AnimatedDefaultTextStyle` | `style`                        |
-
-See [references/animated-switcher.md](references/animated-switcher.md) for `AnimatedSwitcher` patterns including custom transitions and size-change handling.
+Use implicit animations when the widget rebuilds with new target values. The framework interpolates automatically. Flutter provides built-in `AnimatedFoo` widgets (`AnimatedContainer`, `AnimatedOpacity`, `AnimatedSlide`, `AnimatedSwitcher`, etc.) — use the one that matches the property being animated. When no built-in widget exists, use `TweenAnimationBuilder`.
 
 ---
 
@@ -446,7 +353,6 @@ AnimatedOpacity(
 
 ## Additional Resources
 
-- [references/animated-switcher.md](references/animated-switcher.md) — `AnimatedSwitcher` patterns (cross-fade, custom transitions, size changes)
 - [references/explicit-animations.md](references/explicit-animations.md) — `didUpdateWidget`, testable controllers, transition widgets vs `AnimatedBuilder`
 - [references/staggered-animations.md](references/staggered-animations.md) — staggered entry animations and staggered list items
 - [references/page-transitions.md](references/page-transitions.md) — reusable `AppPageTransitions` helper and GoRouter integration
