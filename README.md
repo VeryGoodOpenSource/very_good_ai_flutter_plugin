@@ -13,9 +13,13 @@ VGV AI Flutter Plugin is a collection of contextual best-practices skills that C
 
 ## Installation
 
-### From the Marketplace
+One-line install from your terminal:
 
-Inside Claude Code:
+```bash
+claude plugin marketplace add VeryGoodOpenSource/very_good_claude_marketplace && claude plugin install vgv-ai-flutter-plugin@very-good-claude-code-marketplace
+```
+
+Or inside an active Claude Code session:
 
 ```bash
 /plugin marketplace add VeryGoodOpenSource/very_good_claude_marketplace
