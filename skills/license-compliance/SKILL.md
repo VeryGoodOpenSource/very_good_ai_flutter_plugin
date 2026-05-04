@@ -3,6 +3,7 @@ name: vgv-license-compliance
 description: >
   Audits package dependency licenses using the Very Good CLI packages_check_licenses
   MCP tool. Flags non-compliant or unknown licenses and produces a compliance summary.
+when_to_use: >
   Use when user says "check licenses", "license audit", "are our dependencies compliant",
   "check dependency licenses", "license compliance", "review package licenses",
   "scan for license issues", or "pre-release license check".
