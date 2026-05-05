@@ -72,7 +72,7 @@ Record the selected level. All audit checks, criterion citations, and fix recomm
 
 Use `AskUserQuestion` (multi-select if available, otherwise one question with a comma-separated reply) to ask:
 
-```
+```yaml
 question: "Which platforms is this app targeting? Select all that apply."
 header: "Platforms"
 options:
