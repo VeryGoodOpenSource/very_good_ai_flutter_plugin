@@ -50,7 +50,7 @@ Every accessibility engagement follows four phases in sequence. Do not skip Phas
 
 Use `AskUserQuestion` to ask:
 
-```
+```yaml
 question: "Which WCAG 2.2 conformance level are you targeting?"
 header: "WCAG level"
 options:
@@ -112,7 +112,7 @@ After completing all seven categories, produce the Audit Report using the templa
 
 After delivering the report, use `AskUserQuestion`:
 
-```
+```yaml
 question: "The audit is complete. How would you like to proceed with fixes?"
 header: "Fix scope"
 options:
