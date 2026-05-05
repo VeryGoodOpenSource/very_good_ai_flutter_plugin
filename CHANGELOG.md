@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.4](https://github.com/VeryGoodOpenSource/vgv-ai-flutter-plugin/compare/v0.0.3...v0.0.4) (2026-05-05)
+
+
+### Bug Fixes
+
+* **skills:** split description and when_to_use, drop unsupported effort field ([#87](https://github.com/VeryGoodOpenSource/vgv-ai-flutter-plugin/issues/87)) ([04357f1](https://github.com/VeryGoodOpenSource/vgv-ai-flutter-plugin/commit/04357f14800eb15419af75da6d017c11bf85d88f))
+
 ## [0.0.3](https://github.com/VeryGoodOpenSource/vgv-ai-flutter-plugin/compare/v0.0.2...v0.0.3) (2026-04-22)
 
 
