@@ -1,6 +1,7 @@
 ---
 name: vgv-ui-package
-description: Best practices for building a Flutter UI package on top of Material — custom components, ThemeExtension-based theming, consistent APIs, and widget tests. Use when user says "create a ui package". Supports app_ui_package template.
+description: Best practices for building a Flutter UI package on top of Material — custom components, ThemeExtension-based theming, consistent APIs, and widget tests. Supports app_ui_package template.
+when_to_use: Use when user says "create a ui package".
 allowed-tools: Edit mcp__very-good-cli__create
 model: sonnet
 ---
