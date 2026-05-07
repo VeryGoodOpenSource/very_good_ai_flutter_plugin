@@ -153,7 +153,7 @@ void main() {
 
 ## Running Tests Recursively
 
-From the monorepo root, test all packages at once using the `very_good_cli` MCP server tool `test`: `-r --min-coverage 100`
+From the monorepo root, test all packages at once using the `very_good_cli` MCP server tool `test`: `-r --min-coverage 100`. When the Dart/Flutter project is in a subdirectory of the workspace (e.g. `mobile/`), pass `directory: 'mobile'` so the tool runs against the project root.
 
 This recursively finds and runs tests in every package (data clients, repositories, and the root app).
 

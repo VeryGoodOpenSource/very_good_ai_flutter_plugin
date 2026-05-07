@@ -24,6 +24,7 @@ Dependency license auditor for Dart and Flutter projects — verifies that all p
 Apply these standards to ALL license compliance work:
 
 - **Run `packages_check_licenses` MCP tool** on the target project directory with `licenses: true` to display full license information
+- **Pass `directory` to the MCP tool when the project is not at the workspace root** — monorepos with the project in a subdirectory (e.g. `mobile/`) require `directory: 'mobile'`
 - **A missing license is not "no license"** — it means "all rights reserved" by default; always flag
 - **Transitive dependencies matter** — a permissive package that depends on a GPL package still carries the GPL obligation
 - **Flag for manual review when in doubt** — never assume compliance without a clear license identifier
@@ -45,7 +46,7 @@ Apply these standards to ALL license compliance work:
 
 ### 1. Run License Check
 
-Call the `packages_check_licenses` MCP tool on the target project directory.
+Call the `packages_check_licenses` MCP tool on the target project directory. When the project lives in a subdirectory of the workspace (e.g. `mobile/` in a monorepo), pass that path via the `directory` parameter.
 
 ### 2. Categorize Results
 

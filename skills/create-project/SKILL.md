@@ -37,7 +37,7 @@ Use `AskUserQuestion` to collect only what you cannot infer. Batch questions int
 ### Step 3: Create and Set Up
 
 1. Create the project using the Very Good CLI MCP server
-2. Install dependencies using the Very Good CLI MCP server
+2. Install dependencies using the Very Good CLI MCP server — pass `directory: '<path-to-created-project>'` to `packages_get` so it runs against the new project, not the workspace root
 
 ---
 
@@ -87,7 +87,7 @@ Use `AskUserQuestion` to collect only what you cannot infer. Batch questions int
 ### Dependencies fail to install after creation
 
 - Verify the Dart SDK is installed and on PATH
-- Try running from the project root directory
+- Pass `directory: '<path-to-created-project>'` to `packages_get` so it targets the new project
 
 ---
 

@@ -26,6 +26,7 @@ Apply these standards to ALL test work:
 - **Test behavior, not properties** — widget tests focus on functional outcomes; static visual properties validated via golden tests
 - **Use `pumpApp` test helper** — wrap widgets via shared helper in `test/helpers/pump_app.dart`; never inline `pumpWidget(MaterialApp(...))`
 - **Tag all golden tests** — annotate with `TestTag.golden` so goldens can run/update independently
+- **Pass `directory` to the `test` MCP tool when the project is not at the workspace root** — monorepos with the Flutter project in a subdirectory (e.g. `mobile/`) require `directory: 'mobile'`; omit it only when `pubspec.yaml` is at the workspace root
 
 ## Test Structure
 

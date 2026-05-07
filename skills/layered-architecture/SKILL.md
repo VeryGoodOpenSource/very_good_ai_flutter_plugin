@@ -371,7 +371,7 @@ Flavors change only the configuration (base URLs, API keys) — the architecture
 5. Implement the client class in `lib/src/<name>_api_client.dart`
 6. Create the package barrel file `lib/<name>_api_client.dart` exporting `src/` contents
 7. Write unit tests in `test/` mirroring `lib/` structure — see the **testing** skill
-8. Use `very_good_cli` MCP server tool `test` from the package directory
+8. Use `very_good_cli` MCP server tool `test` against the package directory — pass `directory: 'packages/<name>_api_client'` to scope the run
 
 ### Adding a New Repository
 
