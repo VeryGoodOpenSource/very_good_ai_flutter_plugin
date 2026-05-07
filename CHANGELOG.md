@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.0.4](https://github.com/VeryGoodOpenSource/vgv-ai-flutter-plugin/compare/v0.0.3...v0.0.4) (2026-05-07)
+
+
+### Features
+
+* **skills:** hint directory parameter for monorepo MCP tool calls ([#90](https://github.com/VeryGoodOpenSource/vgv-ai-flutter-plugin/issues/90)) ([8da150c](https://github.com/VeryGoodOpenSource/vgv-ai-flutter-plugin/commit/8da150ca17e3f8d9d3c90d208478399ce455b847))
+
+
+### Bug Fixes
+
+* **skills:** split description and when_to_use, drop unsupported effort field ([#87](https://github.com/VeryGoodOpenSource/vgv-ai-flutter-plugin/issues/87)) ([04357f1](https://github.com/VeryGoodOpenSource/vgv-ai-flutter-plugin/commit/04357f14800eb15419af75da6d017c11bf85d88f))
+
 ## [0.0.3](https://github.com/VeryGoodOpenSource/vgv-ai-flutter-plugin/compare/v0.0.2...v0.0.3) (2026-04-22)
 
 
